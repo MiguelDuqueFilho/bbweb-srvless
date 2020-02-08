@@ -21,7 +21,7 @@
 }
 .card .card-header-primary {
   border-radius: 6px;
-  background-color: rgba(156, 39, 176);
+  background-color: #9c27b0;
   box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2),
     0 13px 24px -11px rgba(156, 39, 176, 0.6);
 }
@@ -57,7 +57,27 @@
   align-content: center;
 }
 
-.authbutons {
+.nav-link {
+  font-weight: normal;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+.icons {
+  color: var(--primary);
+  font-size: 1.2em;
+}
+
+.authbuttons {
   display: flex;
   justify-content: space-around;
+}
+.authbuttons button {
+  background-color: #9c27b0;
+  color: #fff;
 }

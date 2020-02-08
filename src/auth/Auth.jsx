@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
-// import { Card } from "react-bootstrap";
 import "./Auth.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -84,40 +83,41 @@ class Auth extends Component {
                         />
                       </div>
                     </div>
-                    <div className="authbutons">
-                      <div>
-                        <button className="btn btn-primary" type="submit">
-                          {loginMode ? "Entrar" : "Registrar"}
-                        </button>
-                      </div>
-                      <div>
-                        <button
-                          className="btn btn-secundary"
-                          disabled={pristine || submitting}
-                          onClick={reset}
-                        >
-                          Limpar
-                        </button>
-                      </div>
+                    <div className="authbuttons">
+                      <button className="btn btn-primary" type="submit">
+                        {loginMode ? "Entrar" : "Registrar"}
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-primary"
+                        disabled={pristine || submitting}
+                        onClick={reset}
+                      >
+                        Limpar
+                      </button>
                     </div>
                   </div>
                 </form>
+                {/* <hr /> */}
                 <a
-                  className="nav-link text-right text-capitalize"
-                  href="/forgot"
+                  className="d-flex mt-3 pr-4 justify-content-end text-dark"
+                  href="/#"
                 >
-                  {/* <i className="material-icons">face</i> */}
-                  Esqueci minha senha
+                  <i className="fa fa-user"></i>
+                  <h6 className="ml-3">Esqueci minha senha</h6>
                 </a>
-                <div className="new-user text-center ">
-                  <button
+                <hr />
+                <div>
+                  <a
+                    href="/#"
+                    className="d-flex justify-content-center text-primary"
+                    // className="btn btn-primary "
                     onClick={() => this.changeMode()}
-                    className="btn btn-secundary"
                   >
                     {loginMode
                       ? "Novo Usuário? click aqui!"
                       : "Já é cadastrado? click aqui!"}
-                  </button>
+                  </a>
                 </div>
               </div>
               <Messages />
