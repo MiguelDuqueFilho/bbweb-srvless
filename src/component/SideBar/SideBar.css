@@ -1,0 +1,9 @@
+aside {
+  grid-area: sidebar;
+}
+/* 
+.main-sidebar {
+  height: 100%;
+  width: 20%;
+  background-color: eee;
+} */

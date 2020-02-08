@@ -1,0 +1,63 @@
+.card {
+  border: 0;
+  margin-bottom: 30px;
+  margin-top: 20vh;
+  border-radius: 6px;
+  color: rgba(0, 0, 0, 0.87);
+  background: #fff;
+  width: 100%;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: -40px;
+  padding: 20px 0;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  color: #fff;
+}
+.card .card-header-primary {
+  border-radius: 6px;
+  background-color: rgba(156, 39, 176);
+  box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2),
+    0 13px 24px -11px rgba(156, 39, 176, 0.6);
+}
+
+.card-login {
+  padding: 5px 5px;
+}
+
+.card-login .card-body {
+  padding: 10px 20px;
+}
+
+.card-login .description {
+  font-size: 1.4em;
+}
+.card-login .card-body .input-block {
+  width: 100%;
+}
+.card-login .card-body .input-group {
+  display: flex;
+  flex-direction: row;
+}
+.card-login .card-body .input-group span {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.card-login .input-group-prepend {
+  margin: 10px 5px;
+}
+
+.card-login input {
+  align-content: center;
+}
+
+.authbutons {
+  display: flex;
+  justify-content: space-around;
+}
