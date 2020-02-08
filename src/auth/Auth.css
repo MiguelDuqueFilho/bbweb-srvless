@@ -1,7 +1,7 @@
 .card {
   border: 0;
   margin-bottom: 30px;
-  margin-top: 20vh;
+  margin-top: 15vh;
   border-radius: 6px;
   color: rgba(0, 0, 0, 0.87);
   background: #fff;
@@ -69,7 +69,6 @@
 }
 
 .icons {
-  color: var(--primary);
   font-size: 1.2em;
 }
 

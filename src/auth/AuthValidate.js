@@ -1,33 +1,35 @@
 export const required = value =>
-  value || typeof value === "number" ? undefined : "Required";
+  value || typeof value === "number" ? undefined : "Campo obrigatório";
 export const maxLength = max => value =>
-  value && value.length > max ? `Must be ${max} characters or less` : undefined;
+  value && value.length > max
+    ? `Precisa ter ${max} caracteres ou menos`
+    : undefined;
 export const maxLength15 = maxLength(15);
 export const minLength = min => value =>
-  value && value.length < min ? `Must be ${min} characters or more` : undefined;
+  value && value.length < min
+    ? `Precisa ter ${min} caracteres ou mais`
+    : undefined;
 export const minLength2 = minLength(2);
 export const number = value =>
-  value && isNaN(Number(value)) ? "Must be a number" : undefined;
+  value && isNaN(Number(value)) ? "Precisa ser um número" : undefined;
 export const minValue = min => value =>
-  value && value < min ? `Must be at least ${min}` : undefined;
+  value && value < min ? `Deve ter pelo menos ${min}` : undefined;
 export const minValue13 = minValue(13);
 export const email = value =>
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-    ? "Invalid email address"
+    ? "Endereço de e-mail inválido"
     : undefined;
 export const tooYoung = value =>
-  value && value < 13
-    ? "You do not meet the minimum age requirement!"
-    : undefined;
+  value && value < 13 ? "Você não cumpre a idade mínima exigida!" : undefined;
 export const aol = value =>
-  value && /.+@aol\.com/.test(value)
-    ? "Really? You still use AOL for your email?"
+  value && /.+@gmail\.com/.test(value)
+    ? "Verdade? Você ainda usa a gmail para o seu email?"
     : undefined;
 export const alphaNumeric = value =>
   value && /[^a-zA-Z0-9 ]/i.test(value)
-    ? "Only alphanumeric characters"
+    ? "Apenas caracteres alfanuméricos"
     : undefined;
 export const phoneNumber = value =>
   value && !/^(0|[1-9][0-9]{9})$/i.test(value)
-    ? "Invalid phone number, must be 10 digits"
+    ? "Número de telefone inválido, deve ter 10 dígitos"
     : undefined;

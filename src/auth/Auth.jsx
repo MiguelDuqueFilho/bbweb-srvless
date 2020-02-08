@@ -4,28 +4,42 @@ import "./Auth.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import logo from "../assets/img/logo-01-45x45.png";
-import { login, signup } from "./AuthAction";
+import { login, signup, forgot } from "./AuthAction";
 import Input from "../common/form/inputAuth";
-import { required, email, aol } from "./AuthValidate";
+import { required, email } from "./AuthValidate";
 import Messages from "../component/Messages/Messages";
 
 class Auth extends Component {
   constructor(props) {
     super(props);
-    this.state = { loginMode: true };
+    this.state = { loginMode: true, forgotMode: false };
   }
 
   changeMode() {
-    this.setState({ loginMode: !this.state.loginMode });
+    this.setState({ loginMode: !this.state.loginMode, forgotMode: false });
+  }
+
+  changeForgot() {
+    this.setState({
+      loginMode: this.state.loginMode,
+      forgotMode: !this.state.forgotMode
+    });
   }
 
   onSubmit(values) {
-    const { login, signup } = this.props;
-    this.state.loginMode ? login(values) : signup(values);
+    console.log(`props=${this.props}`);
+    const { login, signup, forgot } = this.props;
+
+    if (this.state.forgotMode) {
+      console.log(`forgot=${values}`);
+      forgot(values);
+    } else {
+      this.state.loginMode ? login(values) : signup(values);
+    }
   }
 
   render() {
-    const { loginMode } = this.state;
+    const { loginMode, forgotMode } = this.state;
     const { handleSubmit, pristine, reset, submitting } = this.props;
     return (
       <div className="page-header">
@@ -54,7 +68,9 @@ class Auth extends Component {
                           name="userName"
                           placeholder="Nome"
                           icon="user"
-                          hidden={loginMode}
+                          hidden={
+                            loginMode ? (forgotMode ? true : true) : false
+                          }
                         />
                         <Field
                           component={Input}
@@ -63,7 +79,6 @@ class Auth extends Component {
                           placeholder="E-mail"
                           icon="envelope"
                           validate={[email, required]}
-                          warn={aol}
                         />
                         <Field
                           component={Input}
@@ -71,7 +86,8 @@ class Auth extends Component {
                           name="password"
                           placeholder="Senha"
                           icon="lock"
-                          validate={required}
+                          // validate={required}
+                          hidden={forgotMode}
                         />
                         <Field
                           component={Input}
@@ -79,13 +95,23 @@ class Auth extends Component {
                           name="confirmPassword"
                           placeholder="Confirmar Senha"
                           icon="lock"
-                          hidden={loginMode}
+                          hidden={
+                            loginMode ? (forgotMode ? true : true) : false
+                          }
                         />
                       </div>
                     </div>
                     <div className="authbuttons">
-                      <button className="btn btn-primary" type="submit">
-                        {loginMode ? "Entrar" : "Registrar"}
+                      <button
+                        className="btn btn-primary"
+                        type="submit"
+                        disabled={submitting}
+                      >
+                        {loginMode
+                          ? forgotMode
+                            ? "Recuperar"
+                            : "Entrar"
+                          : "Registrar"}
                       </button>
                       <button
                         type="button"
@@ -98,13 +124,19 @@ class Auth extends Component {
                     </div>
                   </div>
                 </form>
-                {/* <hr /> */}
                 <a
-                  className="d-flex mt-3 pr-4 justify-content-end text-dark"
+                  className={` ${
+                    loginMode
+                      ? "d-flex mt-3 pr-4 justify-content-end text-dark"
+                      : "d-none"
+                  }`}
                   href="/#"
+                  onClick={() => this.changeForgot()}
                 >
                   <i className="fa fa-user"></i>
-                  <h6 className="ml-3">Esqueci minha senha</h6>
+                  <h6 className="ml-3">
+                    {forgotMode ? "Fazer login" : "Esqueci minha senha"}
+                  </h6>
                 </a>
                 <hr />
                 <div>
@@ -133,5 +165,5 @@ Auth = reduxForm({
   form: "authForm"
 })(Auth);
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ login, signup }, dispatch);
+  bindActionCreators({ login, signup, forgot }, dispatch);
 export default connect(null, mapDispatchToProps)(Auth);

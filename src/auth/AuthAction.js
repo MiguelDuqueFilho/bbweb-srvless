@@ -10,6 +10,10 @@ export function signup(values) {
   return submit(values, "/signup");
 }
 
+export function forgot(values) {
+  return submitForgot(values, "/forgot_password");
+}
+
 function submit(values, url) {
   return dispatch => {
     api
@@ -18,7 +22,36 @@ function submit(values, url) {
         dispatch([{ type: "USER_FETCHED", payload: resp.data.data }]);
       })
       .catch(e => {
-        if (typeof e.message !== "undefined") {
+        if (
+          typeof e.message !== "undefined" &&
+          typeof e.response.data.message === "undefined"
+        ) {
+          toastr.error("Erro", e.message);
+        } else {
+          toastr.warning("Alerta", e.response.data.message);
+        }
+        dispatch(reset("authForm"));
+      });
+  };
+}
+
+function submitForgot(values, url) {
+  return dispatch => {
+    api
+      .post(url, values)
+      .then(resp => {
+        dispatch([{ type: "USER_FORGOTED", payload: resp.data.success }]);
+        if (resp.data.success) {
+          toastr.success("Sucesso", resp.data.message);
+        } else {
+          toastr.warning("Alerta", resp.data.message);
+        }
+      })
+      .catch(e => {
+        if (
+          typeof e.message !== "undefined" &&
+          typeof e.response.data.message === "undefined"
+        ) {
           toastr.error("Erro", e.message);
         } else {
           toastr.warning("Alerta", e.response.data.message);
