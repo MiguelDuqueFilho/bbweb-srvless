@@ -1,11 +1,9 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import Header from "../../Header/Header";
 
 export default function EButtons(props) {
   return (
     <>
-      <Header {...props} />
       <div>
         <Button variant="primary" className="mr-2">
           Primary

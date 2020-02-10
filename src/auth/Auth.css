@@ -1,4 +1,4 @@
-.card {
+.card.card-login {
   border: 0;
   margin-bottom: 30px;
   margin-top: 15vh;
@@ -10,7 +10,7 @@
     0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
-.card-header {
+.card-login .card-header {
   margin-left: 20px;
   margin-right: 20px;
   margin-top: -40px;
@@ -19,7 +19,7 @@
   border-radius: 6px;
   color: #fff;
 }
-.card .card-header-primary {
+.card.card-login .card-header-primary {
   border-radius: 6px;
   background-color: #9c27b0;
   box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2),
@@ -57,7 +57,7 @@
   align-content: center;
 }
 
-.nav-link {
+.card-login .nav-link {
   font-weight: normal;
   font-style: normal;
   font-size: 16px;
@@ -68,7 +68,7 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.icons {
+.card-login .icons {
   font-size: 1.2em;
 }
 

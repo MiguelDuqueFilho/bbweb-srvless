@@ -13,8 +13,6 @@ function FormLogin({ onSubmit }) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    console.log()
-
     await onSubmit({
       userEmail,
       password

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import App from "../App";
+import App from "./App";
 import Auth from "../auth/Auth";
-import { validateToken } from "./AuthAction";
+import { validateToken } from "../auth/AuthAction";
 import api from "../services/api";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -17,7 +17,7 @@ class AuthOrApp extends Component {
     const { user, validToken } = this.props.auth;
     if (user && validToken) {
       api.defaults.headers.common["authorization"] = user.token;
-      return <App />;
+      return <App>{this.props.children}</App>;
     } else if (!user && !validToken) {
       return <Auth />;
     } else {

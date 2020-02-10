@@ -1,11 +1,9 @@
 import React from "react";
 import { Tab, Tabs } from "react-bootstrap";
-import Header from "../../Header/Header";
 
 export default function ETabs(props) {
   return (
     <>
-      <Header {...props} />
       <div className="App">
         <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
           <Tab eventKey="home" title="Home">

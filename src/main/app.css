@@ -8,8 +8,8 @@
     var(--footer-height);
   grid-template-areas:
     "logo header"
-    "menu content"
-    "menu footer";
+    "sidebar content"
+    "sidebar footer";
   height: 100vh;
   background-color: #f5f5f5;
 }
@@ -22,8 +22,8 @@ header.header {
   grid-area: header;
 }
 
-aside.menu-area {
-  grid-area: menu;
+aside.main-sidebar {
+  grid-area: sidebar;
 }
 
 main.content {

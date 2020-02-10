@@ -27,11 +27,9 @@ class Auth extends Component {
   }
 
   onSubmit(values) {
-    console.log(`props=${this.props}`);
     const { login, signup, forgot } = this.props;
 
     if (this.state.forgotMode) {
-      console.log(`forgot=${values}`);
       forgot(values);
     } else {
       this.state.loginMode ? login(values) : signup(values);
@@ -130,7 +128,7 @@ class Auth extends Component {
                       ? "d-flex mt-3 pr-4 justify-content-end text-dark"
                       : "d-none"
                   }`}
-                  href="/#"
+                  href
                   onClick={() => this.changeForgot()}
                 >
                   <i className="fa fa-user"></i>
@@ -141,7 +139,7 @@ class Auth extends Component {
                 <hr />
                 <div>
                   <a
-                    href="/#"
+                    href
                     className="d-flex justify-content-center text-primary"
                     // className="btn btn-primary "
                     onClick={() => this.changeMode()}
