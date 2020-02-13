@@ -1,5 +1,5 @@
 import { toastr } from "react-redux-toastr";
-import { reset } from "redux-form";
+import { reset as resetForm } from "redux-form";
 import api from "../services/api";
 
 export function login(values) {
@@ -30,7 +30,7 @@ function submit(values, url) {
         } else {
           toastr.warning("Alerta", e.response.data.message);
         }
-        dispatch(reset("authForm"));
+        dispatch(resetForm("authForm"));
       });
   };
 }
@@ -56,7 +56,7 @@ function submitForgot(values, url) {
         } else {
           toastr.warning("Alerta", e.response.data.message);
         }
-        dispatch(reset("authForm"));
+        dispatch(resetForm("authForm"));
       });
   };
 }

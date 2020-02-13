@@ -4,14 +4,11 @@ import ContentHeader from "../../component/ContentHeader/ContentHeader";
 import Content from "../../component/Content/Content";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import { selectTab } from "./EventsAction";
 import { Tab, Tabs } from "react-bootstrap";
 
+import { eventsCreate } from "./EventsAction";
 import EventList from "./EventsList";
-// import Tabs from "../../component/Tabs/Tabs";
-// import TabsHeader from "../../component/Tabs/TabsHeader";
-// import TabsContent from "../../component/Tabs/TabsContent";
-// import TabHeader from "../../component/Tabs/TabHeader";
+import EventForm from "./EventsForm";
 
 function Events(props) {
   const [key, setKey] = useState("tablist");
@@ -35,14 +32,14 @@ function Events(props) {
           </Tab>
 
           <Tab eventKey="tabCreate" title="Incluir">
-            <p>Incluir</p>
+            <EventForm onSubmit={props.eventsCreate} />
           </Tab>
 
           <Tab eventKey="tabUpdate" title="Alterar" disabled>
             <p>Alterar</p>
           </Tab>
 
-          <Tab eventKey="tabDelete" title="Excluir" disabled>
+          <Tab eventKey="tabDelete" title="Excluir">
             <p>Excluir</p>
           </Tab>
         </Tabs>
@@ -59,5 +56,6 @@ function Events(props) {
     </>
   );
 }
-const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ eventsCreate }, dispatch);
 export default connect(null, mapDispatchToProps)(Events);

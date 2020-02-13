@@ -5,9 +5,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import logo from "../assets/img/logo-01-45x45.png";
 import { login, signup, forgot } from "./AuthAction";
-import Input from "../common/form/inputAuth";
+import InputIcon from "../common/form/InputIcon";
 import { required, email } from "./AuthValidate";
-import Messages from "../component/Messages/Messages";
+import Messages from "../common/Messages/Messages";
+import Row from "../common/row";
+import Grid from "../common/grid";
+import Footer from "../component/Footer/Footer";
 
 class Auth extends Component {
   constructor(props) {
@@ -40,121 +43,139 @@ class Auth extends Component {
     const { loginMode, forgotMode } = this.state;
     const { handleSubmit, pristine, reset, submitting } = this.props;
     return (
-      <div className="page-header">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-5 col-md-6 col-sm-9 ml-auto mr-auto">
-              <div className="card card-login">
-                <form onSubmit={handleSubmit(values => this.onSubmit(values))}>
-                  <div className="card-header card-header-primary text-center">
-                    <h4 className="card-title">Login</h4>
-                    <div className="logo-image">
-                      <img
-                        src={logo}
-                        alt="logo"
-                        className="img-raised rounded-circle img-fluid align-top "
-                      />
-                    </div>
-                  </div>
-                  <p className="description text-center">Usuário</p>
-                  <div className="card-body ">
-                    <div className="input-group ">
-                      <div className="input-block">
-                        <Field
-                          component={Input}
-                          type="input"
-                          name="userName"
-                          placeholder="Nome"
-                          icon="user"
-                          hidden={
-                            loginMode ? (forgotMode ? true : true) : false
-                          }
-                        />
-                        <Field
-                          component={Input}
-                          type="input"
-                          name="userEmail"
-                          placeholder="E-mail"
-                          icon="envelope"
-                          validate={[email, required]}
-                        />
-                        <Field
-                          component={Input}
-                          type="password"
-                          name="password"
-                          placeholder="Senha"
-                          icon="lock"
-                          // validate={required}
-                          hidden={forgotMode}
-                        />
-                        <Field
-                          component={Input}
-                          type="password"
-                          name="confirmPassword"
-                          placeholder="Confirmar Senha"
-                          icon="lock"
-                          hidden={
-                            loginMode ? (forgotMode ? true : true) : false
-                          }
+      <>
+        <div className="page-header">
+          <div className="container">
+            <Row>
+              <Grid cols="11 9 7 5 5" className="ml-auto mr-auto">
+                <div className="card card-login">
+                  <form
+                    onSubmit={handleSubmit(values => this.onSubmit(values))}
+                  >
+                    <div className="card-header card-header-primary text-center">
+                      <h4 className="card-title">
+                        {loginMode
+                          ? forgotMode
+                            ? "Recuperar senha"
+                            : "Login"
+                          : "Cadastro"}
+                      </h4>
+                      <div className="logo-image">
+                        <img
+                          src={logo}
+                          alt="logo"
+                          className="img-raised rounded-circle img-fluid align-top "
                         />
                       </div>
                     </div>
-                    <div className="authbuttons">
-                      <button
-                        className="btn btn-primary"
-                        type="submit"
-                        disabled={submitting}
-                      >
-                        {loginMode
-                          ? forgotMode
-                            ? "Recuperar"
-                            : "Entrar"
-                          : "Registrar"}
-                      </button>
-                      <button
-                        type="button"
-                        className="btn btn-primary"
-                        disabled={pristine || submitting}
-                        onClick={reset}
-                      >
-                        Limpar
-                      </button>
+                    <p className="description text-center">Cliente</p>
+                    <div className="card-body ">
+                      <div className="input-group ">
+                        <div className="input-block">
+                          <Field
+                            component={InputIcon}
+                            type="input"
+                            name="userName"
+                            placeholder="Nome"
+                            icon="user"
+                            hidden={
+                              loginMode ? (forgotMode ? true : true) : false
+                            }
+                          />
+                          <Field
+                            component={InputIcon}
+                            type="input"
+                            name="userEmail"
+                            placeholder="E-mail"
+                            text="R$"
+                            icon="envelope"
+                            validate={[email, required]}
+                          />
+                          <Field
+                            component={InputIcon}
+                            type="password"
+                            name="password"
+                            placeholder="Senha"
+                            icon="lock"
+                            // validate={required}
+                            hidden={forgotMode}
+                          />
+                          <Field
+                            component={InputIcon}
+                            type="password"
+                            name="confirmPassword"
+                            placeholder="Confirmar Senha"
+                            icon="lock"
+                            hidden={
+                              loginMode ? (forgotMode ? true : true) : false
+                            }
+                          />
+                          <Row className="text-center">
+                            <Grid cols="6">
+                              <button
+                                className="btn btn-primary btn-flat "
+                                type="submit"
+                                disabled={submitting}
+                              >
+                                {loginMode
+                                  ? forgotMode
+                                    ? "Enviar"
+                                    : "Entrar"
+                                  : "Registrar"}
+                              </button>
+                            </Grid>
+                            <Grid cols="6">
+                              <button
+                                type="button"
+                                className="btn btn-primary "
+                                disabled={pristine || submitting}
+                                onClick={reset}
+                              >
+                                Limpar
+                              </button>
+                            </Grid>
+                          </Row>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </form>
-                <a
-                  className={` ${
-                    loginMode
-                      ? "d-flex mt-3 pr-4 justify-content-end text-dark"
-                      : "d-none"
-                  }`}
-                  href
-                  onClick={() => this.changeForgot()}
-                >
-                  <i className="fa fa-user"></i>
-                  <h6 className="ml-3">
-                    {forgotMode ? "Fazer login" : "Esqueci minha senha"}
-                  </h6>
-                </a>
-                <hr />
-                <div>
-                  <a
-                    href
-                    className="d-flex justify-content-center text-primary"
-                    // className="btn btn-primary "
-                    onClick={() => this.changeMode()}
-                  >
-                    {loginMode
-                      ? "Novo Usuário? click aqui!"
-                      : "Já é cadastrado? click aqui!"}
-                  </a>
+                    <Row className="text-right text-reset mr-3">
+                      <Grid cols="12">
+                        <i
+                          className={`${loginMode ? "btn" : "d-none"}`}
+                          onClick={() => this.changeForgot()}
+                        >
+                          <span className="login-forgot text-capitalize text-nowrap font-weight-lighter">
+                            {forgotMode
+                              ? "Fazer login"
+                              : "Esqueci minha senha? click aqui!"}
+                          </span>
+                        </i>
+                      </Grid>
+                      <br />
+                      <Grid cols="12">
+                        <i
+                          className="btn mb-2"
+                          onClick={() => this.changeMode()}
+                        >
+                          <span className="login-newuser text-right text-capitalize text-nowrap font-weight-lighter">
+                            {loginMode
+                              ? "Novo usuário? Registrar aqui!"
+                              : "Já é cadastrado? Entrar aqui!"}
+                          </span>
+                        </i>
+                      </Grid>
+                    </Row>
+                  </form>
                 </div>
-              </div>
-              <Messages />
-            </div>
+              </Grid>
+            </Row>
+            <Messages />
           </div>
         </div>
-      </div>
+        <div className="page-footer">
+          <Footer />
+        </div>
+      </>
     );
   }
 }

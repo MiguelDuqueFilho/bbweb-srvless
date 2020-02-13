@@ -5,7 +5,7 @@ import Menu from "../Menu/Menu";
 export default function SideBar() {
   return (
     <aside className="main-sidebar">
-      <section className="sidebar bg-dark text-white sidebar h-100">
+      <section className="sidebar  text-white sidebar h-100">
         <Menu />
       </section>
     </aside>

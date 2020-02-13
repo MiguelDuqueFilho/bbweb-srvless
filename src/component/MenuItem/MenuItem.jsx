@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import { Container } from './styles';
+import "./MenuItem.css";
 
 export default function MenuItem(props) {
   return (
-    <li>
-      <Link to={props.path}>
-        <i className={`fa fa-${props.icon} text-white`}></i>{" "}
-        <span className="text-white">{props.label}</span>
+    <li className="main-menu-item mt-2 list-unstyled">
+      <Link to={props.path} className="m-2 text-dark ">
+        <i className={`fa fa-${props.icon} `}></i>{" "}
+        <span className="m-2">{props.label}</span>
       </Link>
     </li>
   );

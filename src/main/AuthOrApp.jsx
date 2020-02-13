@@ -7,8 +7,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 class AuthOrApp extends Component {
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
+    console.log("componentDidMount");
     if (this.props.auth.user) {
+      console.log("validateToken");
       this.props.validateToken(this.props.auth.user.token);
     }
   }
@@ -17,8 +19,10 @@ class AuthOrApp extends Component {
     const { user, validToken } = this.props.auth;
     if (user && validToken) {
       api.defaults.headers.common["authorization"] = user.token;
+      console.log("authorization");
       return <App>{this.props.children}</App>;
     } else if (!user && !validToken) {
+      console.log("Auth");
       return <Auth />;
     } else {
       return false;

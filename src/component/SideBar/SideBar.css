@@ -1,9 +1,3 @@
 aside {
-  grid-area: sidebar;
+  background-color: #ededed;
 }
-/* 
-.main-sidebar {
-  height: 100%;
-  width: 20%;
-  background-color: eee;
-} */

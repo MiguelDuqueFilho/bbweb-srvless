@@ -1,20 +1,8 @@
-/* header {
-  grid-area: header;
-  flex-direction: row;
-  height: 90px;
-  background-color: rgb(238, 204, 204);
-  box-shadow: 0 0 0 5px #555;
-}
-
-.login-image {
-  color: black;
-}
-
-.logo-mini img {
-  margin: 20px;
-  width: 50px;
-} */
-
 header {
+  background-color: rgb(238, 204, 204);
+  display: inline-block;
+}
+
+header .container {
   background-color: rgb(238, 204, 204);
 }

@@ -5,17 +5,17 @@ export default ({
   input,
   type,
   placeholder,
-  icon,
+  text,
   readOnly,
   hidden,
   meta: { visited, touched, error, warning }
 }) => {
   return (
     <If test={!hidden}>
-      <div className="input-group mb-3 ">
-        <span className="input-group-prepend">
-          <i className={`fa fa-${icon}`}></i>
-        </span>
+      <div className="input-group">
+        <div className="input-group-prepend">
+          <span className="input-group-text">{text}</span>
+        </div>
         <input
           {...input}
           className="form-control"

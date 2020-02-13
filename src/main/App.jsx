@@ -5,13 +5,10 @@ import "./app.css";
 
 import Logo from "../component/Logo/Logo";
 import Header from "../component/Header/Header";
-
 import SideBar from "../component/SideBar/SideBar";
-// import Menu from "./component/Menu/Menu";
-
 import Routes from "./Routes";
 import Footer from "../component/Footer/Footer";
-import Messages from "../component/Messages/Messages";
+import Messages from "../common/Messages/Messages";
 
 function App(props) {
   return (
@@ -20,7 +17,6 @@ function App(props) {
         <Logo />
         <Header />
         <SideBar />
-        {/* <Menu /> */}
         <Routes />
         <Footer />
         <Messages />

@@ -11,59 +11,39 @@ class EventsList extends Component {
   }
 
   renderRows() {
-    const list = this.props.listEvents || [];
-    console.log(list);
+    const list = this.props.listEvents.data || [];
     return list.map(evt => (
-      <tr key={5}>
-        <td>5</td>
-        <td>{evt.nome}</td>
-        <td>{evt.description}</td>
-        <td>@mdo</td>
+      <tr key={evt.id}>
+        <td>{evt.id}</td>
+        <td>{evt.eventName}</td>
+        <td>{evt.eventDescription}</td>
+        <td>{evt.EventTypes[0].eventTypeName}</td>
+        <td>{evt.EventStatus[0].eventStatusName}</td>
       </tr>
     ));
   }
 
   render() {
     return (
-      <div className="container">
-        <div className="row mb-4">
-          <div className="col-sm-12 grid-margin">
-            <div className="card h-100">
-              <h4 className="p-3 bg-primary shadow text-white rounded-lg">
-                Eventos
-              </h4>
-              <div className="card-body">
-                <Table striped bordered hover>
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>First Name</th>
-                      <th>Last Name</th>
-                      <th>Username</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {this.renderRows()}
-                    <tr>
-                      <td>1</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td colSpan="2">Larry the Bird</td>
-                      <td>@twitter</td>
-                    </tr>
-                  </tbody>
-                </Table>
-              </div>
+      <div className="row mb-4">
+        <div className="col-sm-12 grid-margin">
+          <div className="card h-100">
+            <h4 className="p-3 bg-primary shadow text-white rounded-lg">
+              Eventos
+            </h4>
+            <div className="card-body">
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Evento</th>
+                    <th>Descrição</th>
+                    <th>Tipo</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>{this.renderRows()}</tbody>
+              </Table>
             </div>
           </div>
         </div>
