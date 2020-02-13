@@ -110,6 +110,7 @@ class Auth extends Component {
                               loginMode ? (forgotMode ? true : true) : false
                             }
                           />
+                          <br />
                           <Row className="text-center">
                             <Grid cols="6">
                               <button
@@ -137,34 +138,34 @@ class Auth extends Component {
                           </Row>
                         </div>
                       </div>
+                      <Row className="text-right text-reset mr-3">
+                        <Grid cols="12">
+                          <i
+                            className={`${loginMode ? "btn" : "d-none"}`}
+                            onClick={() => this.changeForgot()}
+                          >
+                            <span className="login-forgot text-capitalize text-nowrap font-weight-lighter">
+                              {forgotMode
+                                ? "Fazer login"
+                                : "Esqueci minha senha? click aqui!"}
+                            </span>
+                          </i>
+                        </Grid>
+
+                        <Grid cols="12">
+                          <i
+                            className="btn mb-2"
+                            onClick={() => this.changeMode()}
+                          >
+                            <span className="login-newuser text-right text-capitalize text-nowrap font-weight-lighter">
+                              {loginMode
+                                ? "Novo usuário? Registrar aqui!"
+                                : "Já é cadastrado? Entrar aqui!"}
+                            </span>
+                          </i>
+                        </Grid>
+                      </Row>
                     </div>
-                    <Row className="text-right text-reset mr-3">
-                      <Grid cols="12">
-                        <i
-                          className={`${loginMode ? "btn" : "d-none"}`}
-                          onClick={() => this.changeForgot()}
-                        >
-                          <span className="login-forgot text-capitalize text-nowrap font-weight-lighter">
-                            {forgotMode
-                              ? "Fazer login"
-                              : "Esqueci minha senha? click aqui!"}
-                          </span>
-                        </i>
-                      </Grid>
-                      <br />
-                      <Grid cols="12">
-                        <i
-                          className="btn mb-2"
-                          onClick={() => this.changeMode()}
-                        >
-                          <span className="login-newuser text-right text-capitalize text-nowrap font-weight-lighter">
-                            {loginMode
-                              ? "Novo usuário? Registrar aqui!"
-                              : "Já é cadastrado? Entrar aqui!"}
-                          </span>
-                        </i>
-                      </Grid>
-                    </Row>
                   </form>
                 </div>
               </Grid>

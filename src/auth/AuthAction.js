@@ -19,18 +19,24 @@ function submit(values, url) {
     api
       .post(url, values)
       .then(resp => {
-        dispatch([{ type: "USER_FETCHED", payload: resp.data.data }]);
+        if (resp.data.success === true) {
+          dispatch([
+            { type: "USER_FETCHED", payload: resp.data.data },
+            resetForm("authForm")
+          ]);
+        } else {
+          toastr.warning("Alerta", resp.data.message);
+          dispatch(resetForm("authForm"));
+        }
       })
       .catch(e => {
-        if (
-          typeof e.message !== "undefined" &&
-          typeof e.response.data.message === "undefined"
-        ) {
-          toastr.error("Erro", e.message);
-        } else {
+        if (typeof e.response.data.message !== "undefined") {
           toastr.warning("Alerta", e.response.data.message);
+          dispatch(resetForm("authForm"));
+        } else if (typeof e.message !== "undefined") {
+          toastr.error("Erro", e.message);
+          dispatch(resetForm("authForm"));
         }
-        dispatch(resetForm("authForm"));
       });
   };
 }
@@ -48,15 +54,13 @@ function submitForgot(values, url) {
         }
       })
       .catch(e => {
-        if (
-          typeof e.message !== "undefined" &&
-          typeof e.response.data.message === "undefined"
-        ) {
-          toastr.error("Erro", e.message);
-        } else {
+        if (typeof e.response.data.message !== "undefined") {
           toastr.warning("Alerta", e.response.data.message);
+          dispatch(resetForm("authForm"));
+        } else if (typeof e.message !== "undefined") {
+          toastr.error("Erro", e.message);
+          dispatch(resetForm("authForm"));
         }
-        dispatch(resetForm("authForm"));
       });
   };
 }
@@ -75,10 +79,10 @@ export function validateToken(token) {
           dispatch({ type: "TOKEN_VALIDATED", payload: resp.data.success });
         })
         .catch(e => {
-          if (typeof e.message !== "undefined") {
-            toastr.error("Erro", e.message);
-          } else {
+          if (typeof e.response.data.message !== "undefined") {
             toastr.warning("Alerta", e.response.data.message);
+          } else if (typeof e.message !== "undefined") {
+            toastr.error("Erro", e.message);
           }
         });
     }
