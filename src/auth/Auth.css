@@ -4,14 +4,21 @@ Slide de fundo
 
 .page-header {
   background-image: url("../assets/img/banner-inicial-4.png");
-  height: 93vh;
+  min-height: 92vh;
+  /* height: calc(92vh - var(--footer-height)); */
+
+  /* height: calc(var(--vh, 1vh) * var(--header-login-min-height)); */
+  /* height: 92vh;
+  min-height: 800px; */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
 }
+
 .page-footer {
-  height: 7vh;
+  min-height: 10vh;
+  /* height: var(--footer-height); */
 }
 /* 
   Card
@@ -49,7 +56,6 @@ Slide de fundo
 
 .card-login .description {
   font-size: 16px;
-  color: #999;
 }
 
 .card-login .card-body .input-block {
@@ -57,7 +63,7 @@ Slide de fundo
 }
 
 .input-group {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .input-group .input-group-prepend {
@@ -69,6 +75,25 @@ Slide de fundo
 .input-group .input-group-prepend > i {
   font-weight: 100;
 }
+
+.card-login .input-group .form-control {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom: 1px solid var(--gray);
+  font-size: 14px;
+  color: #000;
+}
+
+.card-login .input-group .form-control:focus {
+  background-size: 100% 100% 100% 100%;
+  transition-duration: 0.3s;
+  box-shadow: none;
+  border-bottom: 2px solid var(--primary);
+}
+
 .login-forgot,
 .login-newuser {
   font-family: "robot slab";

@@ -1,0 +1,13 @@
+.sidebar-menu:before {
+  display: flex;
+  flex-direction: column;
+  content: "";
+  width: 100%;
+  height: 1.5px;
+  background: #dbd6d6;
+  margin-bottom: 20px;
+}
+
+.sidebar-menu {
+  margin-top: 40px;
+}

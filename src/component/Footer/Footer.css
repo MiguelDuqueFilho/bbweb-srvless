@@ -1,22 +1,21 @@
 footer.footer-default {
-  height: 100%;
+  height: var(--footer-height);
   align-items: center;
 }
 
 footer.footer-default .container {
-  height: 100%;
   justify-content: space-between;
   align-items: stretch;
 }
 
 footer.footer-default .container .bebride-assessoria,
 footer.footer-default .container .copyright {
-  margin: 2vh;
+  margin: 2px;
 }
 
 @media (max-width: 576px) {
   footer.footer-default .container .bebride-assessoria,
   footer.footer-default .container .copyright {
-    margin: 1vh;
+    margin: 2px;
   }
 }

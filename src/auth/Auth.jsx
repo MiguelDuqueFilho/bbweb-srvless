@@ -86,7 +86,7 @@ class Auth extends Component {
                             component={InputIcon}
                             type="input"
                             name="userEmail"
-                            placeholder="E-mail"
+                            placeholder="Email..."
                             text="R$"
                             icon="envelope"
                             validate={[email, required]}
@@ -95,7 +95,7 @@ class Auth extends Component {
                             component={InputIcon}
                             type="password"
                             name="password"
-                            placeholder="Senha"
+                            placeholder="Senha..."
                             icon="lock"
                             // validate={required}
                             hidden={forgotMode}

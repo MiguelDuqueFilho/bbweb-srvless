@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 
 export default function Logo() {
   return (
-    <aside className="logo">
-      <Link to="/" className="logo">
-        <img src={logo} alt="logo" />
+    <div className="logo">
+      <Link to="/" className="logolink">
+        <img src={logo} alt="Thumbnail logo BeBride" />
       </Link>
-    </aside>
+    </div>
   );
 }

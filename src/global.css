@@ -7,12 +7,11 @@
   outline: 0;
   box-sizing: border-box;
 }
-
 :root {
-  --logo-height: 64px;
-  --header-height: 64px;
-  --menu-top-height: 70px;
-  --aside-width: 225px;
+  --logo-height: 95px;
+  --header-height: 50px;
+  --menu-top-height: 95px;
+  --aside-width: 260px;
   --footer-height: 40px;
 
   --shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2),
@@ -29,3 +28,57 @@ body {
   font-weight: 300;
   line-height: 1.5em;
 }
+
+/* sample que peguei de ajuste alutomático de altura e 
+largura */
+
+/* 
+/* The height/width ratio for our video */
+/* 
+:root {
+  --ratio: 9 / 16;
+  --width: 98vmin;
+  --height: calc(var(--width) * var(--ratio));
+}
+
+* {
+  box-sizing: border-box;
+} */
+
+/* Slide Layout */
+/* .slide {
+  background: #fff;
+  border: 1px solid;
+  font-size: 3.5vmin;
+  margin: 1vmin auto;
+  padding: 3vmin;
+  width: var(--width);
+  height: var(--height);
+  text-align: center;
+} */
+
+/* Inside Styles */
+/* h1 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+h1, p {
+  margin-bottom: 3vmin;
+}
+
+img {
+  display: block;
+  margin: 3vmin auto;
+  width: 15vmin;
+}
+
+.bigred {
+  color: red;
+  font-size: 3em;
+} */
+
+/* Body */
+/* body {
+  background: #ccc;
+} */
