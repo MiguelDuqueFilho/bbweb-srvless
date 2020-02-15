@@ -12,10 +12,10 @@ export default function Menu() {
         <MenuItem path="/events" label="Eventos" icon="table" />
       </MenuTree> */}
         <MenuItem path="/events" label="Eventos" icon="table" />
-        <MenuItem path="/buttons" label="Buttons" icon="user" />
+        {/* <MenuItem path="/buttons" label="Buttons" icon="user" />
         <MenuItem path="/accordions" label="Accordions" icon="user" />
         <MenuItem path="/tabs" label="Tabs" icon="user" />
-        <MenuItem path="/cardtable" label="Card / Tables" icon="user" />
+        <MenuItem path="/cardtable" label="Card / Tables" icon="user" /> */}
       </ul>
     </div>
   );

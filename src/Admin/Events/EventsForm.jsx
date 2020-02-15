@@ -7,9 +7,9 @@ class EventForm extends Component {
   render() {
     const { handleSubmit, pristine, reset, submitting } = this.props;
     return (
-      <div className="row mb-4">
-        <div className="col-sm-12 grid-margin">
-          <div className="card h-100">
+      <div className="row">
+        <div className="col-12">
+          <div className="card">
             <form onSubmit={handleSubmit}>
               <h4 className="p-3 bg-primary shadow text-white rounded-lg">
                 Inclusão de Eventos

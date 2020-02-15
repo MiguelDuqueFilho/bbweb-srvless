@@ -1,18 +1,23 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+
 import ContentHeader from "../../component/ContentHeader/ContentHeader";
 import Content from "../../component/Content/Content";
 import Tabs from "../../common/Tabs/tabs";
-import TabsHeader from "../../common/Tabs/tabs";
-import TabsContent from "../../common/Tabs/tabContent";
+import TabsHeader from "../../common/Tabs/tabsHeader";
+import TabsContent from "../../common/Tabs/tabsContent";
 import TabHeader from "../../common/Tabs/tabHeader";
 import TabContent from "../../common/Tabs/tabContent";
-import EventList from "../../Admin/Events/EventsList";
-import EventInsert from "../../Admin/Events/EventsInsert";
-import { selectTab } from "../../common/Tabs/tabActions";
+import { init, create, update, remove } from "./EventsAction";
+
+import EventsList from "./EventsList";
+import EventsForm from "./EventsForm";
 
 class Events extends Component {
+  componentWillMount() {
+    this.props.init();
+  }
   render() {
     return (
       <>
@@ -26,22 +31,35 @@ class Events extends Component {
             <TabsHeader>
               <TabHeader label="Listar" icon="bars" target="tabList" />
               <TabHeader label="Incluir" icon="plus" target="tabCreate" />
-              <TabHeader label="Alterar" icon="pencil" target="tabUpdate" />
-              <TabHeader label="Excluir" icon="trash-o" target="tabDelete" />
+              {/* <TabHeader label="Alterar" icon="pencil" target="tabUpdate" />
+              <TabHeader label="Excluir" icon="trash-o" target="tabDelete" /> */}
             </TabsHeader>
             <TabsContent>
               <TabContent id="tabList">
-                <EventList />
+                <EventsList />
               </TabContent>
               <TabContent id="tabCreate">
-                <EventInsert />
+                <EventsForm
+                  onSubmit={this.props.create}
+                  submitLabel="Incluir"
+                  submitClass="primary"
+                />
               </TabContent>
-              <TabContent id="tabUpdate">
-                <h1>tabUpdate</h1>
+              {/* <TabContent id="tabUpdate">
+                <EventsForm
+                  onSubmit={this.props.update}
+                  submitLabel="Alterar"
+                  submitClass="info"
+                />
               </TabContent>
               <TabContent id="tabDelete">
-                <h1>tabDelete</h1>
-              </TabContent>
+                <EventsForm
+                  onSubmit={this.props.remove}
+                  readOnly={true}
+                  submitLabel="Excluir"
+                  submitClass="danger"
+                />
+              </TabContent> */}
             </TabsContent>
           </Tabs>
         </Content>
@@ -51,5 +69,13 @@ class Events extends Component {
 }
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ selectTab }, dispatch);
+  bindActionCreators(
+    {
+      init,
+      create,
+      update,
+      remove
+    },
+    dispatch
+  );
 export default connect(null, mapDispatchToProps)(Events);

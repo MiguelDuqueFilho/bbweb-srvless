@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Table } from "react-bootstrap";
+// import { Table } from "react-bootstrap";
 
-import { getEventsList } from "./EventsAction";
+import { getList, showUpdate, showDelete } from "./EventsAction";
 
 class EventsList extends Component {
   componentDidMount() {
-    this.props.getEventsList();
+    this.props.getList();
   }
 
   renderRows() {
@@ -25,34 +25,35 @@ class EventsList extends Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-sm-12">
-          <div className="card">
-            <h4 className="p-3 bg-primary shadow text-white rounded-lg">
-              Eventos
-            </h4>
-            <div className="card-body">
-              <Table striped bordered hover>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Evento</th>
-                    <th>Descrição</th>
-                    <th>Tipo</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>{this.renderRows()}</tbody>
-              </Table>
-            </div>
-          </div>
-        </div>
-      </div>
+      <h1>list</h1>
+      // <div className="row">
+      //   <div className="col-sm-12">
+      //     <div className="card">
+      //       <h4 className="p-3 bg-primary shadow text-white rounded-lg">
+      //         Eventos
+      //       </h4>
+      //       <div className="card-body">
+      //         <Table striped bordered hover>
+      //           <thead>
+      //             <tr>
+      //               <th>#</th>
+      //               <th>Evento</th>
+      //               <th>Descrição</th>
+      //               <th>Tipo</th>
+      //               <th>Status</th>
+      //             </tr>
+      //           </thead>
+      //           <tbody>{this.renderRows()}</tbody>
+      //         </Table>
+      //       </div>
+      //     </div>
+      //   </div>
+      // </div>
     );
   }
 }
 const mapStateToProps = state => ({ listEvents: state.events.listEvents });
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ getEventsList }, dispatch);
+  bindActionCreators({ getList, showUpdate, showDelete }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventsList);

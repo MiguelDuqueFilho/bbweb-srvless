@@ -4,20 +4,20 @@ import { Switch, Route, Redirect } from "react-router";
 import DashBoard from "../Admin/Dashboard/Dashboard";
 import Events from "../Admin/Events/Events";
 
-import EButtons from "../component/Samples/EButtons/EButtons";
-import EAccordions from "../component/Samples/EAccordions/EAccordions";
-import ETabs from "../component/Samples/ETabs/ETabs";
-import CardTable from "../component/Samples/CardTable/CardTable";
+// import EButtons from "../component/Samples/EButtons/EButtons";
+// import EAccordions from "../component/Samples/EAccordions/EAccordions";
+// import ETabs from "../component/Samples/ETabs/ETabs";
+// import CardTable from "../component/Samples/CardTable/CardTable";
 
 export default props => (
   <div className="content-wrapper">
     <Switch>
       <Route exact path="/dashboard" component={DashBoard} />
       <Route path="/events" component={Events} />
-      <Route path="/buttons" component={EButtons} />
+      {/* <Route path="/buttons" component={EButtons} />
       <Route path="/accordions" component={EAccordions} />
       <Route path="/tabs" component={ETabs} />
-      <Route path="/cardtable" component={CardTable} />
+      <Route path="/cardtable" component={CardTable} /> */}
       <Redirect from="*" to="/dashboard" />
     </Switch>
   </div>

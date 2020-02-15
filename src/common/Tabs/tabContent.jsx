@@ -20,4 +20,5 @@ class TabContent extends Component {
 }
 
 const mapStateToProps = state => ({ tab: state.tab });
+
 export default connect(mapStateToProps)(TabContent);

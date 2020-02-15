@@ -23,7 +23,7 @@ Slide de fundo
 /* 
   Card
 */
-.card {
+.card.card-login {
   border: 0;
   margin-bottom: 30px;
   margin-top: 15vh;
