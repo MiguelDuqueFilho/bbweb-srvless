@@ -25,9 +25,9 @@ class EventsList extends Component {
 
   render() {
     return (
-      <div className="row mb-4">
-        <div className="col-sm-12 grid-margin">
-          <div className="card h-100">
+      <div className="row">
+        <div className="col-sm-12">
+          <div className="card">
             <h4 className="p-3 bg-primary shadow text-white rounded-lg">
               Eventos
             </h4>

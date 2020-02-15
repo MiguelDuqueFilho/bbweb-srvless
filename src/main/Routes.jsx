@@ -12,13 +12,13 @@ import CardTable from "../component/Samples/CardTable/CardTable";
 export default props => (
   <div className="content-wrapper">
     <Switch>
-      <Route exact path="/" component={DashBoard} />
+      <Route exact path="/dashboard" component={DashBoard} />
       <Route path="/events" component={Events} />
       <Route path="/buttons" component={EButtons} />
       <Route path="/accordions" component={EAccordions} />
       <Route path="/tabs" component={ETabs} />
       <Route path="/cardtable" component={CardTable} />
-      <Redirect from="*" to="/" />
+      <Redirect from="*" to="/dashboard" />
     </Switch>
   </div>
 );

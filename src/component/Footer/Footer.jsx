@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="container d-flex">
         <div className="bebride-assessoria">
           <a
-            className="text-decoration-none"
+            className="text-decoration-none text-dark"
             href="http://bebrideassessoria.com.br"
             target="blank"
           >

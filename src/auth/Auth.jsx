@@ -9,7 +9,7 @@ import InputIcon from "../common/form/InputIcon";
 import { required, email } from "./AuthValidate";
 import Messages from "../common/Messages/Messages";
 import Row from "../common/row";
-import Grid from "../common/grid";
+import Grid from "../component/Grid/Grid";
 import Footer from "../component/Footer/Footer";
 
 class Auth extends Component {

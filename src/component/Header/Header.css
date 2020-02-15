@@ -1,8 +1,29 @@
-header {
-  background-color: rgb(238, 204, 204);
-  display: inline-block;
+header .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border-radius: 7px;
 }
 
-header .container {
-  background-color: rgb(238, 204, 204);
+header .title-link a {
+  color: #999;
+  font-size: 1.2em;
+}
+
+header .list-inline {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+}
+
+header nav ul li a {
+  color: #000;
+  font-size: 1.2em;
+  text-decoration: none;
 }

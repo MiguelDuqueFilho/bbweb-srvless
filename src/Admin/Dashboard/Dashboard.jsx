@@ -24,24 +24,28 @@ class Dashboard extends Component {
 
     return (
       <>
-        <ContentHeader title="Dashboard" subtitle="Verão 1.0" />
+        <ContentHeader
+          title="Dashboard"
+          subtitle="Resumo das atividades administrativas"
+          icon="dashboard"
+        />
         <Content>
           <CustomBox
-            cols="12 4"
+            cols="12 4 4"
             color="green"
             icon="bank"
             value={`R$ ${credit}`}
             text="Total de Crédito"
           />
           <CustomBox
-            cols="12 4"
+            cols="12 4 4"
             color="red"
             icon="credit-card"
             value={`R$ ${debt}`}
             text="Total de Débito"
           />
           <CustomBox
-            cols="12 4"
+            cols="12 4 4"
             color="blue"
             icon="money"
             value={`R$ ${credit - debt}`}

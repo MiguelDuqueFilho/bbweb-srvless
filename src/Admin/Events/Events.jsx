@@ -1,61 +1,55 @@
-import React, { useState, useEffect } from "react";
-
+import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import ContentHeader from "../../component/ContentHeader/ContentHeader";
 import Content from "../../component/Content/Content";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { Tab, Tabs } from "react-bootstrap";
+import Tabs from "../../common/Tabs/tabs";
+import TabsHeader from "../../common/Tabs/tabs";
+import TabsContent from "../../common/Tabs/tabContent";
+import TabHeader from "../../common/Tabs/tabHeader";
+import TabContent from "../../common/Tabs/tabContent";
+import EventList from "../../Admin/Events/EventsList";
+import EventInsert from "../../Admin/Events/EventsInsert";
+import { selectTab } from "../../common/Tabs/tabActions";
 
-import { eventsCreate } from "./EventsAction";
-import EventList from "./EventsList";
-import EventForm from "./EventsForm";
-
-function Events(props) {
-  const [key, setKey] = useState("tablist");
-
-  useEffect(() => {}, [key]);
-
-  return (
-    <>
-      <ContentHeader
-        title="Cadastro de Eventos"
-        subtitle="Nesta pagina você pode fazer manutenção de eventos."
-      />
-      <Content>
-        <Tabs
-          id="controlled-tab-example"
-          activeKey={key}
-          onSelect={k => setKey(k)}
-        >
-          <Tab eventKey="tablist" title="Listar">
-            <EventList />
-          </Tab>
-
-          <Tab eventKey="tabCreate" title="Incluir">
-            <EventForm onSubmit={props.eventsCreate} />
-          </Tab>
-
-          <Tab eventKey="tabUpdate" title="Alterar" disabled>
-            <p>Alterar</p>
-          </Tab>
-
-          <Tab eventKey="tabDelete" title="Excluir">
-            <p>Excluir</p>
-          </Tab>
-        </Tabs>
-        {/* <Tabs>
-          <TabsHeader>
-            <TabHeader label="Listar" icon="bars" target="tablist" />
-            <TabHeader label="Incluir" icon="plus" target="tabCreate" />
-            <TabHeader label="Alterar" icon="bars" target="tabUpdate" />
-            <TabHeader label="Excluir" icon="trash-o" target="tabDelete" />
-          </TabsHeader>
-          <TabsContent></TabsContent>
-        </Tabs> */}
-      </Content>
-    </>
-  );
+class Events extends Component {
+  render() {
+    return (
+      <>
+        <ContentHeader
+          title="Cadastro de Eventos"
+          subtitle="Nesta pagina você pode fazer manutenção de eventos."
+          icon="calendar"
+        />
+        <Content>
+          <Tabs>
+            <TabsHeader>
+              <TabHeader label="Listar" icon="bars" target="tabList" />
+              <TabHeader label="Incluir" icon="plus" target="tabCreate" />
+              <TabHeader label="Alterar" icon="pencil" target="tabUpdate" />
+              <TabHeader label="Excluir" icon="trash-o" target="tabDelete" />
+            </TabsHeader>
+            <TabsContent>
+              <TabContent id="tabList">
+                <EventList />
+              </TabContent>
+              <TabContent id="tabCreate">
+                <EventInsert />
+              </TabContent>
+              <TabContent id="tabUpdate">
+                <h1>tabUpdate</h1>
+              </TabContent>
+              <TabContent id="tabDelete">
+                <h1>tabDelete</h1>
+              </TabContent>
+            </TabsContent>
+          </Tabs>
+        </Content>
+      </>
+    );
+  }
 }
+
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ eventsCreate }, dispatch);
+  bindActionCreators({ selectTab }, dispatch);
 export default connect(null, mapDispatchToProps)(Events);

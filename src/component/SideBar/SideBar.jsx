@@ -7,15 +7,15 @@ import { Link } from "react-router-dom";
 export default function SideBar() {
   return (
     <aside className="main-sidebar">
-      <container className="logo-dashboard">
+      <div className="logo-dashboard">
         <Logo />
-        <Link to="/" className="logo-normal">
+        <Link className="logo-normal text-decoration-none" to="/">
           BeBride
         </Link>
-      </container>
-      <container className="sidebar">
+      </div>
+      <div className="sidebar">
         <Menu />
-      </container>
+      </div>
     </aside>
   );
 }

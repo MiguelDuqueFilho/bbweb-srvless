@@ -5,7 +5,7 @@ import "./MenuItem.css";
 export default function MenuItem(props) {
   return (
     <li className="main-menu-item list-unstyled">
-      <Link to={props.path} className="menu-item ">
+      <Link className="menu-item text-decoration-none" to={props.path}>
         <i className={`fa fa-${props.icon} `}></i>{" "}
         <span className="m-2">{props.label}</span>
       </Link>
