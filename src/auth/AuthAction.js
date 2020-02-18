@@ -76,14 +76,13 @@ export function validateToken(token) {
       api
         .post("/validate_token", { token })
         .then(resp => {
-          dispatch({ type: "TOKEN_VALIDATED", payload: resp.data.success });
+          dispatch({ type: "TOKEN_VALIDATED", payload: true });
         })
         .catch(e => {
-          if (typeof e.response.data.message !== "undefined") {
-            toastr.warning("Alerta", e.response.data.message);
-          } else if (typeof e.message !== "undefined") {
-            toastr.error("Erro", e.message);
+          if (typeof e.error === "undefined") {
+            toastr.error("Erro", e.error);
           }
+          dispatch({ type: "TOKEN_VALIDATED", payload: false });
         });
     }
   };

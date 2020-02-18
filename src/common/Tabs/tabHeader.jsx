@@ -12,20 +12,17 @@ class TabHeader extends Component {
 
     return (
       <If test={visible}>
-        <li
-          className={`tab-custom-item  list-unstyled ${
-            selected ? "active" : ""
-          }`}
-        >
-          <button
+        <div className={`tab-custom-item  ${selected ? "active" : ""}`}>
+          <a
+            href="#0"
             className="tab-custom-button"
-            data-toggle="tab"
             onClick={() => this.props.selectTab(this.props.target)}
             data-target={this.props.target}
           >
-            <i className={`fa fa-${this.props.icon}`}></i> {this.props.label}
-          </button>
-        </li>
+            <i className={`tab-custom-label fa fa-${this.props.icon}`}></i>{" "}
+            {this.props.label}
+          </a>
+        </div>
       </If>
     );
   }

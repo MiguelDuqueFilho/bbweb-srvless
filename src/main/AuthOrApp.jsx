@@ -21,7 +21,7 @@ class AuthOrApp extends Component {
     } else if (!user && !validToken) {
       return <Auth />;
     } else {
-      return false;
+      return <Auth />;
     }
   }
 }

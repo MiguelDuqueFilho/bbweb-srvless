@@ -1,6 +1,7 @@
 import React from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import Navbar from "../NavBar/Navbar";
 
 export default function Header() {
   return (
@@ -11,7 +12,8 @@ export default function Header() {
             Administração
           </Link>
         </div>
-        <nav className="nav-header ">
+        <Navbar />
+        {/* <nav className="nav-header ">
           <ul className=" list-inline ">
             <li className="nav-link list-inline-item">
               <Link className="text-decoration-none" to="/home">
@@ -24,7 +26,7 @@ export default function Header() {
               </Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
       </div>
     </header>
   );

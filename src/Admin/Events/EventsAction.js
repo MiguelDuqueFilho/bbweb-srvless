@@ -5,11 +5,11 @@ import { showTabs, selectTab } from "../../common/Tabs/tabActions";
 
 const INITIAL_VALUES = { listEvents: [] };
 
-export function getList() {
-  const request = api.get("/events");
+export async function getList() {
+  const request = await api.get("/events");
   return {
     type: "EVENTS_LIST_FETCHED",
-    payload: request
+    payload: request.data.data
   };
 }
 
@@ -25,11 +25,9 @@ export function remove(values) {
   return submit(values, "delete");
 }
 
-export function eventsCreate(values) {}
-
 export function submit(values, method) {
   return dispatch => {
-    const id = values._id ? values._id : "";
+    const id = values.id ? values.id : "";
     api[method](`/events/${id}`, values)
       .then(resp => {
         toastr.success("Sucesso", "Operação realizada com sucesso.");
@@ -60,7 +58,7 @@ export function showDelete(events) {
   return [
     showTabs("tabDelete"),
     selectTab("tabDelete"),
-    initialize("EventForm", events)
+    initialize("EventsForm", events)
   ];
 }
 
@@ -69,6 +67,6 @@ export function init() {
     showTabs("tabList", "tabCreate"),
     selectTab("tabList"),
     getList(),
-    initialize("EventForm", INITIAL_VALUES)
+    initialize("EventsForm", INITIAL_VALUES)
   ];
 }

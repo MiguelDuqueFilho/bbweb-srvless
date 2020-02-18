@@ -10,7 +10,7 @@ class TabContent extends Component {
       <If test={visible}>
         <div
           id={this.props.id}
-          className={`tab-pane ${selected ? "active" : ""}`}
+          className={`tab-custom-content ${selected ? "active" : ""}`}
         >
           {this.props.children}
         </div>

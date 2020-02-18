@@ -6,9 +6,10 @@
 }
 
 .main-menu-item .menu-item {
-  background-color: #a3a3a3;
+  background-color: var(--gray-300);
   border-radius: 6px;
-  color: #fff;
+
+  color: var(--dark);
   height: 100%;
   width: 100%;
   padding-left: 10px;
@@ -23,4 +24,7 @@
   width: 100%;
   padding-left: 10px;
   padding-top: 8px;
+}
+
+.main-menu-item .menu-item {
 }

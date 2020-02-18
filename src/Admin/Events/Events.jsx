@@ -31,8 +31,8 @@ class Events extends Component {
             <TabsHeader>
               <TabHeader label="Listar" icon="bars" target="tabList" />
               <TabHeader label="Incluir" icon="plus" target="tabCreate" />
-              {/* <TabHeader label="Alterar" icon="pencil" target="tabUpdate" />
-              <TabHeader label="Excluir" icon="trash-o" target="tabDelete" /> */}
+              <TabHeader label="Alterar" icon="pencil" target="tabUpdate" />
+              <TabHeader label="Excluir" icon="trash-o" target="tabDelete" />
             </TabsHeader>
             <TabsContent>
               <TabContent id="tabList">
@@ -41,13 +41,15 @@ class Events extends Component {
               <TabContent id="tabCreate">
                 <EventsForm
                   onSubmit={this.props.create}
+                  title="Inclusão de Evento"
                   submitLabel="Incluir"
                   submitClass="primary"
                 />
               </TabContent>
-              {/* <TabContent id="tabUpdate">
+              <TabContent id="tabUpdate">
                 <EventsForm
                   onSubmit={this.props.update}
+                  title="Alteração de Evento"
                   submitLabel="Alterar"
                   submitClass="info"
                 />
@@ -55,11 +57,12 @@ class Events extends Component {
               <TabContent id="tabDelete">
                 <EventsForm
                   onSubmit={this.props.remove}
-                  readOnly={true}
+                  title="Exclusão de Evento"
                   submitLabel="Excluir"
                   submitClass="danger"
+                  readOnly={true}
                 />
-              </TabContent> */}
+              </TabContent>
             </TabsContent>
           </Tabs>
         </Content>
