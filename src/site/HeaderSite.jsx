@@ -7,13 +7,37 @@ import logo from "../assets/img/logo45-01.png";
 import { logoff } from "../auth/AuthAction";
 
 class HeaderSite extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      navClassName: "navbar-transparent"
+    };
+  }
+
+  handleScroll() {
+    if (document.documentElement.scrollTop > 100) {
+      this.setState({
+        navClassName: "navbar-color-on-scroll"
+      });
+    } else {
+      this.setState({
+        navClassName: "navbar-transparent"
+      });
+    }
+  }
+
+  componentDidMount() {
+    window.onscroll = () => this.handleScroll();
+  }
+
   render() {
     const { user } = this.props.auth;
+
     return (
       <div className="page-header-site">
         <div className="container">
           <nav
-            className="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg"
+            className={`navbar  fixed-top navbar-expand-lg ${this.state.navClassName}`}
             color-on-scroll="100"
             id="sectionsNav"
           >

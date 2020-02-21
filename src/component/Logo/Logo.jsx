@@ -7,7 +7,7 @@ export default function Logo() {
   return (
     <div className="logo">
       <Link className="logolink text-decoration-none" to="/">
-        <img src={logo} alt="Thumbnail logo BeBride" />
+        <img src={logo} alt="logo BeBride" />
       </Link>
     </div>
   );

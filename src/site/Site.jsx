@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 
+import "./Site.css";
 import { Parallax } from "react-parallax";
 import Banner from "../assets/img/banner-inicial-4.png";
 
-import "./Site.css";
 import HeaderSite from "./HeaderSite";
 import FooterSite from "./FooterSite";
 
@@ -15,8 +15,22 @@ class Site extends Component {
     console.log(user);
     return (
       <>
-        <Parallax bgImage={Banner} bgImageAlt="Banner" strength={900}>
-          <div style={{ height: 900 }}></div>
+        <Parallax
+          bgImage={Banner}
+          bgImageAlt="Banner"
+          bgClassName="banner-parallax"
+          strength={400}
+        >
+          <div className="banner-body">
+            <div className="row">
+              <div className="col-md-12 ml-auto mr-auto ">
+                <div className="title">
+                  <h1>BeBride</h1>
+                  <h4>Venha conversar com a gente.</h4>
+                </div>
+              </div>
+            </div>
+          </div>
         </Parallax>
 
         <HeaderSite />
