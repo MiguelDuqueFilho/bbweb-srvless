@@ -5,25 +5,27 @@ header .container {
   align-items: center;
   height: 100%;
   width: 100%;
-  border-radius: 7px;
+  padding: 0;
+  margin: 0;
 }
 
 header .title-link a {
   color: black;
-  font-size: 1.2em;
+  font-size: 1.4em;
+  padding-left: 50px;
 }
 
-header .list-inline {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-  margin: 0;
-}
-
+/* header .list-inline { */
+/* display: flex; */
+/* flex-direction: row; */
+/* justify-content: space-between; */
+/* align-items: center; */
+/* height: 100%; */
+/* margin: 0; */
+/* } */
+/* 
 header nav ul li a {
   color: #000;
   font-size: 1.2em;
   text-decoration: none;
-}
+} */

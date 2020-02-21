@@ -3,7 +3,7 @@ import { reduxForm, Field } from "redux-form";
 import "./Auth.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import logo from "../assets/img/logo-01-45x45.png";
+import logo from "../assets/img/logo45-01.png";
 import { login, signup, forgot } from "./AuthAction";
 import InputIcon from "../common/form/InputIcon";
 import { required, email } from "./AuthValidate";

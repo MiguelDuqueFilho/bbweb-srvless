@@ -4,12 +4,7 @@ Slide de fundo
 
 .page-header {
   background-image: url("../assets/img/banner-inicial-4.png");
-  min-height: 92vh;
-  /* height: calc(92vh - var(--footer-height)); */
-
-  /* height: calc(var(--vh, 1vh) * var(--header-login-min-height)); */
-  /* height: 92vh;
-  min-height: 800px; */
+  min-height: calc(100vh - var(--footer-height));
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

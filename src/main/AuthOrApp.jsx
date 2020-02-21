@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Site from "../site/Site";
 import App from "./App";
 import Auth from "../auth/Auth";
 import { validateToken } from "../auth/AuthAction";
@@ -15,13 +16,18 @@ class AuthOrApp extends Component {
 
   render() {
     const { user, validToken } = this.props.auth;
+    if (user) {
+      if (user.type === 1) {
+        return <Site />;
+      }
+    }
     if (user && validToken) {
       api.defaults.headers.common["authorization"] = user.token;
       return <App>{this.props.children}</App>;
     } else if (!user && !validToken) {
       return <Auth />;
     } else {
-      return <Auth />;
+      return <Site />;
     }
   }
 }

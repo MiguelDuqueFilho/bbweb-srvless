@@ -12,7 +12,10 @@ export default function Header() {
             Administração
           </Link>
         </div>
-        <Navbar />
+        <div>
+          <Navbar />
+        </div>
+
         {/* <nav className="nav-header ">
           <ul className=" list-inline ">
             <li className="nav-link list-inline-item">
