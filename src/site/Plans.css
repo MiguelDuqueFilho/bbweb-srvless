@@ -1,0 +1,30 @@
+.features .icon {
+  font-size: 4em;
+  padding: 40px;
+  color: var(--primary);
+}
+
+.features p,
+.carrousel-item .card-text,
+.card-plain .card-description {
+  color: var(--subtitle-color);
+}
+
+.features .info-title,
+.carrousel-item .card-title,
+.card-plain .card-title {
+  color: var(--title-color);
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.5em;
+}
+
+.card.card-plain {
+  border: none;
+}
+
+.card-img-top {
+  width: 100%;
+  border-top-left-radius: calc(0.25rem - 1px);
+  border-top-right-radius: calc(0.25rem - 1px);
+}

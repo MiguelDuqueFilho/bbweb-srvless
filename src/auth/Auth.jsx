@@ -87,7 +87,6 @@ class Auth extends Component {
                             type="input"
                             name="userEmail"
                             placeholder="Email..."
-                            text="R$"
                             icon="envelope"
                             validate={[email, required]}
                           />

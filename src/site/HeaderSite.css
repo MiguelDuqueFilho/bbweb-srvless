@@ -1,22 +1,19 @@
 .page-header-site {
-  /* background-image: url("../assets/img/banner-inicial-4.png"); */
-
-  /* height: 90vh;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  overflow: hidden; */
   font-size: 1.1em;
   font-family: "Roboto";
-  color: white;
 }
 
 .page-header-site .navbar-transparent {
+  transition: all 0.7s ease-out;
   color: white;
 }
 
 .page-header-site .navbar-color-on-scroll {
+  transition: all 0.5s ease-out;
   background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+    0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
 
 .page-header-site .navbar-transparent .nav-item a {
@@ -24,17 +21,44 @@
 }
 
 .page-header-site .navbar-color-on-scroll .nav-item a {
-  color: gray;
+  color: var(--title-color);
 }
 
-.page-header-site .nav-link-bebride {
+.page-header-site .navbar-color-on-scroll .nav-item a:hover {
   color: white;
 }
-.page-header-site .navbar-toggler {
+
+.page-header-site .navbar-transparent .navbar-toggler {
   color: white;
-  font-size: 1.2em;
+  font-size: 1.7em;
 }
-/* .page-header-site .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-} */
+
+.page-header-site .navbar-color-on-scroll .navbar-toggler {
+  color: var(--title-color);
+  font-size: 1.7em;
+}
+
+.navbar-translate button:focus {
+  outline: none;
+}
+
+.dropdown-item.navbar-transparent:hover {
+  background-color: var(--primary);
+}
+.dropdown-item.navbar-transparent:focus {
+  background-color: var(--primary);
+}
+
+.dropdown-item.navbar-color-on-scroll:hover {
+  background-color: var(--primary);
+}
+.dropdown-item.navbar-color-on-scroll:focus {
+  background-color: var(--primary);
+}
+
+.dropdown-item.navbar-color-on-scroll > a {
+  color: white;
+}
+.dropdown-item.navbar-color-on-scroll > a {
+  color: white;
+}

@@ -17,7 +17,7 @@ class AuthOrApp extends Component {
   render() {
     const { user, validToken } = this.props.auth;
     if (user) {
-      if (user.type === 1) {
+      if (user.type === 0) {
         return <Site />;
       }
     }

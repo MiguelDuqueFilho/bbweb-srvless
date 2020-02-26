@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function Logo() {
   return (
     <div className="logo">
-      <Link className="logolink text-decoration-none" to="/">
+      <Link className="logo-link text-decoration-none" to="/">
         <img src={logo} alt="logo BeBride" />
       </Link>
     </div>

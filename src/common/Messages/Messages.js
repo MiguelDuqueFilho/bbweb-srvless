@@ -8,7 +8,7 @@ export default function Messages(props) {
       timeout={5000}
       newestOnTop={false}
       preventDuplicates={true}
-      position="top-right"
+      position="botton-right"
       transitionIn="fadeIn"
       transitionOut="fadeOut"
       progressBar

@@ -3,15 +3,33 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import "./HeaderSite.css";
-import logo from "../assets/img/logo45-01.png";
+import If from "../common/operator/if";
+
 import { logoff } from "../auth/AuthAction";
+import Logo from "../component/Logo/Logo";
 
 class HeaderSite extends Component {
   constructor(props) {
     super(props);
+    this.toggleNavbar = this.toggleNavbar.bind(this);
+    this.dropdownNavbar = this.dropdownNavbar.bind(this);
     this.state = {
-      navClassName: "navbar-transparent"
+      navClassName: "navbar-transparent",
+      collapsed: true,
+      dropdown: false
     };
+  }
+
+  toggleNavbar() {
+    this.setState({
+      collapsed: !this.state.collapsed
+    });
+  }
+
+  dropdownNavbar() {
+    this.setState({
+      dropdown: !this.state.dropdown
+    });
   }
 
   handleScroll() {
@@ -21,7 +39,7 @@ class HeaderSite extends Component {
       });
     } else {
       this.setState({
-        navClassName: "navbar-transparent"
+        navClassName: "navbar-transparent "
       });
     }
   }
@@ -33,6 +51,19 @@ class HeaderSite extends Component {
   render() {
     const { user } = this.props.auth;
 
+    const collapsed = this.state.collapsed;
+    const classOne = collapsed
+      ? "collapse navbar-collapse"
+      : "collapse navbar-collapse mt-4 show";
+    const classTwo = collapsed
+      ? "navbar-toggler navbar-toggler-right collapsed"
+      : "navbar-toggler navbar-toggler-right ";
+
+    const dropdown = this.state.dropdown;
+    const classDropdown = dropdown
+      ? "dropdown-menu-right dropdown-with-icons"
+      : "dropdown-menu dropdown-with-icons";
+
     return (
       <div className="page-header-site">
         <div className="container">
@@ -41,126 +72,129 @@ class HeaderSite extends Component {
             color-on-scroll="100"
             id="sectionsNav"
           >
-            <div className="container">
-              <div className="navbar-translate">
-                <a className="navbar-brand" href="/">
-                  <div className="logo-image">
-                    <img
-                      src={logo}
-                      alt=""
-                      width="60"
-                      height="60"
-                      className="img-raised rounded-circle img-fluid"
-                    />
-                  </div>
-                </a>
+            <div className="container-fluid ">
+              <div className="navbar-translate d-flex">
+                <Logo />
                 <button
-                  className="navbar-toggler"
+                  onClick={this.toggleNavbar}
+                  className={`${classTwo}`}
                   type="button"
                   data-toggle="collapse"
+                  data-target="#navbarResponsive"
+                  aria-controls="navbarResponsive"
                   aria-expanded="false"
                   aria-label="Toggle navigation"
                 >
-                  <span className="sr-only">Toggle navigation</span>
                   <i className="fa fa-bars"></i>
                 </button>
               </div>
-              <div className="collapse navbar-collapse">
+              <div className={`${classOne}`} id="navbarResponsive">
                 <ul className="navbar-nav ml-auto">
                   <li className="nav-item">
                     <a className="nav-link nav-link-bebride" href="/">
                       <i className="fa fa-home"></i> Home
                     </a>
                   </li>
-
                   <li className="dropdown nav-item">
                     <a
                       href="/#"
+                      onClick={this.dropdownNavbar}
                       className="dropdown-toggle nav-link"
                       data-toggle="dropdown"
                     >
-                      <i class="fa fa-check-square"></i> Planos
+                      <i className="fa fa-check-square"></i> Planos
                     </a>
-                    <div className="dropdown-menu dropdown-with-icons">
-                      <a href="/#" className="dropdown-item">
-                        <i class="fa fa-data-range"></i>
-                        Assessoria Completa
+                    <div className={classDropdown}>
+                      <a
+                        href="/#"
+                        className={`dropdown-item ${this.state.navClassName}`}
+                      >
+                        <i className="fa fa-calendar"></i> Assessoria Completa
                       </a>
-                      <a href="/#" className="dropdown-item">
-                        <i class="fa fa-today"></i>
-                        Assessoria do Dia
+                      <a
+                        href="/#"
+                        className={`dropdown-item ${this.state.navClassName}`}
+                      >
+                        <i className="fa fa-calendar"></i> Assessoria do Dia
                       </a>
-                      <a href="/#" className="dropdown-item">
-                        <i class="fa fa-calendar"></i>
-                        Pedido de Casamento
+                      <a
+                        href="/#"
+                        className={`dropdown-item ${this.state.navClassName}`}
+                      >
+                        <i className="fa fa-calendar"></i> Pedido de Casamento
                       </a>
-                      <a href="/#" className="dropdown-item">
-                        <i class="fa fa-event-note"></i>
-                        Consultoria
+                      <a
+                        href="/#"
+                        className={`dropdown-item ${this.state.navClassName}`}
+                      >
+                        <i className="fa fa-calendar"></i> Consultoria
                       </a>
                     </div>
                   </li>
-
-                  <li className="nav-item">
-                    <a className="nav-link nav-link-bebride" href="/admin">
-                      <i class="fa fa-users"></i> Administração
-                    </a>
-                  </li>
-
-                  <li className="nav-item">
-                    <a className="nav-link" href="/customer">
-                      <i class="fa fa-male"></i> Cliente
-                    </a>
-                  </li>
-
-                  <li className="nav-item">
-                    <a className="nav-link" href="/admin/users/profile">
-                      <i class="fa fa-user"></i> {user.name}
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      className="nav-link nav-link-bebride"
-                      href="/logout"
-                      onClick={this.props.logoff}
-                    >
-                      <i class="fa fa-user-times"></i> Logoff
-                    </a>
-                  </li>
-
-                  <li className="nav-item">
-                    <a className="nav-link nav-link-bebride" href="/register">
-                      <i class="fa fa-user-plus"></i> Registrar
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="/login">
-                      <i class="fa fa-user"></i> Login
-                    </a>
-                  </li>
-
+                  <If test={user.type === 1}>
+                    <li className="nav-item">
+                      <a className="nav-link " href="/admin">
+                        <i className="fa fa-users"></i> Administração
+                      </a>
+                    </li>
+                  </If>
+                  <If test={user.type === 2}>
+                    <li className="nav-item">
+                      <a className="nav-link " href="/customer">
+                        <i className="fa fa-male"></i> Clientes
+                      </a>
+                    </li>
+                  </If>
+                  <If test={user.type === 3}>
+                    <li className="nav-item">
+                      <a className="nav-link " href="/partner">
+                        <i className="fa fa-users"></i> Fornecedores
+                      </a>
+                    </li>
+                  </If>
+                  <If test={user}>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/admin/users/profile">
+                        <i className="fa fa-user"></i> {user.name}
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a
+                        className="nav-link "
+                        href="/logout"
+                        onClick={this.props.logoff}
+                      >
+                        <i className="fa fa-user-times"></i> Logoff
+                      </a>
+                    </li>
+                  </If>
+                  <If test={!user}>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/login">
+                        <i className="fa fa-user"></i> Login / Registrar
+                      </a>
+                    </li>
+                  </If>
                   <li className="nav-item">
                     <a
                       className="nav-link"
                       rel="tooltip"
-                      title=""
+                      title="Siga-nos no Facebook"
                       data-placement="bottom"
                       href="https://www.facebook.com/bebridecasamentos"
-                      data-original-title="Siga-nos no Facebook"
                     >
-                      <i className="fa fa-facebook-square text-white"></i>
+                      <i className="fa fa-facebook-square"></i>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a
                       className="nav-link"
                       rel="tooltip"
-                      title=""
+                      title="Siga-nos no Instagram"
                       data-placement="bottom"
                       href="https://www.instagram.com/bebridecasamentos"
-                      data-original-title="Siga-nos no Instagram"
                     >
-                      <i className="fa fa-instagram text-white"></i>
+                      <i className="fa fa-instagram"></i>
                     </a>
                   </li>
                 </ul>

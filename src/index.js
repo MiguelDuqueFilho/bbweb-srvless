@@ -5,6 +5,7 @@ import "./global.css";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import registerServiceWorker from "./registerServiceWorker";
+import { BrowserRouter } from "react-router-dom";
 
 import promise from "redux-promise";
 import multi from "redux-multi";
@@ -23,7 +24,9 @@ const store = applyMiddleware(multi, thunk, promise)(createStore)(
 
 ReactDOM.render(
   <Provider store={store}>
-    <AuthOrApp />
+    <BrowserRouter>
+      <AuthOrApp />
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );

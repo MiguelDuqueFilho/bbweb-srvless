@@ -1,0 +1,16 @@
+.banner-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto Slab";
+  font-size: 1.2em;
+  font-weight: 300;
+  color: white;
+  height: 900px;
+}
+
+.banner-body span {
+  font-size: 3em;
+  margin: 3px;
+}

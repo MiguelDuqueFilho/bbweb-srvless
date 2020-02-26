@@ -17,6 +17,8 @@
     0 13px 24px -11px rgba(156, 39, 176, 0.6);
 
   --gray-300: #dee2e6;
+  --title-color: #3c4858;
+  --subtitle-color: #999;
 }
 
 body {

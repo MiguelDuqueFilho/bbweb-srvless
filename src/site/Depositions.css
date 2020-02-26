@@ -1,0 +1,10 @@
+.top-content .carrousel-inner {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.top-content .carrousel-inner img {
+  height: 80%;
+  width: 100%;
+}
