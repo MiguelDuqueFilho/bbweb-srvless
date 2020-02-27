@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-// import { bindActionCreators } from "redux";
-
 import "./Site.css";
 
 import HeaderSite from "./HeaderSite";
@@ -32,5 +30,5 @@ class Site extends Component {
 }
 
 const mapStateToProps = state => ({ auth: state.auth });
-// const mapDispatchToProps = dispatch => bindActionCreators({ logoff }, dispatch);
+
 export default connect(mapStateToProps, null)(Site);

@@ -10,13 +10,13 @@ export default class BannerBody extends Component {
       <Parallax
         bgImage={Banner}
         bgImageAlt="Banner"
-        bgImageStyle={{ height: 1100 }}
+        bgImageStyle={{ height: 1400 }}
         bgClassName="banner-parallax"
-        strength={400}
+        strength={500}
       >
         <div className="banner-body">
           <div className="row">
-            <div className="col-md-12 ml-auto mr-auto ">
+            <div className="col-12 ml-auto mr-auto ">
               <div className="title">
                 <h1>BeBride</h1>
                 <h4>Venha conversar com a gente.</h4>

@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import "font-awesome/css/font-awesome.min.css";
 import "./customStyle.css";
 import "./global.css";
 import { createStore, applyMiddleware } from "redux";
@@ -11,7 +12,8 @@ import promise from "redux-promise";
 import multi from "redux-multi";
 import thunk from "redux-thunk";
 
-import AuthOrApp from "./main/AuthOrApp";
+import RoutesSite from "./site/RoutesSite";
+// import AuthOrApp from "./main/AuthOrApp";
 import reducers from "./main/reducers";
 
 const devTools =
@@ -25,7 +27,7 @@ const store = applyMiddleware(multi, thunk, promise)(createStore)(
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <AuthOrApp />
+      <RoutesSite />
     </BrowserRouter>
   </Provider>,
   document.getElementById("root")

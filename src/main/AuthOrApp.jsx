@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Site from "../site/Site";
 import App from "./App";
 import Auth from "../auth/Auth";
+import Site from "../site/Site";
 import { validateToken } from "../auth/AuthAction";
 import api from "../services/api";
 import { connect } from "react-redux";
@@ -16,11 +16,7 @@ class AuthOrApp extends Component {
 
   render() {
     const { user, validToken } = this.props.auth;
-    if (user) {
-      if (user.type === 0) {
-        return <Site />;
-      }
-    }
+
     if (user && validToken) {
       api.defaults.headers.common["authorization"] = user.token;
       return <App>{this.props.children}</App>;

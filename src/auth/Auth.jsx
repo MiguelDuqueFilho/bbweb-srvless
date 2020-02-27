@@ -3,6 +3,7 @@ import { reduxForm, Field } from "redux-form";
 import "./Auth.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+
 import logo from "../assets/img/logo45-01.png";
 import { login, signup, forgot } from "./AuthAction";
 import InputIcon from "../common/form/InputIcon";
@@ -11,6 +12,7 @@ import Messages from "../common/Messages/Messages";
 import Row from "../common/row";
 import Grid from "../component/Grid/Grid";
 import Footer from "../component/Footer/Footer";
+import HeaderSite from "../site/HeaderSite";
 
 class Auth extends Component {
   constructor(props) {
@@ -44,6 +46,7 @@ class Auth extends Component {
     const { handleSubmit, pristine, reset, submitting } = this.props;
     return (
       <>
+        <HeaderSite />
         <div className="page-header">
           <div className="container">
             <Row>

@@ -7,11 +7,11 @@ export default function Menu() {
   return (
     <div className="sidebar-menu-group">
       <ul className="sidebar-menu">
-        <MenuItem path="/dashboard" label="Dashboard" icon="dashboard" />
+        <MenuItem path="/admin" label="Dashboard" icon="dashboard" />
         {/* <MenuTree label="Cadastro" icon="edit">
         <MenuItem path="/events" label="Eventos" icon="table" />
       </MenuTree> */}
-        <MenuItem path="/events" label="Eventos" icon="table" />
+        <MenuItem path="/admin/events" label="Eventos" icon="table" />
         {/* <MenuItem path="/buttons" label="Buttons" icon="user" />
         <MenuItem path="/accordions" label="Accordions" icon="user" />
         <MenuItem path="/tabs" label="Tabs" icon="user" />

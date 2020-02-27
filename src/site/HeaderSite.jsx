@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Link } from "react-router-dom";
 
 import "./HeaderSite.css";
 import If from "../common/operator/if";
@@ -49,7 +50,11 @@ class HeaderSite extends Component {
   }
 
   render() {
-    const { user } = this.props.auth;
+    let { user } = this.props.auth;
+    if (!user) {
+      user = [];
+    }
+    const { name = null, type = null } = user;
 
     const collapsed = this.state.collapsed;
     const classOne = collapsed
@@ -90,8 +95,8 @@ class HeaderSite extends Component {
               </div>
               <div className={`${classOne}`} id="navbarResponsive">
                 <ul className="navbar-nav ml-auto">
-                  <li className="nav-item">
-                    <a className="nav-link nav-link-bebride" href="/">
+                  <li className="nav-item ">
+                    <a className="nav-link " href="/">
                       <i className="fa fa-home"></i> Home
                     </a>
                   </li>
@@ -131,33 +136,21 @@ class HeaderSite extends Component {
                       </a>
                     </div>
                   </li>
-                  <If test={user.type === 1}>
+                  <If test={type !== null}>
                     <li className="nav-item">
                       <a className="nav-link " href="/admin">
                         <i className="fa fa-users"></i> Administração
                       </a>
                     </li>
                   </If>
-                  <If test={user.type === 2}>
-                    <li className="nav-item">
-                      <a className="nav-link " href="/customer">
-                        <i className="fa fa-male"></i> Clientes
-                      </a>
-                    </li>
-                  </If>
-                  <If test={user.type === 3}>
-                    <li className="nav-item">
-                      <a className="nav-link " href="/partner">
-                        <i className="fa fa-users"></i> Fornecedores
-                      </a>
-                    </li>
-                  </If>
-                  <If test={user}>
+                  <If test={type}>
                     <li className="nav-item">
                       <a className="nav-link" href="/admin/users/profile">
-                        <i className="fa fa-user"></i> {user.name}
+                        <i className="fa fa-user"></i> {name}
                       </a>
                     </li>
+                  </If>
+                  <If test={type}>
                     <li className="nav-item">
                       <a
                         className="nav-link "
@@ -168,11 +161,15 @@ class HeaderSite extends Component {
                       </a>
                     </li>
                   </If>
-                  <If test={!user}>
+                  <If test={!type}>
                     <li className="nav-item">
-                      <a className="nav-link" href="/login">
-                        <i className="fa fa-user"></i> Login / Registrar
-                      </a>
+                      <Link
+                        className="nav-link text-decoration-none"
+                        to="/login"
+                      >
+                        <i className="fa fa-user"></i>
+                        <span className="ml-2">Login / Registrar</span>
+                      </Link>
                     </li>
                   </If>
                   <li className="nav-item">

@@ -1,5 +1,6 @@
 import { toastr } from "react-redux-toastr";
 import { reset as resetForm } from "redux-form";
+
 import api from "../services/api";
 
 export function login(values) {
@@ -24,19 +25,16 @@ function submit(values, url) {
             { type: "USER_FETCHED", payload: resp.data.data },
             resetForm("authForm")
           ]);
+          toastr.success("Sucesso", resp.data.message);
         } else {
           toastr.warning("Alerta", resp.data.message);
-          dispatch(resetForm("authForm"));
         }
       })
       .catch(e => {
-        if (typeof e.response.data.message !== "undefined") {
-          toastr.warning("Alerta", e.response.data.message);
-          dispatch(resetForm("authForm"));
-        } else if (typeof e.message !== "undefined") {
+        if (typeof e.error === "undefined") {
           toastr.error("Erro", e.message);
-          dispatch(resetForm("authForm"));
         }
+        dispatch(resetForm("authForm"));
       });
   };
 }
@@ -54,13 +52,10 @@ function submitForgot(values, url) {
         }
       })
       .catch(e => {
-        if (typeof e.response.data.message !== "undefined") {
-          toastr.warning("Alerta", e.response.data.message);
-          dispatch(resetForm("authForm"));
-        } else if (typeof e.message !== "undefined") {
+        if (typeof e.error === "undefined") {
           toastr.error("Erro", e.message);
-          dispatch(resetForm("authForm"));
         }
+        dispatch(resetForm("authForm"));
       });
   };
 }
@@ -80,7 +75,7 @@ export function validateToken(token) {
         })
         .catch(e => {
           if (typeof e.error === "undefined") {
-            toastr.error("Erro", e.error);
+            toastr.error("Erro", e.message);
           }
           dispatch({ type: "TOKEN_VALIDATED", payload: false });
         });
