@@ -4,7 +4,7 @@ import Menu from "../Menu/Menu";
 import Logo from "../Logo/Logo";
 import { Link } from "react-router-dom";
 
-export default function SideBar() {
+export default function SideBar(props) {
   return (
     <aside className="main-sidebar">
       <div className="logo-dashboard">
@@ -14,7 +14,7 @@ export default function SideBar() {
         </Link>
       </div>
       <div className="sidebar">
-        <Menu />
+        <Menu userType={props.userType} />
       </div>
     </aside>
   );

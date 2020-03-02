@@ -16,10 +16,12 @@ transparent
   transition: all 0.7s ease-out;
   color: white;
 }
-
+.page-header-site .navbar-transparent .nav-item span,
 .page-header-site .navbar-transparent .nav-item a {
   color: white;
 }
+
+.page-header-site .navbar-transparent .nav-item span:hover,
 .page-header-site .navbar-transparent .nav-item a:hover {
   background-color: var(--primary);
   transition: all 0.5s ease-out;
@@ -59,6 +61,8 @@ on-scroll
   color: var(--title-color);
 }
 
+.page-header-site .navbar-color-on-scroll .nav-item span:hover,
+.page-header-site .navbar-color-on-scroll .nav-item span:focus,
 .page-header-site .navbar-color-on-scroll .nav-item a:hover,
 .page-header-site .navbar-color-on-scroll .nav-item a:focus {
   color: var(--primary);

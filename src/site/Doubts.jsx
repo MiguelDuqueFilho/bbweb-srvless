@@ -21,10 +21,10 @@ class Doubts extends Component {
       <div className="section text-center">
         <div className="col-md-7 ml-auto mr-auto">
           <h2 className="title">Dúvidas ou Sugestões</h2>
-          <h4 className="description text-center">
+          <h5 className="description text-center">
             Escreva algumas linhas sobre Dúvidas ou Sugestões e entre em
             contato. Nós responderemos a você em algumas horas.
-          </h4>
+          </h5>
           <form
             className="contact-form"
             onSubmit={handleSubmit(values => this.onSubmit(values))}

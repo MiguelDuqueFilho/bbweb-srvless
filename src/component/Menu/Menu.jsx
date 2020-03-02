@@ -1,22 +1,24 @@
 import React from "react";
 import "./Menu.css";
-import MenuItem from "../MenuItem/MenuItem";
+import If from "../../common/operator/if";
+import MenuAdm from "./MenuAdm";
+import MenuClient from "./MenuClient";
+import MenuPartner from "./MenuPartner";
+
 // import MenuTree from "../MenuTree/MenuTree";
 
-export default function Menu() {
+export default function Menu(props) {
   return (
-    <div className="sidebar-menu-group">
-      <ul className="sidebar-menu">
-        <MenuItem path="/admin" label="Dashboard" icon="dashboard" />
-        {/* <MenuTree label="Cadastro" icon="edit">
-        <MenuItem path="/events" label="Eventos" icon="table" />
-      </MenuTree> */}
-        <MenuItem path="/admin/events" label="Eventos" icon="table" />
-        {/* <MenuItem path="/buttons" label="Buttons" icon="user" />
-        <MenuItem path="/accordions" label="Accordions" icon="user" />
-        <MenuItem path="/tabs" label="Tabs" icon="user" />
-        <MenuItem path="/cardtable" label="Card / Tables" icon="user" /> */}
-      </ul>
-    </div>
+    <>
+      <If test={props.userType === 1}>
+        <MenuAdm />
+      </If>
+      <If test={props.userType === 2}>
+        <MenuClient />
+      </If>
+      <If test={props.userType === 3}>
+        <MenuPartner />
+      </If>
+    </>
   );
 }

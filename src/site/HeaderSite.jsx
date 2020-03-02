@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "./HeaderSite.css";
 import If from "../common/operator/if";
 
-import { logoff } from "../auth/AuthAction";
+import { logout } from "../auth/AuthAction";
 import Logo from "../component/Logo/Logo";
 
 class HeaderSite extends Component {
@@ -14,11 +14,16 @@ class HeaderSite extends Component {
     super(props);
     this.toggleNavbar = this.toggleNavbar.bind(this);
     this.dropdownNavbar = this.dropdownNavbar.bind(this);
+    this.logoff = this.logoff.bind(this);
     this.state = {
       navClassName: "navbar-transparent",
       collapsed: true,
       dropdown: false
     };
+  }
+
+  logoff() {
+    logout();
   }
 
   toggleNavbar() {
@@ -49,12 +54,23 @@ class HeaderSite extends Component {
     window.onscroll = () => this.handleScroll();
   }
 
+  renderRows(classDropdown) {
+    const types = this.props.site.eventTypes || [];
+    return types.map(typ => (
+      <div key={typ.id} className={classDropdown}>
+        <a
+          href={typ.eventTypeUrl}
+          className={`dropdown-item ${this.state.navClassName}`}
+        >
+          <i className={`fa fa-${typ.eventTypeIcon}`}></i>{" "}
+          {`${typ.eventTypeName}`}
+        </a>
+      </div>
+    ));
+  }
+
   render() {
-    let { user } = this.props.auth;
-    if (!user) {
-      user = [];
-    }
-    const { name = null, type = null } = user;
+    const { validToken, user } = this.props.auth;
 
     const collapsed = this.state.collapsed;
     const classOne = collapsed
@@ -94,74 +110,49 @@ class HeaderSite extends Component {
                 </button>
               </div>
               <div className={`${classOne}`} id="navbarResponsive">
-                <ul className="navbar-nav ml-auto">
+                <ul className="navbar-nav ml-auto mr-auto ">
                   <li className="nav-item ">
                     <a className="nav-link " href="/">
                       <i className="fa fa-home"></i> Home
                     </a>
                   </li>
                   <li className="dropdown nav-item">
-                    <a
-                      href="/#"
+                    <span
                       onClick={this.dropdownNavbar}
-                      className="dropdown-toggle nav-link"
+                      className="dropdown-toggle nav-link mr-10"
                       data-toggle="dropdown"
                     >
                       <i className="fa fa-check-square"></i> Planos
-                    </a>
+                    </span>
                     <div className={classDropdown}>
-                      <a
-                        href="/#"
-                        className={`dropdown-item ${this.state.navClassName}`}
-                      >
-                        <i className="fa fa-calendar"></i> Assessoria Completa
-                      </a>
-                      <a
-                        href="/#"
-                        className={`dropdown-item ${this.state.navClassName}`}
-                      >
-                        <i className="fa fa-calendar"></i> Assessoria do Dia
-                      </a>
-                      <a
-                        href="/#"
-                        className={`dropdown-item ${this.state.navClassName}`}
-                      >
-                        <i className="fa fa-calendar"></i> Pedido de Casamento
-                      </a>
-                      <a
-                        href="/#"
-                        className={`dropdown-item ${this.state.navClassName}`}
-                      >
-                        <i className="fa fa-calendar"></i> Consultoria
-                      </a>
+                      {this.renderRows(classDropdown)}
                     </div>
                   </li>
-                  <If test={type !== null}>
+                  <If test={validToken}>
                     <li className="nav-item">
                       <a className="nav-link " href="/admin">
                         <i className="fa fa-users"></i> Administração
                       </a>
                     </li>
                   </If>
-                  <If test={type}>
+                  <If test={validToken}>
                     <li className="nav-item">
-                      <a className="nav-link" href="/admin/users/profile">
-                        <i className="fa fa-user"></i> {name}
+                      <a className="nav-link" href="/">
+                        <i className="fa fa-user"></i>{" "}
+                        {validToken ? user.name : ""}
                       </a>
                     </li>
-                  </If>
-                  <If test={type}>
                     <li className="nav-item">
                       <a
                         className="nav-link "
                         href="/logout"
-                        onClick={this.props.logoff}
+                        onClick={this.logoff}
                       >
                         <i className="fa fa-user-times"></i> Logoff
                       </a>
                     </li>
                   </If>
-                  <If test={!type}>
+                  <If test={!validToken}>
                     <li className="nav-item">
                       <Link
                         className="nav-link text-decoration-none"
@@ -204,6 +195,6 @@ class HeaderSite extends Component {
   }
 }
 
-const mapStateToProps = state => ({ auth: state.auth });
-const mapDispatchToProps = dispatch => bindActionCreators({ logoff }, dispatch);
+const mapStateToProps = state => ({ auth: state.auth, site: state.site });
+const mapDispatchToProps = dispatch => bindActionCreators({ logout }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderSite);

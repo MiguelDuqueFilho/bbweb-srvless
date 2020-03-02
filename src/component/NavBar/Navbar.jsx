@@ -2,17 +2,21 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "./Navbar.css";
-import { logoff } from "../../auth/AuthAction";
+import { logout } from "../../auth/AuthAction";
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = { open: false };
+    this.logoff = this.logoff.bind(this);
   }
 
   changeOpen() {
     this.setState({ open: !this.state.open });
-    this.props.logoff();
+  }
+
+  logoff() {
+    logout();
   }
 
   render() {
@@ -55,7 +59,7 @@ class Navbar extends Component {
               <li className="user-footer">
                 <div className="pull-right">
                   <button
-                    onClick={this.props.logoff}
+                    onClick={this.logoff}
                     className="btn btn-default btn-flat"
                   >
                     Sair
@@ -71,5 +75,5 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = state => ({ user: state.auth.user });
-const mapDispatchToProps = dispatch => bindActionCreators({ logoff }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ logout }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

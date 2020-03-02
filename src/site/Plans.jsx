@@ -1,14 +1,8 @@
 import React, { Component } from "react";
 import "./Plans.css";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { getTypes } from "./SiteAction";
 
 class Plans extends Component {
-  componentDidMount() {
-    this.props.getTypes();
-  }
-
   renderRows() {
     const types = this.props.site.eventTypes || [];
     return types.map(typ => (
@@ -47,6 +41,5 @@ class Plans extends Component {
 }
 
 const mapStateToProps = state => ({ site: state.site });
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ getTypes }, dispatch);
-export default connect(mapStateToProps, mapDispatchToProps)(Plans);
+
+export default connect(mapStateToProps, null)(Plans);

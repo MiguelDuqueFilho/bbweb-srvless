@@ -33,11 +33,12 @@ class Auth extends Component {
 
   onSubmit(values) {
     const { login, signup, forgot } = this.props;
-
     if (this.state.forgotMode) {
-      forgot(values);
+      forgot(values, this.props.history);
     } else {
-      this.state.loginMode ? login(values) : signup(values);
+      this.state.loginMode
+        ? login(values, this.props.history)
+        : signup(values, this.props.history);
     }
   }
 
@@ -186,6 +187,7 @@ class Auth extends Component {
 Auth = reduxForm({
   form: "authForm"
 })(Auth);
+const mapStateToProps = state => ({ auth: state.auth });
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ login, signup, forgot }, dispatch);
-export default connect(null, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

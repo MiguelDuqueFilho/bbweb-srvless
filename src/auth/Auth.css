@@ -92,7 +92,7 @@ Slide de fundo
 .login-forgot,
 .login-newuser {
   font-family: "robot slab";
-  color: #9c27b0;
+  color: var(--primary);
 }
 
 .login-forgot:hover,

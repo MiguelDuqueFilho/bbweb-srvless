@@ -13,7 +13,7 @@ export default class Team extends Component {
             <div className="col-md-6">
               <div className="team-player">
                 <div className="card card-plain">
-                  <div className="col-6 ml-auto mr-auto m-2">
+                  <div className="col-5 ml-auto mr-auto m-2">
                     <img
                       src={bruna}
                       alt="Bruna"
@@ -36,7 +36,7 @@ export default class Team extends Component {
             <div className="col-md-6">
               <div className="team-player">
                 <div className="card card-plain">
-                  <div className="col-6 ml-auto mr-auto m-2">
+                  <div className="col-5 ml-auto mr-auto m-2">
                     <img
                       src={tamires}
                       alt="Tamires"

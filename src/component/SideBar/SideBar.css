@@ -16,6 +16,6 @@ aside.main-sidebar {
 }
 
 .main-sidebar .logo-normal {
-  color: var(--secundary);
+  color: var(--gray);
   text-transform: uppercase;
 }

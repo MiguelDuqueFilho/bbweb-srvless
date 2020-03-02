@@ -3,33 +3,32 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import Navbar from "../NavBar/Navbar";
 
-export default function Header() {
+export default function Header(props) {
+  let titleAdmin = "";
+  switch (props.userType) {
+    case 1:
+      titleAdmin = "Administração";
+      break;
+    case 2:
+      titleAdmin = "Clientes";
+      break;
+    case 3:
+      titleAdmin = "Fornecedores";
+      break;
+    default:
+      titleAdmin = "Não Implementado";
+  }
   return (
     <header>
       <div className="container">
         <div className="title-link">
           <Link className="text-decoration-none" to="/dashboard">
-            Administração
+            {titleAdmin}
           </Link>
         </div>
         <div>
           <Navbar />
         </div>
-
-        {/* <nav className="nav-header ">
-          <ul className=" list-inline ">
-            <li className="nav-link list-inline-item">
-              <Link className="text-decoration-none" to="/home">
-                Home
-              </Link>
-            </li>
-            <li className="nav-link list-inline-item">
-              <Link className="text-decoration-none" to="/perfil">
-                Perfil
-              </Link>
-            </li>
-          </ul>
-        </nav> */}
       </div>
     </header>
   );

@@ -125,7 +125,7 @@ class EventsForm extends Component {
                   </button>
                   <button
                     type="button"
-                    className="btn btn-secundary bg-light"
+                    className="btn btn-gray bg-light"
                     onClick={this.props.init}
                   >
                     Cancelar

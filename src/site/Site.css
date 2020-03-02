@@ -25,9 +25,19 @@ h2.title {
   color: var(--title-color);
 }
 
-h4.description {
+h5.description {
   color: var(--subtitle-color);
-  font-size: 1.5em;
+  font-size: 1.23em;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.img-raised {
+  box-shadow: 0 5px 15px -8px rgba(0, 0, 0, 0.24),
+    0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
 }
