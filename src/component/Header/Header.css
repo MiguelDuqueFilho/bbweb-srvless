@@ -10,8 +10,8 @@ header .container {
 }
 
 header .title-link a {
-  color: black;
-  font-size: 1.4em;
+  color: gray;
+  font-size: 1.3em;
   padding-left: 50px;
 }
 

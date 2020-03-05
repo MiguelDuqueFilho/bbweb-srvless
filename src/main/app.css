@@ -1,3 +1,19 @@
+header.header {
+  grid-area: header;
+}
+
+aside.main-sidebar {
+  grid-area: sidebar;
+}
+
+main.content {
+  grid-area: content;
+}
+
+footer.footer {
+  grid-area: footer;
+}
+
 .app {
   margin: 0px;
   display: grid;
@@ -13,20 +29,4 @@
     "sidebar footer";
 
   background-color: var(--ligth);
-}
-
-header.header {
-  grid-area: header;
-}
-
-aside.main-sidebar {
-  grid-area: sidebar;
-}
-
-main.content {
-  grid-area: content;
-}
-
-footer.footer {
-  grid-area: footer;
 }

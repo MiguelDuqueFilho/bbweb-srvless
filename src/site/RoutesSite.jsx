@@ -16,6 +16,9 @@ export default props => (
       <Route path="/advice_last" component={PlanDetail} />
       <Route path="/login" component={Auth} />
       <Route path="/admin" component={AuthOrApp} />
+      <Route path="/client" component={AuthOrApp} />
+      <Route path="/partner" component={AuthOrApp} />
+
       <Redirect from="*" to="/" />
     </Switch>
   </div>

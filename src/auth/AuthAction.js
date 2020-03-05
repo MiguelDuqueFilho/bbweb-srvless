@@ -29,7 +29,7 @@ function submit(values, url, history) {
           resetForm("authForm")
         ]);
         if (resp.data.success === true) {
-          history.push("/");
+          history.push("/admin");
           toastr.success("Ok", resp.data.message);
         } else {
           toastr.warning("Alerta", resp.data.message);

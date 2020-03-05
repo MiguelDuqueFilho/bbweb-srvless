@@ -71,6 +71,8 @@ class HeaderSite extends Component {
 
   render() {
     const { validToken, user } = this.props.auth;
+    const type = user ? user.type : 0;
+    const name = user ? user.name : "";
 
     const collapsed = this.state.collapsed;
     const classOne = collapsed
@@ -130,16 +132,27 @@ class HeaderSite extends Component {
                   </li>
                   <If test={validToken}>
                     <li className="nav-item">
-                      <a className="nav-link " href="/admin">
-                        <i className="fa fa-users"></i> Administração
-                      </a>
+                      <If test={type === 1}>
+                        <a className="nav-link " href="/admin">
+                          <i className="fa fa-users"></i> Administração
+                        </a>
+                      </If>
+                      <If test={type === 2}>
+                        <a className="nav-link " href="/client">
+                          <i className="fa fa-users"></i> Clientes
+                        </a>
+                      </If>
+                      <If test={type === 3}>
+                        <a className="nav-link " href="/partner">
+                          <i className="fa fa-users"></i> Parceiros
+                        </a>
+                      </If>
                     </li>
                   </If>
                   <If test={validToken}>
                     <li className="nav-item">
                       <a className="nav-link" href="/">
-                        <i className="fa fa-user"></i>{" "}
-                        {validToken ? user.name : ""}
+                        <i className="fa fa-user"></i> {validToken ? name : ""}
                       </a>
                     </li>
                     <li className="nav-item">

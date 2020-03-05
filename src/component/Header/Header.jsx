@@ -4,26 +4,25 @@ import { Link } from "react-router-dom";
 import Navbar from "../NavBar/Navbar";
 
 export default function Header(props) {
-  let titleAdmin = "";
-  switch (props.userType) {
-    case 1:
-      titleAdmin = "Administração";
-      break;
-    case 2:
-      titleAdmin = "Clientes";
-      break;
-    case 3:
-      titleAdmin = "Fornecedores";
-      break;
-    default:
-      titleAdmin = "Não Implementado";
+  function titleAdmin(userType) {
+    switch (userType) {
+      case 1:
+        return "Administração";
+      case 2:
+        return "Área do Cliente";
+      case 3:
+        return "Área do Parceiro";
+      default:
+        return "Não Implementado";
+    }
   }
+
   return (
     <header>
       <div className="container">
         <div className="title-link">
           <Link className="text-decoration-none" to="/dashboard">
-            {titleAdmin}
+            {titleAdmin(props.userType)}
           </Link>
         </div>
         <div>

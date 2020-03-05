@@ -3,10 +3,12 @@ import { toastr } from "react-redux-toastr";
 import { initialize } from "redux-form";
 import { showTabs, selectTab } from "../../common/Tabs/tabActions";
 
-const INITIAL_VALUES = { listEvents: [] };
+const INITIAL_VALUES = {
+  listEvents: { docs: [], pages: 0, total: 0, page: 1 }
+};
 
-export async function getList() {
-  const request = await api.get("/events");
+export async function getList(page = 1, limit = 10) {
+  const request = await api.get(`/events?page=${page}&limit=${limit}`);
   return {
     type: "EVENTS_LIST_FETCHED",
     payload: request.data.data

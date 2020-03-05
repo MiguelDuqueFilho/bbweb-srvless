@@ -7,6 +7,7 @@
   outline: 0;
   box-sizing: border-box;
 }
+
 :root {
   --logo-height: 95px;
   --header-height: 70px;
