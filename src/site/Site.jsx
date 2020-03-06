@@ -17,10 +17,12 @@ import Banner from "../assets/img/banner-inicial-4.png";
 class Site extends Component {
   constructor(props) {
     super(props);
-    this.props.getTypes();
-    if (!this.props.auth.validToken) {
-      if (this.props.auth.user) {
-        this.props.validateToken(this.props.auth.user.token);
+    if (typeof props.site.eventTypes === "undefined") {
+      this.props.getTypes();
+    }
+    if (!props.auth.validToken) {
+      if (props.auth.user) {
+        props.validateToken(props.auth.user.token);
       }
     }
   }

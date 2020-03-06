@@ -13,7 +13,6 @@ import multi from "redux-multi";
 import thunk from "redux-thunk";
 
 import RoutesSite from "./site/RoutesSite";
-// import AuthOrApp from "./main/AuthOrApp";
 import reducers from "./main/reducers";
 
 const devTools =

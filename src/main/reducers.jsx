@@ -6,6 +6,7 @@ import AuthReducer from "../auth/AuthReducer";
 import SiteReducer from "../site/SiteReducer";
 import DashboardReducer from "../Admin/Dashboard/DashboardReducer";
 import EventsReducer from "../Admin/Events/EventsReducer";
+import UsersReducer from "../Admin/Users/UsersReducer";
 import TabReducer from "../common/Tabs/tabReducer";
 
 const rootReducer = combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   dashboard: DashboardReducer,
   tab: TabReducer,
   events: EventsReducer,
+  users: UsersReducer,
   form: formReducer,
   toastr: toastrReducer
 });

@@ -10,9 +10,13 @@ import BannerBody from "./BannerBody";
 import FooterSite from "./FooterSite";
 
 class PlanDetail extends Component {
-  // componentDidMount() {
-  //   this.props.getTypes();
-  // }
+  constructor(props) {
+    super(props);
+
+    if (typeof props.site.eventTypes === "undefined") {
+      this.props.getTypes();
+    }
+  }
 
   filterPlan(url) {
     const types = this.props.site.eventTypes || [];
