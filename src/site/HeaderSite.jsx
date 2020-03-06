@@ -23,7 +23,7 @@ class HeaderSite extends Component {
   }
 
   logoff() {
-    logout();
+    this.props.logout();
   }
 
   toggleNavbar() {
@@ -54,18 +54,17 @@ class HeaderSite extends Component {
     window.onscroll = () => this.handleScroll();
   }
 
-  renderRows(classDropdown) {
+  renderRows() {
     const types = this.props.site.eventTypes || [];
     return types.map(typ => (
-      <div key={typ.id} className={classDropdown}>
-        <a
-          href={typ.eventTypeUrl}
-          className={`dropdown-item ${this.state.navClassName}`}
-        >
-          <i className={`fa fa-${typ.eventTypeIcon}`}></i>{" "}
-          {`${typ.eventTypeName}`}
-        </a>
-      </div>
+      <a
+        key={typ.id}
+        href={typ.eventTypeUrl}
+        className={`dropdown-item ${this.state.navClassName}`}
+      >
+        <i className={`fa fa-${typ.eventTypeIcon} mr-2`}></i>{" "}
+        {typ.eventTypeName}
+      </a>
     ));
   }
 
@@ -84,7 +83,7 @@ class HeaderSite extends Component {
 
     const dropdown = this.state.dropdown;
     const classDropdown = dropdown
-      ? "dropdown-menu-right dropdown-with-icons"
+      ? "dropdown-menu dropdown-with-icons show"
       : "dropdown-menu dropdown-with-icons";
 
     return (
@@ -113,70 +112,72 @@ class HeaderSite extends Component {
               </div>
               <div className={`${classOne}`} id="navbarResponsive">
                 <ul className="navbar-nav ml-auto mr-auto ">
-                  <li className="nav-item ">
+                  <li className="nav-item level-1">
                     <a className="nav-link " href="/">
-                      <i className="fa fa-home"></i> Home
+                      <i className="fa fa-home mr-2"></i>Home
                     </a>
                   </li>
-                  <li className="dropdown nav-item">
+                  <li className="dropdown nav-item level-1">
                     <span
                       onClick={this.dropdownNavbar}
                       className="dropdown-toggle nav-link mr-10"
                       data-toggle="dropdown"
                     >
-                      <i className="fa fa-check-square"></i> Planos
+                      <i className="fa fa-check-square mr-2"></i>Planos
                     </span>
-                    <div className={classDropdown}>
-                      {this.renderRows(classDropdown)}
+                    <div>
+                      <div className={classDropdown}>
+                        {this.renderRows(classDropdown)}
+                      </div>
                     </div>
                   </li>
                   <If test={validToken}>
-                    <li className="nav-item">
+                    <li className="nav-item level-1">
                       <If test={type === 1}>
                         <a className="nav-link " href="/admin">
-                          <i className="fa fa-users"></i> Administração
+                          <i className="fa fa-users mr-2"></i>Administração
                         </a>
                       </If>
                       <If test={type === 2}>
                         <a className="nav-link " href="/client">
-                          <i className="fa fa-users"></i> Clientes
+                          <i className="fa fa-users mr-2"></i>Clientes
                         </a>
                       </If>
                       <If test={type === 3}>
                         <a className="nav-link " href="/partner">
-                          <i className="fa fa-users"></i> Parceiros
+                          <i className="fa fa-users mr-2"></i>Parceiros
                         </a>
                       </If>
                     </li>
                   </If>
                   <If test={validToken}>
-                    <li className="nav-item">
+                    <li className="nav-item level-1">
                       <a className="nav-link" href="/">
-                        <i className="fa fa-user"></i> {validToken ? name : ""}
+                        <i className="fa fa-user mr-2"></i>
+                        {validToken ? name : ""}
                       </a>
                     </li>
-                    <li className="nav-item">
+                    <li className="nav-item level-1">
                       <a
                         className="nav-link "
                         href="/logout"
                         onClick={this.logoff}
                       >
-                        <i className="fa fa-user-times"></i> Logoff
+                        <i className="fa fa-user-times mr-2"></i>Logoff
                       </a>
                     </li>
                   </If>
                   <If test={!validToken}>
-                    <li className="nav-item">
+                    <li className="nav-item level-1">
                       <Link
                         className="nav-link text-decoration-none"
                         to="/login"
                       >
-                        <i className="fa fa-user"></i>
-                        <span className="ml-2">Login / Registrar</span>
+                        <i className="fa fa-user mr-2"></i>Login / Registrar
                       </Link>
                     </li>
                   </If>
-                  <li className="nav-item">
+                  <li className="nav-item level-1">
                     <a
                       className="nav-link"
                       rel="tooltip"
@@ -184,10 +185,10 @@ class HeaderSite extends Component {
                       data-placement="bottom"
                       href="https://www.facebook.com/bebridecasamentos"
                     >
-                      <i className="fa fa-facebook-square"></i>
+                      <i className="fa fa-facebook-square mr-2"></i>
                     </a>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item level-1">
                     <a
                       className="nav-link"
                       rel="tooltip"

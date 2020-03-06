@@ -64,11 +64,11 @@ export function showDelete(events) {
   ];
 }
 
-export function init() {
+export function init(page = 1) {
   return [
     showTabs("tabList", "tabCreate"),
     selectTab("tabList"),
-    getList(),
+    getList(page),
     initialize("EventsForm", INITIAL_VALUES)
   ];
 }

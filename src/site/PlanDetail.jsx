@@ -10,9 +10,9 @@ import BannerBody from "./BannerBody";
 import FooterSite from "./FooterSite";
 
 class PlanDetail extends Component {
-  componentDidMount() {
-    this.props.getTypes();
-  }
+  // componentDidMount() {
+  //   this.props.getTypes();
+  // }
 
   filterPlan(url) {
     const types = this.props.site.eventTypes || [];
@@ -41,15 +41,15 @@ class PlanDetail extends Component {
   filterContent(url) {
     return (
       <div className="tab-pane text-center gallery">
-        <div class="row mb-5">
-          <div class="col-md-6 mb-5 mt-5">
+        <div className="row mb-5 col-12 ml-auto mr-auto">
+          <div className="col-md-6 mb-5 mt-5">
             <img
               src={require(`../assets/img${url}_01.png`)}
               alt="img1"
               className="img-raised  img-fluid"
             />
           </div>
-          <div class="col-md-6 mb-5 mt-5">
+          <div className="col-md-6 mb-5 mt-5">
             <img
               src={require(`../assets/img${url}_02.png`)}
               alt="img1"
@@ -57,15 +57,15 @@ class PlanDetail extends Component {
             />
           </div>
         </div>
-        <div class="row mb-5">
-          <div class="col-md-6 mb-5 mt-5">
+        <div className="row mb-5 col-12 ml-auto mr-auto">
+          <div className="col-md-6 mb-5 mt-5">
             <img
               src={require(`../assets/img${url}_03.png`)}
               alt="img1"
               className="img-raised  img-fluid"
             />
           </div>
-          <div class="col-md-6 mb-5 mt-5">
+          <div className="col-md-6 mb-5 mt-5">
             <img
               src={require(`../assets/img${url}_04.png`)}
               alt="img1"

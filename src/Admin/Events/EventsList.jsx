@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import ReactPaginate from "react-paginate";
+import Pagination from "rc-pagination";
 import "./EventsList.css";
 
 import { getList, showUpdate, showDelete } from "./EventsAction";
 
 class EventsList extends Component {
-  handlePageClick = data => {
-    const selected = Math.ceil(data.selected + 1);
-
-    this.props.getList(selected);
+  handlePageClick = page => {
+    this.props.getList(page);
   };
 
   renderRows() {
@@ -42,12 +40,11 @@ class EventsList extends Component {
   }
 
   render() {
-    const { pages } = this.props.listEvents;
     return (
       <div className="row">
         <div className="col-sm-12">
           <div className="card">
-            <h4 className="p-3 m-2 bg-primary  text-white rounded-lg">
+            <h4 className="p-2 m-2 bg-primary  text-white rounded-lg">
               Eventos
             </h4>
             <div className="card-body">
@@ -64,16 +61,12 @@ class EventsList extends Component {
                 <tbody>{this.renderRows()}</tbody>
               </table>
             </div>
-            <ReactPaginate
-              previousLabel={<i class="fa fa-angle-left"></i>}
-              nextLabel={<i class="fa fa-angle-right"></i>}
-              breakLabel={"..."}
-              breakClassName={"break-me"}
-              pageCount={pages}
-              onPageChange={this.handlePageClick}
-              containerClassName={"pagination"}
-              subContainerClassName={"pages pagination"}
-              activeClassName={"active"}
+            <Pagination
+              onChange={this.handlePageClick}
+              current={this.props.listEvents.page}
+              total={this.props.listEvents.total}
+              showLessItems
+              showTitle={false}
             />
           </div>
         </div>

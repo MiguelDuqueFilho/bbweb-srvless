@@ -5,6 +5,15 @@ import { bindActionCreators } from "redux";
 import { init } from "./EventsAction";
 
 class EventsForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.backPage = this.backPage.bind(this);
+  }
+  backPage() {
+    this.props.init(this.props.listEvents.page);
+  }
+
   render() {
     const { handleSubmit, readOnly } = this.props;
     return (
@@ -90,6 +99,7 @@ class EventsForm extends Component {
                       name="eventTypeId"
                       readOnly={readOnly}
                     >
+                      <option value="0">Selecionar tipo</option>
                       <option value="1">Assessoria Completa</option>
                       <option value="2">Assessoria Final</option>
                       <option value="3">Assessoria Pedido de Casamento</option>
@@ -105,6 +115,7 @@ class EventsForm extends Component {
                       name="eventStatusId"
                       readOnly={readOnly}
                     >
+                      <option value="0">Selecionar Status</option>
                       <option value="1">Inicial</option>
                       <option value="2">Aguardando Contrato</option>
                       <option value="3">Contratado</option>
@@ -126,7 +137,7 @@ class EventsForm extends Component {
                   <button
                     type="button"
                     className="btn btn-gray bg-light"
-                    onClick={this.props.init}
+                    onClick={this.backPage}
                   >
                     Cancelar
                   </button>
@@ -144,6 +155,6 @@ EventsForm = reduxForm({
   form: "EventsForm",
   destroyOnUnmount: false
 })(EventsForm);
-
+const mapStateToProps = state => ({ listEvents: state.events.listEvents });
 const mapDispatchToProps = dispatch => bindActionCreators({ init }, dispatch);
-export default connect(null, mapDispatchToProps)(EventsForm);
+export default connect(mapStateToProps, mapDispatchToProps)(EventsForm);

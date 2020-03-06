@@ -16,7 +16,7 @@ export default class Routes extends Component {
       case 3:
         return "/partner";
       default:
-        return "/";
+        return "";
     }
   }
 

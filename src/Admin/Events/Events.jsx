@@ -16,8 +16,9 @@ import EventsForm from "./EventsForm";
 
 class Events extends Component {
   componentWillMount() {
-    this.props.init();
+    this.props.init(1);
   }
+
   render() {
     return (
       <>
@@ -81,4 +82,5 @@ const mapDispatchToProps = dispatch =>
     },
     dispatch
   );
+
 export default connect(null, mapDispatchToProps)(Events);

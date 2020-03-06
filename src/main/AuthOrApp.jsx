@@ -9,11 +9,12 @@ import { bindActionCreators } from "redux";
 
 class AuthOrApp extends Component {
   componentWillMount() {
-    if (this.props.auth.user) {
-      this.props.validateToken(this.props.auth.user.token);
+    if (this.props.auth.validToken) {
+      if (this.props.auth.user) {
+        this.props.validateToken(this.props.auth.user.token);
+      }
     }
   }
-
   render() {
     const { user, validToken } = this.props.auth;
 
