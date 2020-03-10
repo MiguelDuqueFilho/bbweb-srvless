@@ -18,8 +18,8 @@ class AuthOrApp extends Component {
   render() {
     const { user, validToken } = this.props.auth;
 
-    if (user && validToken && user.type > 0) {
-      api.defaults.headers.common["authorization"] = user.token;
+    if (user && validToken) {
+      api.defaults.headers.common["authorization"] = `Bearer ${user.token}`;
       return <App userType={user.type}>{this.props.children}</App>;
     } else if (!user && !validToken) {
       return <Auth />;

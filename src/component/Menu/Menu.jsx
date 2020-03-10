@@ -9,6 +9,9 @@ export default function Menu(props) {
   return (
     <div className="sidebar-menu-group">
       <ul className="sidebar-menu">
+        <If test={props.userType === 0}>
+          <MenuItem path="/guest/dashboard" label="Download" icon="download" />
+        </If>
         <If test={props.userType === 1}>
           <MenuItem
             path="/admin/dashboard"

@@ -3,12 +3,21 @@ import { Switch, Route, Redirect } from "react-router";
 
 import "./app.css";
 import DashBoard from "../Admin/Dashboard/Dashboard";
+import Downloads from "../Admin/Downloads/Downloads";
 import Users from "../Admin/Users/Users";
 import Events from "../Admin/Events/Events";
 
 export default class Routes extends Component {
   typePath() {
     switch (this.props.userType) {
+      case 0:
+        return (
+          <Switch>
+            <Route exact path="/guest" component={Downloads} />
+            <Route path="/guest/Downloads" component={Downloads} />
+            <Redirect from="*" to="/guest" />
+          </Switch>
+        );
       case 1:
         return (
           <Switch>

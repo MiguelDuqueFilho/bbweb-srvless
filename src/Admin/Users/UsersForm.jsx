@@ -3,6 +3,7 @@ import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { init } from "./UsersAction";
+import If from "../../common/operator/if";
 
 class UsersForm extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class UsersForm extends Component {
   }
 
   render() {
-    const { handleSubmit, readOnly } = this.props;
+    const { handleSubmit, readOnly, submitLabel } = this.props;
     return (
       <div className="row">
         <div className="col-12">
@@ -53,7 +54,7 @@ class UsersForm extends Component {
                       type="text"
                       name="userEmail"
                       placeholder="Entre a descrição"
-                      readOnly={readOnly}
+                      readOnly={readOnly || submitLabel !== "Incluir"}
                     />
                   </div>
                 </div>
@@ -74,7 +75,32 @@ class UsersForm extends Component {
                     </Field>
                   </div>
                 </div>
-
+                <If test={submitLabel === "Incluir"}>
+                  <div className="form-row">
+                    <div className="col-md-4  form-group">
+                      <label htmlFor="password">Senha</label>
+                      <Field
+                        className="form-control"
+                        component="input"
+                        type="password"
+                        name="password"
+                        placeholder="Senha..."
+                        readOnly={readOnly}
+                      />
+                    </div>
+                    <div className="col-md-4  form-group">
+                      <label htmlFor="confirmPassword">Confirmar</label>
+                      <Field
+                        className="form-control"
+                        component="input"
+                        type="password"
+                        name="confirmPassword"
+                        placeholder="Confirmar Senha"
+                        readOnly={readOnly}
+                      />
+                    </div>
+                  </div>
+                </If>
                 <div className="d-flex flex-wrap justify-content-between mt-3">
                   <button
                     type="submit"

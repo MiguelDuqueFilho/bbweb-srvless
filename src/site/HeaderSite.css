@@ -64,7 +64,7 @@
 .page-header-site .navbar-color-on-scroll .nav-item a.nav-link:hover,
 .page-header-site .navbar-color-on-scroll .nav-item .nav-link span:hover,
 .page-header-site .navbar-color-on-scroll .nav-item .nav-link a:hover {
-  color: var(--primary);
+  color: #000;
 }
 
 .dropdown-menu.show {

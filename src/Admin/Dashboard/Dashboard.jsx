@@ -23,7 +23,7 @@ class Dashboard extends Component {
     const { credit, debt } = this.props.summary;
 
     return (
-      <>
+      <React.Fragment>
         <ContentHeader
           title="Dashboard"
           subtitle="Resumo das atividades administrativas"
@@ -52,7 +52,7 @@ class Dashboard extends Component {
             text="ValorConsolidade"
           />
         </Content>
-      </>
+      </React.Fragment>
     );
   }
 }

@@ -6,6 +6,8 @@ import Navbar from "../NavBar/Navbar";
 export default function Header(props) {
   function titleAdmin(userType) {
     switch (userType) {
+      case 0:
+        return "Área do Visitante";
       case 1:
         return "Administração";
       case 2:

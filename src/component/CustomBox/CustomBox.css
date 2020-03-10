@@ -1,0 +1,22 @@
+div.grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+/* .small-box {
+  background-color: cadetblue;
+}
+
+.small-box .inner {
+  background-color: red;
+}
+
+.small-box .inner h3 {
+  background-color: blue;
+}
+
+.small-box .inner p {
+  background-color: yellow;
+} */
