@@ -1,7 +1,11 @@
 .content-header h6 span {
   color: #999;
 }
-.subtitle {
-  color: #999;
+.content-header .title {
+  color: var(--title);
+  font-size: 1.2em;
+}
+.content-header .subtitle {
+  color: var(--subtitle);
   font-size: 0.6em;
 }

@@ -56,7 +56,10 @@ function submitForgot(values, url, history) {
       .then(resp => {
         dispatch([{ type: "USER_FORGOTED", payload: resp.data.success }]);
         if (resp.data.success) {
-          toastr.success("Ok", resp.data.message);
+          toastr.success(
+            "E-mail enviado!",
+            "Verifique seu e-mail e siga as instruções para recuperar a sua senha."
+          );
           history.push("/");
         } else {
           toastr.warning("Alerta", resp.data.message);

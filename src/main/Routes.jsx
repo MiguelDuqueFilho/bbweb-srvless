@@ -4,6 +4,9 @@ import { Switch, Route, Redirect } from "react-router";
 import "./app.css";
 import DashBoard from "../Admin/Dashboard/Dashboard";
 import Downloads from "../Admin/Downloads/Downloads";
+import Upload from "../Admin/Upload/Upload";
+import DownloadsCard from "../Admin/Downloads/DownloadsCard";
+import DownloadsView from "../Admin/Downloads/DownloadsView";
 import Users from "../Admin/Users/Users";
 import Events from "../Admin/Events/Events";
 
@@ -13,8 +16,8 @@ export default class Routes extends Component {
       case 0:
         return (
           <Switch>
-            <Route exact path="/guest" component={Downloads} />
-            <Route path="/guest/Downloads" component={Downloads} />
+            <Route exact path="/guest" component={DownloadsCard} />
+            <Route path="/guest/Downloads" component={DownloadsView} />
             <Redirect from="*" to="/guest" />
           </Switch>
         );
@@ -25,6 +28,8 @@ export default class Routes extends Component {
             <Route path="/admin/dashboard" component={DashBoard} />
             <Route path="/admin/users" component={Users} />
             <Route path="/admin/events" component={Events} />
+            <Route path="/admin/downloads" component={Downloads} />
+            <Route path="/admin/uploads" component={Upload} />
             <Redirect from="*" to="/admin" />
           </Switch>
         );
@@ -33,6 +38,7 @@ export default class Routes extends Component {
           <Switch>
             <Route exact path="/client" component={DashBoard} />
             <Route path="/client/dashboard" component={DashBoard} />
+            <Route path="/client/Downloads" component={DownloadsView} />
             <Redirect from="*" to="/client" />
           </Switch>
         );

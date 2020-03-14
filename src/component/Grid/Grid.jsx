@@ -15,7 +15,7 @@ export default class Grid extends Component {
   }
 
   toCssClassName(cols, className) {
-    const classes = className ? cols.concat(` ${className}`) : cols;
+    const classes = className ? cols.concat(` grid ${className}`) : cols;
     return classes;
   }
 

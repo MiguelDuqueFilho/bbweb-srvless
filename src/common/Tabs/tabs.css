@@ -20,9 +20,7 @@
   margin-bottom: -10px;
   margin-left: -1px;
   text-decoration: none;
-  border-radius: 6px;
   background-color: var(--light);
-  border-radius: 5px;
 }
 
 .tab-custom-item .tab-custom-label {

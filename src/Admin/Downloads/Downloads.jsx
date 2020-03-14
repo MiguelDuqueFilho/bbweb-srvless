@@ -1,107 +1,91 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import "./Downloads.css";
-import { downloadFile } from "./DownloadActions";
+import { connect } from "react-redux";
 
 import ContentHeader from "../../component/ContentHeader/ContentHeader";
 import Content from "../../component/Content/Content";
-import CustomBox from "../../component/CustomBox/CustomBox";
+import Tabs from "../../common/Tabs/tabs";
+import TabsHeader from "../../common/Tabs/tabsHeader";
+import TabsContent from "../../common/Tabs/tabsContent";
+import TabHeader from "../../common/Tabs/tabHeader";
+import TabContent from "../../common/Tabs/tabContent";
+import { init, create, update, remove } from "./DownloadsAction";
+
+import DownloadsCard from "./DownloadsCard";
+import DownloadsList from "./DownloadsList";
+import DownloadsForm from "./DownloadsForm";
 
 class Downloads extends Component {
-  constructor(props) {
-    super(props);
-    this.downloadFile = this.downloadFile.bind(this);
-  }
-
-  downloadFile(filename) {
-    this.props.downloadFile(filename);
+  componentWillMount() {
+    this.props.init(1);
   }
 
   render() {
-    const { filename, description } = {
-      filename: "planner01.pdf",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque iusto, temporibus natus ratione ."
-    };
-
     return (
-      <React.Fragment>
+      <>
         <ContentHeader
-          title="Downloads"
-          subtitle="Downloads disponiveis"
+          title="Cadastro de Downloads"
+          subtitle="Nesta pagina você pode fazer manutenção de Downloads."
           icon="download"
         />
-        <Content className="d-flex justify-content-around flex-wrap">
-          <CustomBox
-            cols="12 4 4"
-            color="primary"
-            icon="file"
-            value={filename}
-            text={description}
-            labelOnClick="Baixar Arquivo"
-            onClick={() => this.downloadFile(filename)}
-          />
-          <CustomBox
-            cols="12 4 4"
-            color="success"
-            icon="book"
-            value={filename}
-            text={description}
-            labelOnClick="Baixar Arquivo"
-            onClick={() => this.downloadFile(filename)}
-          />
-          <CustomBox
-            cols="12 4 4"
-            color="dark"
-            icon="file-pdf-o"
-            value={filename}
-            text={description}
-            labelOnClick="Baixar Arquivo"
-            onClick={() => this.downloadFile(filename)}
-          />
-          <CustomBox
-            cols="12 4 4"
-            color="info"
-            icon="file-o"
-            value={filename}
-            text={description}
-            labelOnClick="Baixar Arquivo"
-            onClick={() => this.downloadFile(filename)}
-          />
-          <CustomBox
-            cols="12 4 4"
-            color="warning"
-            icon="credit-card"
-            value={filename}
-            text={description}
-            labelOnClick="Baixar Arquivo"
-            onClick={() => this.downloadFile(filename)}
-          />
-          <CustomBox
-            cols="12 4 4"
-            color="danger"
-            icon="credit-card"
-            value={filename}
-            text={description}
-            labelOnClick="Baixar Arquivo"
-            onClick={() => this.downloadFile(filename)}
-          />
-          <CustomBox
-            cols="12 4 4"
-            color="light"
-            icon="credit-card"
-            value={filename}
-            text={description}
-            labelOnClick="Baixar Arquivo"
-            onClick={() => this.downloadFile(filename)}
-          />
+        <Content>
+          <Tabs>
+            <TabsHeader>
+              <TabHeader label="Listar" icon="bars" target="tabList" />
+              <TabHeader label="Incluir" icon="plus" target="tabCreate" />
+              <TabHeader label="Visão" icon="download" target="tabView" />
+              <TabHeader label="Alterar" icon="pencil" target="tabUpdate" />
+              <TabHeader label="Excluir" icon="trash-o" target="tabDelete" />
+            </TabsHeader>
+            <TabsContent>
+              <TabContent id="tabList">
+                <DownloadsList />
+              </TabContent>
+              <TabContent id="tabCreate">
+                <DownloadsForm
+                  onSubmit={this.props.create}
+                  title="Inclusão de Download"
+                  submitLabel="Incluir"
+                  submitClass="primary"
+                />
+              </TabContent>
+              <TabContent id="tabView">
+                <DownloadsCard />
+              </TabContent>
+              <TabContent id="tabUpdate">
+                <DownloadsForm
+                  onSubmit={this.props.update}
+                  title="Alteração de Download"
+                  submitLabel="Alterar"
+                  submitClass="info"
+                />
+              </TabContent>
+              <TabContent id="tabDelete">
+                <DownloadsForm
+                  onSubmit={this.props.remove}
+                  title="Exclusão de Download"
+                  submitLabel="Excluir"
+                  submitClass="danger"
+                  readOnly={true}
+                />
+              </TabContent>
+            </TabsContent>
+          </Tabs>
         </Content>
-      </React.Fragment>
+      </>
     );
   }
 }
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ downloadFile }, dispatch);
+  bindActionCreators(
+    {
+      init,
+      create,
+      update,
+      remove
+    },
+    dispatch
+  );
+
 export default connect(null, mapDispatchToProps)(Downloads);
