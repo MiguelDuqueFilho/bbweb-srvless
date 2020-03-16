@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from "react-router";
 import "./app.css";
 import DashBoard from "../Admin/Dashboard/Dashboard";
 import Downloads from "../Admin/Downloads/Downloads";
-import Upload from "../Admin/Upload/Upload";
+import Uploads from "../Admin/Uploads/Uploads";
 import DownloadsCard from "../Admin/Downloads/DownloadsCard";
 import DownloadsView from "../Admin/Downloads/DownloadsView";
 import Users from "../Admin/Users/Users";
@@ -29,7 +29,7 @@ export default class Routes extends Component {
             <Route path="/admin/users" component={Users} />
             <Route path="/admin/events" component={Events} />
             <Route path="/admin/downloads" component={Downloads} />
-            <Route path="/admin/uploads" component={Upload} />
+            <Route path="/admin/uploads" component={Uploads} />
             <Redirect from="*" to="/admin" />
           </Switch>
         );

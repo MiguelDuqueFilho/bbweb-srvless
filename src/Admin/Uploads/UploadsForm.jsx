@@ -3,29 +3,17 @@ import { reduxForm, Field } from "redux-form";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { init } from "./DownloadsAction";
+import { init } from "./UploadsAction";
 
-class DownloadsForm extends Component {
+class UploadsForm extends Component {
   constructor(props) {
     super(props);
 
     this.backPage = this.backPage.bind(this);
-    this.handleFileUpload = this.handleFileUpload.bind(this);
   }
 
   backPage() {
-    this.props.init(this.props.listDownloadsAll.page);
-  }
-
-  // Component method
-  handleFileUpload(file) {
-    console.log("file>>>>>>");
-    console.log(file);
-    // const file = files[0];
-    // this.props.actions.uploadRequest({
-    //   file,
-    //   name: "Awesome Cat Pic"
-    // });
+    this.props.init(this.props.listUploads.page);
   }
 
   render() {
@@ -49,12 +37,12 @@ class DownloadsForm extends Component {
                     hidden={true}
                   />
                   <div className="col-sm-8  form-group">
-                    <label htmlFor="downloadTitle">Titulo</label>
+                    <label htmlFor="fileName">Nome Arquivo</label>
                     <Field
                       className="form-control"
                       component="input"
                       type="text"
-                      name="downloadTitle"
+                      name="fileName"
                       placeholder="Digite o Titulo"
                       readOnly={readOnly}
                     />
@@ -62,48 +50,47 @@ class DownloadsForm extends Component {
                 </div>
                 <div className="form-row">
                   <div className="col-12 form-group">
-                    <label htmlFor="downloadDescription">Descrição</label>
+                    <label htmlFor="fileType">Tipo Arquivo</label>
                     <Field
                       className="form-control"
                       component="input"
                       type="text"
-                      name="downloadDescription"
+                      name="fileType"
                       placeholder="Digite a descrição"
-                      readOnly={readOnly}
+                      readOnly={true}
                     />
                   </div>
                 </div>
                 <div className="form-row">
-                  <div className="col-12 col-sm-6 col-md-4 form-group">
-                    <label htmlFor="downloadFilename">
-                      Para carregar o arquivo click no nome
-                    </label>
+                  <div className="col-12  form-group">
+                    <label htmlFor="filePath">Arquivo Carregado</label>
                     <Field
                       className="form-control"
                       component="input"
                       type="text"
-                      name="downloadFilename"
-                      onClick={this.handleFileUpload}
+                      name="filePath"
                       readOnly={true}
                     />
-                    {/* <button
-                      type="button"
-                      className="btn btn-info mt-2"
-                      onClick={this.upLoad}
-                      hidden={readOnly}
-                    >
-                      Upload Arquivo
-                    </button> */}
                   </div>
                 </div>
                 <div className="form-row">
                   <div className="col-8 col-sm-4 col-md-4  form-group">
-                    <label htmlFor="downloadShow">Mostrar no site</label>
+                    <label htmlFor="fileSize">Tamanho</label>
+                    <Field
+                      className="form-control"
+                      component="input"
+                      type="text"
+                      name="fileSize"
+                      readOnly={true}
+                    />
+                  </div>
+                  <div className="col-8 col-sm-4 col-md-4  form-group">
+                    <label htmlFor="fileUse">Em uso</label>
                     <Field
                       className="form-control"
                       component="select"
                       type="select"
-                      name="downloadShow"
+                      name="fileUse"
                       readOnly={readOnly}
                     >
                       <option defaultValue value={false}>
@@ -138,14 +125,14 @@ class DownloadsForm extends Component {
   }
 }
 
-DownloadsForm = reduxForm({
-  form: "DownloadsForm",
+UploadsForm = reduxForm({
+  form: "UploadsForm",
   destroyOnUnmount: false
-})(DownloadsForm);
+})(UploadsForm);
 
 const mapStateToProps = state => ({
-  listDownloadsAll: state.downloads.listDownloadsAll
+  listUploads: state.uploads.listUploads
 });
 const mapDispatchToProps = dispatch => bindActionCreators({ init }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(DownloadsForm);
+export default connect(mapStateToProps, mapDispatchToProps)(UploadsForm);

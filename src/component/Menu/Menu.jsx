@@ -21,11 +21,7 @@ export default function Menu(props) {
           <MenuItem path="/admin/users" label="Usuários" icon="users" />
           <MenuItem path="/admin/events" label="Eventos" icon="table" />
           <MenuItem path="/admin/downloads" label="Download" icon="download" />
-          <MenuItem
-            path="/admin/uploads"
-            label="Upload Arquivos"
-            icon="upload"
-          />
+          <MenuItem path="/admin/uploads" label="Uploads" icon="upload" />
         </If>
         <If test={props.userType === 2}>
           <MenuItem

@@ -9,6 +9,7 @@ import EventsReducer from "../Admin/Events/EventsReducer";
 import UsersReducer from "../Admin/Users/UsersReducer";
 import TabReducer from "../common/Tabs/tabReducer";
 import DownloadsReducer from "../Admin/Downloads/DownloadsReducer";
+import UploadsReducer from "../Admin/Uploads/UploadsReducer";
 
 const rootReducer = combineReducers({
   auth: AuthReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   users: UsersReducer,
   form: formReducer,
   downloads: DownloadsReducer,
+  uploads: UploadsReducer,
   toastr: toastrReducer
 });
 
