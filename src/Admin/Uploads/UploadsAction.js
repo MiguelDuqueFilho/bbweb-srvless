@@ -4,13 +4,22 @@ import { initialize } from "redux-form";
 import { showTabs, selectTab } from "../../common/Tabs/tabActions";
 
 const INITIAL_VALUES = {
-  listUploads: { docs: [], pages: 0, total: 0, page: 1 }
+  listUploads: { docs: [], pages: 0, total: 0, page: 1 },
+  listUploadsPdf: []
 };
 
-export async function getList(page = 1, limit = 9) {
+export async function getList(page = 1, limit = 10) {
   const request = await api.get(`/uploads?page=${page}&limit=${limit}`);
   return {
     type: "UPLOADS_GET_LIST_REQUEST",
+    payload: request.data.data
+  };
+}
+
+export async function getPdf() {
+  const request = await api.get(`/uploadstype/pdf`);
+  return {
+    type: "UPLOADS_GET_PDF_REQUEST",
     payload: request.data.data
   };
 }

@@ -1,37 +1,63 @@
 import React, { Component } from "react";
-import { reduxForm, Field } from "redux-form";
-
+import { reduxForm, Field, change } from "redux-form";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { init } from "./DownloadsAction";
+
+import { init } from "../Downloads/DownloadsAction";
+import { getPdf } from "../Uploads/UploadsAction";
+import Modal from "../../component/Modal/Modal";
+import UploadsSearch from "../Uploads/UploadsSearch";
 
 class DownloadsForm extends Component {
   constructor(props) {
     super(props);
-
+    this.state = { show: false };
     this.backPage = this.backPage.bind(this);
-    this.handleFileUpload = this.handleFileUpload.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
+    this.getFileUpload = this.getFileUpload.bind(this);
   }
+
+  componentDidUpdate() {
+    if (this.props.fileUploadSelected !== null) {
+      const fileSelect =
+        this.getFileUpload(this.props.fileUploadSelected) || [];
+      const { dispatch } = this.props;
+      dispatch(
+        change("DownloadsForm", "downloadFilename", fileSelect["0"].fileName)
+      );
+      dispatch(change("DownloadsForm", "downloadUploadId", fileSelect["0"].id));
+    }
+  }
+
+  getFileUpload = fileSelected =>
+    this.props.listUploadsPdf.filter(
+      file => parseInt(file.id) === parseInt(fileSelected)
+    );
 
   backPage() {
     this.props.init(this.props.listDownloadsAll.page);
   }
 
-  // Component method
-  handleFileUpload(file) {
-    console.log("file>>>>>>");
-    console.log(file);
-    // const file = files[0];
-    // this.props.actions.uploadRequest({
-    //   file,
-    //   name: "Awesome Cat Pic"
-    // });
-  }
+  showModal = event => {
+    event.preventDefault();
+    this.setState({ show: true });
+  };
+
+  hideModal = event => {
+    event.preventDefault();
+    this.setState({ show: false });
+  };
 
   render() {
     const { handleSubmit, readOnly } = this.props;
-    console.log("props >>>>>>>>>");
-    console.log(this.props);
+
+    // const fileSelect = this.getFileUpload(fileUploadSelected);
+    // console.log(" fileSelect >>>>>>>>> render ");
+    // console.log(fileSelect);
+    // console.log(" fileSelect.fileName >>>>>>>>> render ");
+    // console.log(fileSelect["0"].fileName);
+
     return (
       <div className="row">
         <div className="col-12">
@@ -73,27 +99,38 @@ class DownloadsForm extends Component {
                     />
                   </div>
                 </div>
+
+                <Modal show={this.state.show} handleClose={this.hideModal}>
+                  <UploadsSearch />
+                </Modal>
+
                 <div className="form-row">
-                  <div className="col-12 col-sm-6 col-md-4 form-group">
-                    <label htmlFor="downloadFilename">
-                      Para carregar o arquivo click no nome
-                    </label>
+                  <div className="col-3 col-sm-3 col-md-3 form-group">
+                    <label htmlFor="downloadUploadId">Id do Upload</label>
+                    <Field
+                      className="form-control"
+                      component="input"
+                      type="number"
+                      name="downloadUploadId"
+                      readOnly={true}
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-primary mt-2"
+                      onClick={this.showModal}
+                    >
+                      Pesquisa Arquivos
+                    </button>
+                  </div>
+                  <div className="col-9 col-sm-9 col-md-9 form-group">
+                    <label htmlFor="downloadFilename">Nome do arquivo</label>
                     <Field
                       className="form-control"
                       component="input"
                       type="text"
                       name="downloadFilename"
-                      onClick={this.handleFileUpload}
                       readOnly={true}
                     />
-                    {/* <button
-                      type="button"
-                      className="btn btn-info mt-2"
-                      onClick={this.upLoad}
-                      hidden={readOnly}
-                    >
-                      Upload Arquivo
-                    </button> */}
                   </div>
                 </div>
                 <div className="form-row">
@@ -144,8 +181,11 @@ DownloadsForm = reduxForm({
 })(DownloadsForm);
 
 const mapStateToProps = state => ({
-  listDownloadsAll: state.downloads.listDownloadsAll
+  listDownloadsAll: state.downloads.listDownloadsAll,
+  listUploadsPdf: state.uploads.listUploadsPdf,
+  fileUploadSelected: state.downloads.fileUploadSelected
 });
-const mapDispatchToProps = dispatch => bindActionCreators({ init }, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ init, getPdf }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(DownloadsForm);

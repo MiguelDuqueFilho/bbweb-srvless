@@ -8,7 +8,6 @@ import { getList, showUpdate, showDelete } from "./DownloadsAction";
 
 class DownloadsList extends Component {
   handlePageClick = page => {
-    console.log(">>>>>>>> getList handlePageClick >>>>>>>>");
     this.props.getList(page);
   };
 
@@ -54,9 +53,9 @@ class DownloadsList extends Component {
                   <tr>
                     <th className="th-custom w-5">#</th>
                     <th className="th-custom w-40">Titulo</th>
-                    <th className="th-custom w-40">Nome</th>
-                    <th className="th-custom w-5">Site</th>
-                    <th className="th-actions w-10">Ações</th>
+                    <th className="th-custom w-30">Nome</th>
+                    <th className="th-custom w-10">Site</th>
+                    <th className="th-actions w-15">Ações</th>
                   </tr>
                 </thead>
                 <tbody>{this.renderRows()}</tbody>

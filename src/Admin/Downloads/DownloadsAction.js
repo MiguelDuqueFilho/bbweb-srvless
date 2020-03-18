@@ -8,7 +8,7 @@ const INITIAL_VALUES = {
   listDownloadsall: { docs: [], pages: 0, total: 0, page: 1 }
 };
 
-export async function getList(page = 1, limit = 9) {
+export async function getList(page = 1, limit = 10) {
   const request = await api.get(`/downloads_all?page=${page}&limit=${limit}`);
   return {
     type: "DOWNLOAD_GET_ALL_FILES_REQUEST",
@@ -68,6 +68,17 @@ export function submit(values, method) {
           toastr.warning("Alerta", e.response.data.message);
         }
       });
+  };
+}
+
+export function fileUpdateSelected(fileId) {
+  return dispatch => {
+    dispatch([
+      {
+        type: "DOWNLOAD_SELECTED_FILES_UPLOAD",
+        payload: fileId
+      }
+    ]);
   };
 }
 
@@ -135,33 +146,33 @@ export const downloadFile = file => async dispatch => {
   }
 };
 
-export const upLoads = (file, name) => dispatch => {
-  let data = new FormData();
-  data.append("file", document);
-  data.append("name", name);
-  api
-    .post("/downloads")
-    .then(resp => {
-      dispatch([
-        {
-          type: "UPLOAD_DOCUMENT_SUCCESS",
-          payload: resp.data
-        }
-      ]);
-    })
-    .catch(error => {
-      dispatch([
-        {
-          type: "UPLOAD_DOCUMENT_FAIL",
-          error
-        }
-      ]);
-      if (error.response) {
-        toastr.error("Error", error.response.data.message);
-      } else if (error.request) {
-        toastr.error("Error", error.request);
-      } else {
-        toastr.error("Error", error.message);
-      }
-    });
-};
+// export const upLoads = (file, name) => dispatch => {
+//   let data = new FormData();
+//   data.append("file", document);
+//   data.append("name", name);
+//   api
+//     .post("/downloads")
+//     .then(resp => {
+//       dispatch([
+//         {
+//           type: "UPLOAD_DOCUMENT_SUCCESS",
+//           payload: resp.data
+//         }
+//       ]);
+//     })
+//     .catch(error => {
+//       dispatch([
+//         {
+//           type: "UPLOAD_DOCUMENT_FAIL",
+//           error
+//         }
+//       ]);
+//       if (error.response) {
+//         toastr.error("Error", error.response.data.message);
+//       } else if (error.request) {
+//         toastr.error("Error", error.request);
+//       } else {
+//         toastr.error("Error", error.message);
+//       }
+//     });
+// };
