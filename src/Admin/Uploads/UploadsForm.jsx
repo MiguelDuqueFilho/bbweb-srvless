@@ -18,8 +18,6 @@ class UploadsForm extends Component {
 
   render() {
     const { handleSubmit, readOnly } = this.props;
-    console.log("props >>>>>>>>>");
-    console.log(this.props);
     return (
       <div className="row">
         <div className="col-12">

@@ -10,13 +10,13 @@ export default function Menu(props) {
     <div className="sidebar-menu-group">
       <ul className="sidebar-menu">
         <If test={props.userType === 0}>
-          <MenuItem path="/guest/Download" label="Download" icon="download" />
+          <MenuItem path="/guest/Downloads" label="Download" icon="download" />
         </If>
         <If test={props.userType === 1}>
           <MenuItem
             path="/admin/dashboard"
             label="Dashboard"
-            icon="dashboard"
+            icon="bar-chart"
           />
           <MenuItem path="/admin/users" label="Usuários" icon="users" />
           <MenuItem path="/admin/events" label="Eventos" icon="table" />
@@ -27,7 +27,7 @@ export default function Menu(props) {
           <MenuItem
             path="/client/dashboard"
             label="Dashboard Cliente"
-            icon="dashboard"
+            icon="bar-chart"
           />
           <MenuItem path="/client/downloads" label="Download" icon="download" />
         </If>
@@ -35,7 +35,7 @@ export default function Menu(props) {
           <MenuItem
             path="/partner/dashboard"
             label="Dashboard Fornecedor"
-            icon="dashboard"
+            icon="bar-chart"
           />
         </If>
       </ul>

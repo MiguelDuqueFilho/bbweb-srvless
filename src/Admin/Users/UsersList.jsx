@@ -62,10 +62,10 @@ class UsersList extends Component {
                 <thead>
                   <tr>
                     <th className="th-custom w-5">#</th>
-                    <th className="th-custom w-40">Name</th>
+                    <th className="th-custom w-30">Name</th>
                     <th className="th-custom w-30">E-mail</th>
-                    <th className="th-custom w-10">Tipo</th>
-                    <th className="th-actions w-10">Ações</th>
+                    <th className="th-custom w-20">Tipo</th>
+                    <th className="th-actions w-15">Ações</th>
                   </tr>
                 </thead>
                 <tbody>{this.renderRows()}</tbody>

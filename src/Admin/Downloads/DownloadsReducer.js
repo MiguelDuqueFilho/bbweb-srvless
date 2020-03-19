@@ -12,6 +12,12 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, listDownloads: action.payload };
     case "DOWNLOAD_SELECTED_FILES_UPLOAD":
       return { ...state, fileUploadSelected: action.payload };
+    case "DOWNLOAD_FILE_REQUEST":
+      return state;
+    case "DOWNLOAD_FILE_SUCCESS":
+      return state;
+    case "DOWNLOAD_FILE_ERROR":
+      return state;
     default:
       return state;
   }

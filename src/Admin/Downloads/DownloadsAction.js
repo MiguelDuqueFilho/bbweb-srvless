@@ -108,7 +108,7 @@ export function init(page = 1) {
   ];
 }
 
-export const downloadFile = file => async dispatch => {
+export const downloadFile = (fileId, fileName) => async dispatch => {
   try {
     dispatch({
       type: "DOWNLOAD_FILE_REQUEST"
@@ -117,16 +117,16 @@ export const downloadFile = file => async dispatch => {
     const {
       data,
       headers: { "content-type": fileType }
-    } = await api.get(`/downloads/${file}`, {
+    } = await api.get(`/downloads/${fileId}`, {
       responseType: "blob",
       timeout: 30000
     });
 
-    const newFile = new File([data], file, {
+    const newFile = new File([data], fileName, {
       type: fileType
     });
 
-    await FileSaver.saveAs(newFile, file);
+    await FileSaver.saveAs(newFile, fileName);
 
     dispatch({
       type: "DOWNLOAD_FILE_SUCCESS"

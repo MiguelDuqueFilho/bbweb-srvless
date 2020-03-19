@@ -19,8 +19,8 @@ class DownloadsCard extends Component {
   //   this.props.getDownloads(page);
   // };
 
-  downloadFile(filename) {
-    this.props.downloadFile(filename);
+  downloadFile(fileId, fileName) {
+    this.props.downloadFile(fileId, fileName);
   }
 
   renderRows() {
@@ -36,7 +36,7 @@ class DownloadsCard extends Component {
         value={file.downloadTitle}
         text={file.downloadDescription}
         labelOnClick="Baixar Arquivo"
-        onClick={() => this.downloadFile(file.downloadFilename)}
+        onClick={() => this.downloadFile(file.id, file.downloadFilename)}
       />
     ));
   }

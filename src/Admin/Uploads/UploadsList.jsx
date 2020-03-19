@@ -13,7 +13,6 @@ class UploadsList extends Component {
 
   renderRows() {
     const list = this.props.listUploads.docs || [];
-    console.log(this.props);
 
     return list.map(file => (
       <tr key={file.id}>
@@ -56,8 +55,8 @@ class UploadsList extends Component {
                     <th className="th-custom w-5">#</th>
                     <th className="th-custom w-40">Nome </th>
                     <th className="th-custom w-20">Tipo </th>
-                    <th className="th-custom w-15">Tamanho</th>
-                    <th className="th-custom w-5">Uso</th>
+                    <th className="th-custom w-10">Tamanho</th>
+                    <th className="th-custom w-10">Uso</th>
                     <th className="th-actions w-15">Ações</th>
                   </tr>
                 </thead>

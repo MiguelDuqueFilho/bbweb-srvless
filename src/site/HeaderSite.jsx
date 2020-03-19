@@ -97,6 +97,8 @@ class HeaderSite extends Component {
             <div className="container-fluid ">
               <div className="navbar-translate d-flex">
                 <Logo />
+              </div>
+              <div>
                 <button
                   onClick={this.toggleNavbar}
                   className={`${classTwo}`}

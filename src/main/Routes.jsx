@@ -5,7 +5,6 @@ import "./app.css";
 import DashBoard from "../Admin/Dashboard/Dashboard";
 import Downloads from "../Admin/Downloads/Downloads";
 import Uploads from "../Admin/Uploads/Uploads";
-import DownloadsCard from "../Admin/Downloads/DownloadsCard";
 import DownloadsView from "../Admin/Downloads/DownloadsView";
 import Users from "../Admin/Users/Users";
 import Events from "../Admin/Events/Events";
@@ -16,7 +15,7 @@ export default class Routes extends Component {
       case 0:
         return (
           <Switch>
-            <Route exact path="/guest" component={DownloadsCard} />
+            <Route exact path="/guest" component={DownloadsView} />
             <Route path="/guest/Downloads" component={DownloadsView} />
             <Redirect from="*" to="/guest" />
           </Switch>

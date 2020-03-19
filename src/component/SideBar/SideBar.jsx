@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function SideBar(props) {
   return (
-    <aside className="main-sidebar">
+    <aside className="main-sidebar ">
       <div className="logo-dashboard">
         <Logo />
         <Link className="logo-normal text-decoration-none" to="/">

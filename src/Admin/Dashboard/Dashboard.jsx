@@ -27,7 +27,7 @@ class Dashboard extends Component {
         <ContentHeader
           title="Dashboard"
           subtitle="Resumo das atividades administrativas"
-          icon="dashboard"
+          icon="bar-chart"
         />
         <Content>
           <CustomBox
