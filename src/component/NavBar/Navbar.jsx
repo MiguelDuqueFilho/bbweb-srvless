@@ -5,27 +5,39 @@ import { bindActionCreators } from "redux";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { logout } from "../../auth/AuthAction";
+import { toggleChanged } from "../../main/mainAction";
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = { open: false };
-    this.logoff = this.logoff.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.state = { open: false, toggle: props.toggle };
+    this.toggleChanged = this.toggleChanged.bind(this);
+
+    // this.logoff = this.logoff.bind(this);
+    // this.changeOpen = this.changeOpen.bind(this);
+    // this.onSubmit = this.onSubmit.bind(this);
   }
 
-  changeOpen() {
-    this.setState({ open: !this.state.open });
-  }
+  // changeOpen() {  // dropdown usuário
+  //   this.setState({ open: !this.state.open });
+  // }
 
-  logoff() {
-    this.props.logout();
-  }
+  // logoff() {
+  //   this.props.logout();
+  // }
 
-  onSubmit(values) {
-    console.log(values);
-  }
+  // onSubmit(values) {
+  //   console.log(values); // para pesquisa
+  // }
 
+  async toggleChanged() {
+    await this.setState({ toggle: !this.state.toggle });
+    await this.props.toggleChanged(this.state.toggle);
+    // console.log("this.state.toggle >>>>>>>>>>>>>");
+    // console.log(this.state.toggle);
+    // console.log("this.props.toggle >>>>>>>>>>>>>");
+    // console.log(this.props.toggle);
+  }
   render() {
     // const { name } = this.props.user;
 
@@ -79,7 +91,10 @@ class Navbar extends Component {
               </a>
             </div> */}
           </li>
-          <li className="nav-item-custom nav-toggle">
+          <li
+            className="nav-item-custom nav-toggle"
+            onClick={this.toggleChanged}
+          >
             <i className="fa fa-bars"></i>
           </li>
         </ul>
@@ -131,6 +146,10 @@ Navbar = reduxForm({
   destroyOnUnmount: false
 })(Navbar);
 
-const mapStateToProps = state => ({ user: state.auth.user });
-const mapDispatchToProps = dispatch => bindActionCreators({ logout }, dispatch);
+const mapStateToProps = state => ({
+  user: state.auth.user,
+  toggle: state.app.toggle
+});
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ logout, toggleChanged }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

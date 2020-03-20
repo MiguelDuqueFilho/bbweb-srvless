@@ -31,21 +31,21 @@ class Dashboard extends Component {
         />
         <Content>
           <CustomBox
-            cols="12 4 4"
+            cols="12"
             color="green"
             icon="bank"
             value={`R$ ${credit}`}
             text="Total de Crédito"
           />
           <CustomBox
-            cols="12 4 4"
+            cols="12"
             color="red"
             icon="credit-card"
             value={`R$ ${debt}`}
             text="Total de Débito"
           />
           <CustomBox
-            cols="12 4 4"
+            cols="12"
             color="blue"
             icon="money"
             value={`R$ ${credit - debt}`}
