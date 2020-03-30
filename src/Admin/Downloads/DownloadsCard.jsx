@@ -14,11 +14,6 @@ class DownloadsCard extends Component {
     this.renderRows = this.renderRows.bind(this);
   }
 
-  // handlePageClick = page => {
-  //   console.log(">>>>>>>> getList handlePageClick >>>>>>>>");
-  //   this.props.getDownloads(page);
-  // };
-
   downloadFile(fileId, fileName) {
     this.props.downloadFile(fileId, fileName);
   }

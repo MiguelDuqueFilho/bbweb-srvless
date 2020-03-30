@@ -14,12 +14,18 @@ export default (state = INITIAL_STATE, action) => {
         localStorage.removeItem(userKey);
         return { ...state, validToken: false, user: null };
       }
+    case "USER_LOGOFF":
     case "USER_FORGOTED":
       localStorage.removeItem(userKey);
       return { ...state, validToken: false, user: null };
     case "USER_FETCHED":
       localStorage.setItem(userKey, JSON.stringify(action.payload));
-      return { ...state, validToken: true, user: action.payload };
+      return {
+        ...state,
+        validToken: true,
+        user: action.payload,
+        recoveryToken: false
+      };
     default:
       return state;
   }

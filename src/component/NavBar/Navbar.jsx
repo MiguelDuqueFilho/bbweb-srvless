@@ -12,19 +12,20 @@ class Navbar extends Component {
     super(props);
     this.state = { open: false, toggle: props.toggle };
     this.toggleChanged = this.toggleChanged.bind(this);
+    this.changeOpen = this.changeOpen.bind(this);
+    this.logoff = this.logoff.bind(this);
 
-    // this.logoff = this.logoff.bind(this);
-    // this.changeOpen = this.changeOpen.bind(this);
     // this.onSubmit = this.onSubmit.bind(this);
   }
 
-  // changeOpen() {  // dropdown usuário
-  //   this.setState({ open: !this.state.open });
-  // }
+  changeOpen() {
+    // dropdown usuário
+    this.setState({ open: !this.state.open });
+  }
 
-  // logoff() {
-  //   this.props.logout();
-  // }
+  logoff() {
+    this.props.logout();
+  }
 
   // onSubmit(values) {
   //   console.log(values); // para pesquisa
@@ -33,19 +34,15 @@ class Navbar extends Component {
   async toggleChanged() {
     await this.setState({ toggle: !this.state.toggle });
     await this.props.toggleChanged(this.state.toggle);
-    // console.log("this.state.toggle >>>>>>>>>>>>>");
-    // console.log(this.state.toggle);
-    // console.log("this.props.toggle >>>>>>>>>>>>>");
-    // console.log(this.props.toggle);
   }
   render() {
-    // const { name } = this.props.user;
+    const { name } = this.props.user;
 
     const { handleSubmit } = this.props || [];
     return (
       <div className="navbar-custom-menu">
         <form
-          className="navbar-form"
+          className="navbar-form "
           onSubmit={handleSubmit(values => this.onSubmit(values))}
         >
           <span className="bmd-form-group">
@@ -60,9 +57,9 @@ class Navbar extends Component {
 
               <button
                 type="submit"
-                className="btn btn-white btn-round btn-just-icon"
+                className="btn btn-white btn-round btn-just-icon "
               >
-                <i className="fa fa-search"></i>
+                <i className="fa fa-search "></i>
               </button>
             </div>
           </span>
@@ -73,10 +70,35 @@ class Navbar extends Component {
               <i className="fa fa-bar-chart"></i>
             </Link>
           </li>
-          <li className="nav-item-custom">
-            <Link className="nav-link-custom text-decoration-none" to="/admin">
-              <i className="fa fa-user"></i>
-            </Link>
+          <li className="nav-item-custom dropdown">
+            <i onClick={this.changeOpen} className="fa fa-user mr-5">
+              {" "}
+              {name}
+            </i>
+
+            <div className="dropdown-menu-custom">
+              <div
+                className={`dropdown-menu dropdown-with-icons ${
+                  this.state.open ? "show" : ""
+                }`}
+              >
+                <a href="/#" className={`dropdown-item `}>
+                  <i className={`fa fa-user`}>
+                    <span className="ml-3">Profile</span>
+                  </i>
+                </a>
+                <a href="/#" className={`dropdown-item `}>
+                  <i className={`fa fa-lock `}>
+                    <span className="ml-3">Troca senha</span>
+                  </i>
+                </a>
+                <div className={`dropdown-item `}>
+                  <i onClick={this.logoff} className={`fa fa-user-times `}>
+                    <span className="ml-2">Sair</span>
+                  </i>
+                </div>
+              </div>
+            </div>
 
             {/* <div
               className="dropdown-menu dropdown-menu-right"
@@ -92,10 +114,12 @@ class Navbar extends Component {
             </div> */}
           </li>
           <li
-            className="nav-item-custom nav-toggle"
+            className="nav-item-custom nav-toggle ml-5"
             onClick={this.toggleChanged}
           >
-            <i className="fa fa-bars"></i>
+            <i
+              className={`fa ${this.state.toggle ? "fa-times" : "fa-bars"} `}
+            ></i>
           </li>
         </ul>
       </div>

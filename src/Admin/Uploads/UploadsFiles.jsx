@@ -6,7 +6,7 @@ import Dropzone from "../../common/Dropzone/Dropzone";
 import "./Uploads.css";
 import Progress from "../../common/Progress/Progress";
 import logo from "../../assets/img/logo45-01.png";
-import consts from "../../services/consts";
+import { urls } from "../../services/utils";
 import If from "../../common/operator/if";
 import { init } from "./UploadsAction";
 
@@ -78,7 +78,7 @@ class Upload extends Component {
       const formData = new FormData();
       formData.append("file", file, file.name);
       const { user } = this.props.auth;
-      req.open("POST", `${consts.BASE_URL}/uploads`);
+      req.open("POST", `${urls.BASE_URL}/uploads`);
       req.setRequestHeader("authorization", `Bearer ${user.token}`);
       req.send(formData);
     });

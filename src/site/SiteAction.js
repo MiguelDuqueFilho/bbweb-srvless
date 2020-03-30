@@ -33,7 +33,7 @@ function submitEmail(values, url) {
       })
       .catch(e => {
         if (typeof e.error === "undefined") {
-          toastr.error("Erro", e.error);
+          toastr.error("Erro11", e.error);
         }
         dispatch(resetForm("doubtsForm"));
       });
@@ -49,7 +49,7 @@ function submit(values, url, type) {
       })
       .catch(e => {
         if (typeof e.error === "undefined") {
-          toastr.error("Erro", e.error);
+          toastr.error("Erro12", e.error);
         }
       });
   };

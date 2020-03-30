@@ -7,6 +7,7 @@ import Downloads from "../Admin/Downloads/Downloads";
 import Uploads from "../Admin/Uploads/Uploads";
 import DownloadsView from "../Admin/Downloads/DownloadsView";
 import Users from "../Admin/Users/Users";
+import UserPassword from "../Admin/Users/UserPassword";
 import Events from "../Admin/Events/Events";
 
 export default class Routes extends Component {
@@ -16,6 +17,7 @@ export default class Routes extends Component {
         return (
           <Switch>
             <Route exact path="/guest" component={DownloadsView} />
+            <Route path="/guest/password" component={UserPassword} />
             <Route path="/guest/Downloads" component={DownloadsView} />
             <Redirect from="*" to="/guest" />
           </Switch>
@@ -24,6 +26,7 @@ export default class Routes extends Component {
         return (
           <Switch>
             <Route exact path="/admin" component={DashBoard} />
+            <Route path="/guest/password" component={UserPassword} />
             <Route path="/admin/dashboard" component={DashBoard} />
             <Route path="/admin/users" component={Users} />
             <Route path="/admin/events" component={Events} />
@@ -36,6 +39,7 @@ export default class Routes extends Component {
         return (
           <Switch>
             <Route exact path="/client" component={DashBoard} />
+            <Route path="/guest/password" component={UserPassword} />
             <Route path="/client/dashboard" component={DashBoard} />
             <Route path="/client/Downloads" component={DownloadsView} />
             <Redirect from="*" to="/client" />
@@ -45,6 +49,7 @@ export default class Routes extends Component {
         return (
           <Switch>
             <Route exact path="/partner" component={DashBoard} />
+            <Route path="/guest/password" component={UserPassword} />
             <Route path="/partner/dashboard" component={DashBoard} />
             <Redirect from="*" to="/partner" />
           </Switch>

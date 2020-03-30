@@ -84,7 +84,7 @@ class PlanDetail extends Component {
   render() {
     const url = this.props.history.location.pathname;
     return (
-      <>
+      <React.Fragment>
         <HeaderSite />
         <BannerBody
           title=""
@@ -96,7 +96,7 @@ class PlanDetail extends Component {
           {this.filterContent(url)}
         </div>
         <FooterSite />
-      </>
+      </React.Fragment>
     );
   }
 }

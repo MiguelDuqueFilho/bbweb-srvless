@@ -46,7 +46,7 @@ class Auth extends Component {
     const { loginMode, forgotMode } = this.state;
     const { handleSubmit, pristine, reset, submitting } = this.props;
     return (
-      <>
+      <React.Fragment>
         <HeaderSite />
         <div className="page-header">
           <div className="container">
@@ -179,7 +179,7 @@ class Auth extends Component {
         <div className="page-footer">
           <Footer />
         </div>
-      </>
+      </React.Fragment>
     );
   }
 }

@@ -22,7 +22,7 @@ class Downloads extends Component {
 
   render() {
     return (
-      <>
+      <React.Fragment>
         <ContentHeader
           title="Cadastro de Downloads"
           subtitle="Nesta pagina você pode fazer manutenção de Downloads."
@@ -72,7 +72,7 @@ class Downloads extends Component {
             </TabsContent>
           </Tabs>
         </Content>
-      </>
+      </React.Fragment>
     );
   }
 }

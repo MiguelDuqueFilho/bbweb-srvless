@@ -1,8 +1,8 @@
 import axios from "axios";
-import consts from "./consts";
+import { urls } from "./utils";
 
 const api = axios.create({
-  baseURL: `${consts.BASE_URL}`
+  baseURL: `${urls.BASE_URL}`
 });
 
 export default api;

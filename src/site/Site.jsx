@@ -36,7 +36,7 @@ class Site extends Component {
   // }
   render() {
     return (
-      <>
+      <React.Fragment>
         <HeaderSite />
         <BannerBody
           title="BeBride"
@@ -50,7 +50,7 @@ class Site extends Component {
           <Doubts />
         </div>
         <FooterSite />
-      </>
+      </React.Fragment>
     );
   }
 }

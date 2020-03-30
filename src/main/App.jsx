@@ -8,11 +8,6 @@ import Footer from "../component/Footer/Footer";
 import Messages from "../common/Messages/Messages";
 
 export default class main extends Component {
-  // userType = 0 => Visitante
-  // userType = 1 => Admin
-  // userType = 2 => Client
-  // userType = 3 => Partner
-
   render() {
     return (
       <div className="app">

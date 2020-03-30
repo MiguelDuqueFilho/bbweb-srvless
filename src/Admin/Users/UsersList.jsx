@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Pagination from "rc-pagination";
+import { userTypeContent } from "../../services/utils";
 import "./UsersList.css";
 
 import { getList, showUpdate, showDelete } from "./UsersAction";
@@ -9,16 +10,6 @@ import { getList, showUpdate, showDelete } from "./UsersAction";
 class UsersList extends Component {
   handlePageClick = page => {
     this.props.getList(page);
-  };
-
-  typeName = type => {
-    const constTypeName = {
-      0: "Visitante",
-      1: "Adminitrador",
-      2: "Cliente",
-      3: "Fornecedor"
-    };
-    return constTypeName[type];
   };
 
   renderRows() {
@@ -29,7 +20,7 @@ class UsersList extends Component {
         <td className="td-custom">{usr.id}</td>
         <td className="td-custom">{usr.userName}</td>
         <td className="td-custom">{usr.userEmail}</td>
-        <td className="td-custom">{this.typeName(usr.userType)}</td>
+        <td className="td-custom">{userTypeContent(usr.userType).name}</td>
         <td className="td-actions">
           <button
             className="btn btn-warning m-1"

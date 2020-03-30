@@ -40,7 +40,7 @@ export function submit(values, method) {
           typeof e.message !== "undefined" &&
           typeof e.response.data.message === "undefined"
         ) {
-          toastr.error("Erro", e.message);
+          toastr.error("Erro1", e.message);
         } else {
           toastr.warning("Alerta", e.response.data.message);
         }

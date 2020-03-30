@@ -31,7 +31,7 @@ footer.footer {
   background-color: var(--ligth);
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1199.98px) {
   .app {
     margin: 0px;
     display: grid;

@@ -22,7 +22,7 @@ class Uploads extends Component {
 
   render() {
     return (
-      <>
+      <React.Fragment>
         <ContentHeader
           title="Manutenção de Uploads"
           subtitle="A carga de arquivos pode ser feia via Click ou Drag in Drop. "
@@ -63,7 +63,7 @@ class Uploads extends Component {
             </TabsContent>
           </Tabs>
         </Content>
-      </>
+      </React.Fragment>
     );
   }
 }

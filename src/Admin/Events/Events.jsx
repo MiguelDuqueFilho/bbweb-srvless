@@ -21,7 +21,7 @@ class Events extends Component {
 
   render() {
     return (
-      <>
+      <React.Fragment>
         <ContentHeader
           title="Cadastro de Eventos"
           subtitle="Nesta pagina você pode fazer manutenção de eventos."
@@ -67,7 +67,7 @@ class Events extends Component {
             </TabsContent>
           </Tabs>
         </Content>
-      </>
+      </React.Fragment>
     );
   }
 }

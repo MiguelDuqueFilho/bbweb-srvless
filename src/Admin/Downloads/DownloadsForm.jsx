@@ -52,12 +52,6 @@ class DownloadsForm extends Component {
   render() {
     const { handleSubmit, readOnly } = this.props;
 
-    // const fileSelect = this.getFileUpload(fileUploadSelected);
-    // console.log(" fileSelect >>>>>>>>> render ");
-    // console.log(fileSelect);
-    // console.log(" fileSelect.fileName >>>>>>>>> render ");
-    // console.log(fileSelect["0"].fileName);
-
     return (
       <div className="row">
         <div className="col-12">

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import "./HeaderSite.css";
 import If from "../common/operator/if";
+import { userTypeContent } from "../services/utils";
 
 import { logout } from "../auth/AuthAction";
 import Logo from "../component/Logo/Logo";
@@ -135,26 +136,10 @@ class HeaderSite extends Component {
                   </li>
                   <If test={validToken}>
                     <li className="nav-item level-1">
-                      <If test={type === 0}>
-                        <a className="nav-link " href="/guest">
-                          <i className="fa fa-gift mr-2"></i>Visitante
-                        </a>
-                      </If>
-                      <If test={type === 1}>
-                        <a className="nav-link " href="/admin">
-                          <i className="fa fa-university mr-2"></i>Administração
-                        </a>
-                      </If>
-                      <If test={type === 2}>
-                        <a className="nav-link " href="/client">
-                          <i className="fa fa-transgender-alt mr-2"></i>Clientes
-                        </a>
-                      </If>
-                      <If test={type === 3}>
-                        <a className="nav-link " href="/partner">
-                          <i className="fa fa-cutlery mr-2"></i>Parceiros
-                        </a>
-                      </If>
+                      <a className="nav-link" href={userTypeContent(type).href}>
+                        <i className="fa fa-cogs mr-2"></i>
+                        {userTypeContent(type).name}
+                      </a>
                     </li>
                   </If>
                   <If test={validToken}>
@@ -165,13 +150,17 @@ class HeaderSite extends Component {
                       </a>
                     </li>
                     <li className="nav-item level-1">
-                      <a
+                      <div
                         className="nav-link "
-                        href="/logout"
+                        href="/#"
                         onClick={this.logoff}
                       >
-                        <i className="fa fa-user-times mr-2"></i>Logoff
-                      </a>
+                        <i
+                          onClick={this.logoff}
+                          className="fa fa-user-times mr-2"
+                        ></i>
+                        Logoff
+                      </div>
                     </li>
                   </If>
                   <If test={!validToken}>

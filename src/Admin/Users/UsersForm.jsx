@@ -3,6 +3,7 @@ import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { init } from "./UsersAction";
+import { userTypeContent } from "../../services/utils";
 import If from "../../common/operator/if";
 
 class UsersForm extends Component {
@@ -68,10 +69,10 @@ class UsersForm extends Component {
                       name="userType"
                       readOnly={readOnly}
                     >
-                      <option value="0">Visitante</option>
-                      <option value="1">Administrador</option>
-                      <option value="2">Cliente</option>
-                      <option value="3">Fornecedor</option>
+                      <option value="0">{userTypeContent(0).name}</option>
+                      <option value="1">{userTypeContent(1).name}</option>
+                      <option value="2">{userTypeContent(2).name}</option>
+                      <option value="3">{userTypeContent(3).name}</option>
                     </Field>
                   </div>
                 </div>

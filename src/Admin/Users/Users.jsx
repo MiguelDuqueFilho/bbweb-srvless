@@ -21,7 +21,7 @@ class Users extends Component {
 
   render() {
     return (
-      <>
+      <React.Fragment>
         <ContentHeader
           title="Cadastro de Usuários"
           subtitle="Nesta pagina você pode fazer manutenção de usuários."
@@ -67,7 +67,7 @@ class Users extends Component {
             </TabsContent>
           </Tabs>
         </Content>
-      </>
+      </React.Fragment>
     );
   }
 }
