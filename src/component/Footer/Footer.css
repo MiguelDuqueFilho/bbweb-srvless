@@ -13,10 +13,3 @@ footer.footer-default .container .bebride-assessoria,
 footer.footer-default .container .copyright {
   margin: 2px;
 }
-
-@media (max-width: 576px) {
-  footer.footer-default .container .bebride-assessoria,
-  footer.footer-default .container .copyright {
-    margin: 2px;
-  }
-}

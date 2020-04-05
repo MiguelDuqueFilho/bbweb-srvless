@@ -2,6 +2,17 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router-dom";
+import {
+  FaBars,
+  FaHome,
+  FaFacebookSquare,
+  FaInstagram,
+  FaUserLock,
+  FaUserCheck,
+  FaUserTimes,
+  FaAward,
+  FaTools,
+} from "react-icons/fa";
 
 import "./HeaderSite.css";
 import If from "../common/operator/if";
@@ -18,8 +29,8 @@ class HeaderSite extends Component {
     this.logoff = this.logoff.bind(this);
     this.state = {
       navClassName: "navbar-transparent",
-      collapsed: true,
-      dropdown: false
+      collapsed: false,
+      dropdown: false,
     };
   }
 
@@ -29,24 +40,24 @@ class HeaderSite extends Component {
 
   toggleNavbar() {
     this.setState({
-      collapsed: !this.state.collapsed
+      collapsed: !this.state.collapsed,
     });
   }
 
   dropdownNavbar() {
     this.setState({
-      dropdown: !this.state.dropdown
+      dropdown: !this.state.dropdown,
     });
   }
 
   handleScroll() {
     if (document.documentElement.scrollTop > 100) {
       this.setState({
-        navClassName: "navbar-color-on-scroll"
+        navClassName: "navbar-color-on-scroll",
       });
     } else {
       this.setState({
-        navClassName: "navbar-transparent "
+        navClassName: "navbar-transparent ",
       });
     }
   }
@@ -55,17 +66,22 @@ class HeaderSite extends Component {
     window.onscroll = () => this.handleScroll();
   }
 
+  componentWillUnmount() {
+    window.onscroll = () => {};
+  }
+
   renderRows() {
     const types = this.props.site.eventTypes || [];
-    return types.map(typ => (
-      <a
+    return types.map((typ) => (
+      <Link
         key={typ.id}
-        href={typ.eventTypeUrl}
+        to={typ.eventTypeUrl}
+        onClick={this.dropdownNavbar}
         className={`dropdown-item ${this.state.navClassName}`}
       >
         <i className={`fa fa-${typ.eventTypeIcon} mr-2`}></i>{" "}
         {typ.eventTypeName}
-      </a>
+      </Link>
     ));
   }
 
@@ -110,15 +126,16 @@ class HeaderSite extends Component {
                   aria-expanded="false"
                   aria-label="Toggle navigation"
                 >
-                  <i className="fa fa-bars"></i>
+                  <FaBars className="icon" />
                 </button>
               </div>
               <div className={`${classOne}`} id="navbarResponsive">
                 <ul className="navbar-nav ml-auto mr-auto ">
                   <li className="nav-item level-1">
-                    <a className="nav-link " href="/">
-                      <i className="fa fa-home mr-2"></i>Home
-                    </a>
+                    <Link className="nav-link text-decoration-none" to="/">
+                      <FaHome size={22} className="react-icons mr-2" />
+                      Home
+                    </Link>
                   </li>
                   <li className="dropdown nav-item level-1">
                     <span
@@ -126,7 +143,8 @@ class HeaderSite extends Component {
                       className="dropdown-toggle nav-link mr-10"
                       data-toggle="dropdown"
                     >
-                      <i className="fa fa-check-square mr-2"></i>Planos
+                      <FaAward size={22} className="react-icons mr-2" />
+                      Planos
                     </span>
                     <div>
                       <div className={classDropdown}>
@@ -136,31 +154,33 @@ class HeaderSite extends Component {
                   </li>
                   <If test={validToken}>
                     <li className="nav-item level-1">
-                      <a className="nav-link" href={userTypeContent(type).href}>
-                        <i className="fa fa-cogs mr-2"></i>
+                      <Link
+                        className="nav-link text-decoration-none"
+                        to={userTypeContent(type).href}
+                      >
+                        <FaTools size={22} className="react-icons mr-2" />
                         {userTypeContent(type).name}
-                      </a>
+                      </Link>
                     </li>
                   </If>
                   <If test={validToken}>
                     <li className="nav-item level-1">
-                      <a className="nav-link" href="/">
-                        <i className="fa fa-user mr-2"></i>
+                      <Link
+                        className="nav-link text-decoration-none"
+                        to="/login"
+                      >
+                        <FaUserCheck size={22} className="react-icons mr-2" />
                         {validToken ? name : ""}
-                      </a>
+                      </Link>
                     </li>
                     <li className="nav-item level-1">
-                      <div
-                        className="nav-link "
-                        href="/#"
+                      <span
                         onClick={this.logoff}
+                        className="nav-link text-decoration-none"
                       >
-                        <i
-                          onClick={this.logoff}
-                          className="fa fa-user-times mr-2"
-                        ></i>
+                        <FaUserTimes size={22} className="react-icons mr-2" />
                         Logoff
-                      </div>
+                      </span>
                     </li>
                   </If>
                   <If test={!validToken}>
@@ -169,7 +189,8 @@ class HeaderSite extends Component {
                         className="nav-link text-decoration-none"
                         to="/login"
                       >
-                        <i className="fa fa-user mr-2"></i>Login / Registrar
+                        <FaUserLock size={22} className="react-icons mr-2" />
+                        Login / Registrar
                       </Link>
                     </li>
                   </If>
@@ -181,7 +202,10 @@ class HeaderSite extends Component {
                       data-placement="bottom"
                       href="https://www.facebook.com/bebridecasamentos"
                     >
-                      <i className="fa fa-facebook-square mr-2"></i>
+                      <FaFacebookSquare
+                        size={22}
+                        className="react-icons mr-2"
+                      />
                     </a>
                   </li>
                   <li className="nav-item level-1">
@@ -192,7 +216,7 @@ class HeaderSite extends Component {
                       data-placement="bottom"
                       href="https://www.instagram.com/bebridecasamentos"
                     >
-                      <i className="fa fa-instagram"></i>
+                      <FaInstagram size={22} className="react-icons mr-2" />
                     </a>
                   </li>
                 </ul>
@@ -205,6 +229,7 @@ class HeaderSite extends Component {
   }
 }
 
-const mapStateToProps = state => ({ auth: state.auth, site: state.site });
-const mapDispatchToProps = dispatch => bindActionCreators({ logout }, dispatch);
+const mapStateToProps = (state) => ({ auth: state.auth, site: state.site });
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ logout }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderSite);

@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 class AuthOrApp extends Component {
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.auth.validToken) {
       if (this.props.auth.user) {
         this.props.validateToken(this.props.auth.user.token);
@@ -28,7 +28,7 @@ class AuthOrApp extends Component {
     }
   }
 }
-const mapStateToProps = state => ({ auth: state.auth });
-const mapDispatchToProps = dispatch =>
+const mapStateToProps = (state) => ({ auth: state.auth });
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ validateToken }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(AuthOrApp);

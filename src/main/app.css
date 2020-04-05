@@ -49,24 +49,21 @@ footer.footer {
     background-color: var(--ligth);
   }
 
-  .main-sidebar.sidebar-in {
-    transition: transform 0.5s ease-out;
+  .main-sidebar.sidebar-in:not(.show) {
+    transition: transform 0.5s linear;
     transform: translateX(-100%);
     -webkit-transform: translateX(-100%);
     overflow: auto;
     transition: width 0.5s;
     width: 0px;
-    /* animation: sidebar-in 0.5s forwards;
-    -webkit-animation: sidebar-in 0.5s forwards; */
   }
 
   .main-sidebar.sidebar-in.show {
-    transition: transform 0.5s ease;
+    transition: transform 0.5s linear;
     transform: translateX(0);
     -webkit-transform: translateX(0);
+    overflow: auto;
     transition: width 0.5s;
     width: var(--aside-width);
-    /* animation: slide-in 0.5s forwards;
-    -webkit-animation: sidebar-in 0.5s forwards; */
   }
 }

@@ -15,7 +15,7 @@ import UsersList from "./UsersList";
 import UsersForm from "./UsersForm";
 
 class Users extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.init(1);
   }
 
@@ -72,13 +72,13 @@ class Users extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       init,
       create,
       update,
-      remove
+      remove,
     },
     dispatch
   );

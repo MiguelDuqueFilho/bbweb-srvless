@@ -32,8 +32,13 @@ function submitEmail(values, url) {
         }
       })
       .catch(e => {
-        if (typeof e.error === "undefined") {
-          toastr.error("Erro11", e.error);
+        if (
+          typeof e.message !== "undefined" &&
+          typeof e.response.data.message === "undefined"
+        ) {
+          toastr.error("Erro11", e.message);
+        } else {
+          toastr.warning("Alerta", e.response.data.message);
         }
         dispatch(resetForm("doubtsForm"));
       });
@@ -48,8 +53,13 @@ function submit(values, url, type) {
         dispatch([{ type, payload: resp.data.data }]);
       })
       .catch(e => {
-        if (typeof e.error === "undefined") {
-          toastr.error("Erro12", e.error);
+        if (
+          typeof e.message !== "undefined" &&
+          typeof e.response.data.message === "undefined"
+        ) {
+          toastr.error("Erro12", e.message);
+        } else {
+          toastr.warning("Alerta", e.response.data.message);
         }
       });
   };

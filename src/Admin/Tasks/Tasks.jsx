@@ -9,12 +9,11 @@ import TabsHeader from "../../common/Tabs/tabsHeader";
 import TabsContent from "../../common/Tabs/tabsContent";
 import TabHeader from "../../common/Tabs/tabHeader";
 import TabContent from "../../common/Tabs/tabContent";
-import { init, create, update, remove } from "./EventsAction";
+import { init } from "./TasksAction";
+import TasksTimeline from "./TasksTimeline";
+import TasksForm from "./TasksForm";
 
-import EventsList from "./EventsList";
-import EventsForm from "./EventsForm";
-
-class Events extends Component {
+class Tasks extends Component {
   componentDidMount() {
     this.props.init(1);
   }
@@ -23,42 +22,42 @@ class Events extends Component {
     return (
       <React.Fragment>
         <ContentHeader
-          title="Cadastro de Eventos"
-          subtitle="Nesta pagina você pode fazer manutenção de eventos."
-          icon="calendar"
+          title="Tarefas de Eventos"
+          subtitle="Visaão e manutenção de tarafas de eventos para controle administrativo. "
+          icon="tasks"
         />
         <Content>
           <Tabs>
             <TabsHeader>
-              <TabHeader label="Listar" icon="bars" target="tabList" />
-              <TabHeader label="Incluir" icon="plus" target="tabCreate" />
+              <TabHeader label="Timeline" icon="tasks" target="tabTimeLine" />
+              <TabHeader label="Criar" icon="plus" target="tabCreate" />
               <TabHeader label="Alterar" icon="pencil" target="tabUpdate" />
               <TabHeader label="Excluir" icon="trash-o" target="tabDelete" />
             </TabsHeader>
             <TabsContent>
-              <TabContent id="tabList">
-                <EventsList />
+              <TabContent id="tabTimeLine">
+                <TasksTimeline />
               </TabContent>
               <TabContent id="tabCreate">
-                <EventsForm
+                <TasksForm
                   onSubmit={this.props.create}
-                  title="Inclusão de Evento"
+                  title="Inclusão de tarefas"
                   submitLabel="Incluir"
                   submitClass="primary"
                 />
               </TabContent>
               <TabContent id="tabUpdate">
-                <EventsForm
+                <TasksForm
                   onSubmit={this.props.update}
-                  title="Alteração de Evento"
+                  title="Alteração de tarefas"
                   submitLabel="Alterar"
                   submitClass="info"
                 />
               </TabContent>
               <TabContent id="tabDelete">
-                <EventsForm
+                <TasksForm
                   onSubmit={this.props.remove}
-                  title="Exclusão de Evento"
+                  title="Exclusão de tarefas"
                   submitLabel="Excluir"
                   submitClass="danger"
                   readOnly={true}
@@ -76,11 +75,10 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       init,
-      create,
-      update,
-      remove,
+      // update,
+      // remove
     },
     dispatch
   );
 
-export default connect(null, mapDispatchToProps)(Events);
+export default connect(null, mapDispatchToProps)(Tasks);

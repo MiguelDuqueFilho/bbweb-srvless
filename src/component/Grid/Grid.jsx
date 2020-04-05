@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import If from "../../common/operator/if";
 
 export default class Grid extends Component {
   toCssClasses(numbers) {
@@ -22,6 +23,10 @@ export default class Grid extends Component {
   render() {
     let gridClasses = this.toCssClasses(this.props.cols || "12");
     gridClasses = this.toCssClassName(gridClasses, this.props.className);
-    return <div className={gridClasses}>{this.props.children}</div>;
+    return (
+      <If test={!this.props.hidden ? true : false}>
+        <div className={gridClasses}>{this.props.children} </div>
+      </If>
+    );
   }
 }

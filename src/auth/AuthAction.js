@@ -18,28 +18,30 @@ export function forgot(values, history) {
 }
 
 export function logout() {
-  return dispatch => {
+  return (dispatch) => {
     dispatch([{ type: "USER_LOGOFF", payload: false }]);
   };
 }
 
 function submit(values, url, history) {
-  return dispatch => {
+  return (dispatch) => {
     api
       .post(url, values)
-      .then(resp => {
+      .then((resp) => {
         dispatch([
           { type: "USER_FETCHED", payload: resp.data.data },
-          resetForm("authForm")
+          resetForm("authForm"),
         ]);
         if (resp.data.success === true) {
+          // console.log("userTypeContent(resp.data.data.type).href");
+          // console.log(userTypeContent(resp.data.data.type).href);
           history.push(userTypeContent(resp.data.data.type).href);
           toastr.success("Ok", resp.data.message);
         } else {
           toastr.warning("Alerta", resp.data.message);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         if (error.response) {
           toastr.error("Error2", error.response.data.message);
         } else if (error.request) {
@@ -54,10 +56,10 @@ function submit(values, url, history) {
 }
 
 export function submitForgot(values, url, history) {
-  return dispatch => {
+  return (dispatch) => {
     api
       .post(url, values)
-      .then(resp => {
+      .then((resp) => {
         dispatch([{ type: "USER_FORGOTED", payload: resp.data.success }]);
         if (resp.data.success) {
           toastr.success(
@@ -69,7 +71,7 @@ export function submitForgot(values, url, history) {
           toastr.warning("Alerta", resp.data.message);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         if (error.response) {
           toastr.error("Error5", error.response.data.message);
         } else if (error.request) {
@@ -83,14 +85,14 @@ export function submitForgot(values, url, history) {
 }
 
 export function validateToken(token) {
-  return dispatch => {
+  return (dispatch) => {
     if (token) {
       api
         .post("/validate_token", { token })
-        .then(resp => {
+        .then((resp) => {
           dispatch({ type: "TOKEN_VALIDATED", payload: true });
         })
-        .catch(error => {
+        .catch((error) => {
           if (error.response) {
             toastr.error("Error8", error.response.data.message);
           } else if (error.request) {
@@ -104,58 +106,44 @@ export function validateToken(token) {
   };
 }
 
-// export function validateRecovery(recoveryToken, history) {
-//   console.log(">>>>>> validateRecovery values >>>>>>");
-//   console.log(recoveryToken);
-//   return dispatch => {
-//     console.log(">>>Antes de Chamar if>>>");
-//     console.log(recoveryToken);
-//     if (recoveryToken) {
-//       console.log(">>>Chamando api>>>");
-//       api
-//         .post("/recovery_validate", { recoveryToken })
-//         .then(resp => {
-//           console.log("retorno da Api recovery token >>>>>>");
-//           dispatch({
-//             type: "RECOVERY_TOKEN_VALIDATED",
-//             payload: recoveryToken
-//           });
-//           history.push("/password");
-//         })
-//         .catch(error => {
-//           console.log("retorno error da Api recovery token >>>>>>");
-//           if (error.response) {
-//             toastr.error("Error13", error.response.data.message);
-//           } else if (error.request) {
-//             toastr.error("Error14", error.request);
-//           } else {
-//             toastr.error("Error15", error.message);
-//           }
-//           dispatch({ type: "RECOVERY_TOKEN_VALIDATED", payload: "" });
-//         });
-//     }
-//   };
-// }
-
 export function passwordRecovery(values, history) {
-  console.log(">>>>>> passwordRecovery values >>>>>>");
-  console.log(values);
-  return dispatch => {
+  return (dispatch) => {
     if (values) {
       api
         .post("/reset_password", values)
-        .then(resp => {
+        .then((resp) => {
           history.push("/");
           toastr.success("Recuperação", "Troca de senha com sucesso.");
         })
-        .catch(error => {
+        .catch((error) => {
           if (error.response) {
-            console.log(error);
             toastr.error("Error", "Token invalido ou expirado!!");
           } else if (error.request) {
             toastr.error("Error14", error.request);
           } else {
             toastr.error("Error15", error.message);
+          }
+        });
+    }
+  };
+}
+
+export function changePassword(values, history) {
+  return (dispatch) => {
+    if (values) {
+      api
+        .post("/change_password", values)
+        .then((resp) => {
+          history.push("/");
+          toastr.success("Ok", "Troca de senha com sucesso.");
+        })
+        .catch((error) => {
+          if (error.response) {
+            toastr.error("Error", "Erro na troca de senha!!");
+          } else if (error.request) {
+            toastr.error("Error18", error.request);
+          } else {
+            toastr.error("Error19", error.message);
           }
         });
     }

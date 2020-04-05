@@ -19,7 +19,6 @@ class Navbar extends Component {
   }
 
   changeOpen() {
-    // dropdown usuário
     this.setState({ open: !this.state.open });
   }
 
@@ -35,6 +34,7 @@ class Navbar extends Component {
     await this.setState({ toggle: !this.state.toggle });
     await this.props.toggleChanged(this.state.toggle);
   }
+
   render() {
     const { name } = this.props.user;
 
@@ -87,11 +87,16 @@ class Navbar extends Component {
                     <span className="ml-3">Profile</span>
                   </i>
                 </a>
-                <a href="/#" className={`dropdown-item `}>
-                  <i className={`fa fa-lock `}>
-                    <span className="ml-3">Troca senha</span>
-                  </i>
-                </a>
+                <div className={`dropdown-item `}>
+                  <Link
+                    className="nav-link-custom text-decoration-none"
+                    to="/password"
+                  >
+                    <i className="fa fa-lock ">
+                      <span className="ml-3">Troca senha</span>
+                    </i>
+                  </Link>
+                </div>
                 <div className={`dropdown-item `}>
                   <i onClick={this.logoff} className={`fa fa-user-times `}>
                     <span className="ml-2">Sair</span>
@@ -99,19 +104,6 @@ class Navbar extends Component {
                 </div>
               </div>
             </div>
-
-            {/* <div
-              className="dropdown-menu dropdown-menu-right"
-              aria-labelledby="navbarDropdownProfile"
-            >
-              <a className="dropdown-item" href="/admin/users/profile">
-                Profile
-              </a>
-              <div className="dropdown-divider"></div>
-              <a className="dropdown-item" href="/logout">
-                Log out
-              </a>
-            </div> */}
           </li>
           <li
             className="nav-item-custom nav-toggle ml-5"
@@ -123,44 +115,6 @@ class Navbar extends Component {
           </li>
         </ul>
       </div>
-
-      //   <div className="navbar-custom-menu">
-      //     <ul className="nav navbar-nav">
-      //       <li
-      //         onMouseLeave={() => this.changeOpen()}
-      //         className={`dropdown user user-menu ${
-      //           this.state.open ? "open" : ""
-      //         }`}
-      //       >
-      //         <button
-      //           onClick={() => this.changeOpen()}
-      //           aria-expanded={this.state.open ? "true" : "false"}
-      //           className="dropdown-toggle"
-      //           data-toggle="dropdown"
-      //         >
-      //           <span className="hidden-xs">{name}</span>
-      //         </button>
-      //         <ul className="dropdown-menu">
-      //           <li className="user-header">
-      //             <p>
-      //               {name}
-
-      //             </p>
-      //           </li>
-      //           <li className="user-footer">
-      //             <div className="pull-right">
-      //               <button
-      //                 onClick={this.logoff}
-      //                 className="btn btn-default btn-flat"
-      //               >
-      //                 Sair
-      //               </button>
-      //             </div>
-      //           </li>
-      //         </ul>
-      //       </li>
-      //     </ul>
-      //   </div>
     );
   }
 }

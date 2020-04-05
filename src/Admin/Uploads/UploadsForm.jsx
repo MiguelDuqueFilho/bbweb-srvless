@@ -8,7 +8,6 @@ import { init } from "./UploadsAction";
 class UploadsForm extends Component {
   constructor(props) {
     super(props);
-
     this.backPage = this.backPage.bind(this);
   }
 

@@ -11,6 +11,7 @@ import UsersReducer from "../Admin/Users/UsersReducer";
 import TabReducer from "../common/Tabs/tabReducer";
 import DownloadsReducer from "../Admin/Downloads/DownloadsReducer";
 import UploadsReducer from "../Admin/Uploads/UploadsReducer";
+import TasksReducer from "../Admin/Tasks/TasksReducer";
 
 const rootReducer = combineReducers({
   app: mainReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   dashboard: DashboardReducer,
   tab: TabReducer,
   events: EventsReducer,
+  tasks: TasksReducer,
   users: UsersReducer,
   form: formReducer,
   downloads: DownloadsReducer,

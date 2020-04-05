@@ -1,3 +1,7 @@
+.react-icons {
+  vertical-align: inherit;
+}
+
 .page-header-site {
   font-size: 1.1em;
   font-family: "Roboto Slab";
@@ -42,7 +46,7 @@
 
 /******-------------*****/
 
-.page-header-site .navbar-transparent button > i,
+.page-header-site .navbar-transparent button > svg > path,
 .page-header-site .navbar-transparent .nav-item a.nav-link,
 .page-header-site .navbar-transparent .nav-item span.nav-link,
 .page-header-site .navbar-transparent .nav-item .nav-link span,
@@ -50,7 +54,7 @@
   color: white;
 }
 
-.page-header-site .navbar-color-on-scroll button > i,
+.page-header-site .navbar-color-on-scroll button > svg > path,
 .page-header-site .navbar-color-on-scroll .nav-item span.nav-link,
 .page-header-site .navbar-color-on-scroll .nav-item a.nav-link,
 .page-header-site .navbar-color-on-scroll .nav-item .nav-link span,

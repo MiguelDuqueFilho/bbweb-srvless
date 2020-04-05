@@ -16,7 +16,7 @@ import DownloadsList from "./DownloadsList";
 import DownloadsForm from "./DownloadsForm";
 
 class Downloads extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.init(1);
   }
 
@@ -77,13 +77,13 @@ class Downloads extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       init,
       create,
       update,
-      remove
+      remove,
     },
     dispatch
   );

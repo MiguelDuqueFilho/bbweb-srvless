@@ -16,7 +16,7 @@ import UploadsList from "./UploadsList";
 import UploadsForm from "./UploadsForm";
 
 class Uploads extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.init(1);
   }
 
@@ -68,12 +68,12 @@ class Uploads extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       init,
       update,
-      remove
+      remove,
     },
     dispatch
   );

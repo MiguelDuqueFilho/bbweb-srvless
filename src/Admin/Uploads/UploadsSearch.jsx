@@ -12,7 +12,7 @@ class UploadsSearch extends Component {
     this.renderRows = this.renderRows.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getPdf();
   }
 
@@ -25,7 +25,7 @@ class UploadsSearch extends Component {
   renderRows(props) {
     const list = props.listUploadsPdf || [];
 
-    return list.map(file => (
+    return list.map((file) => (
       <tr key={file.id}>
         <td className="td-custom">{file.id}</td>
         <td className="td-custom">{file.fileName}</td>
@@ -71,11 +71,11 @@ class UploadsSearch extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   listUploadsPdf: state.uploads.listUploadsPdf,
-  fileUploadSelected: state.downloads.fileUploadSelected
+  fileUploadSelected: state.downloads.fileUploadSelected,
 });
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ getPdf, fileUpdateSelected }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(UploadsSearch);
