@@ -49,15 +49,18 @@ export function userTypeContent(userType) {
   }
 }
 
-export function validSearch(search) {
+const INITIAL_SEARCH_VALUES = {
+  searchHeader: "",
+  eventSelected: {},
+};
+
+export function validSearch(search = INITIAL_SEARCH_VALUES) {
+  console.log(search);
   const { searchHeader, eventSelected } = search;
 
   let searchReturn = {};
 
-  console.log(searchHeader);
-  console.log(eventSelected);
-  if (Object.keys(eventSelected).length === 0 && searchHeader === "") {
-    console.log("vazio");
+  if (Object.keys(search).length === 0) {
     return searchReturn;
   }
 
@@ -65,11 +68,12 @@ export function validSearch(search) {
     searchReturn = { searchHeader };
   }
 
-  if (typeof eventSelected !== "undefined") {
+  if (
+    typeof eventSelected !== "undefined" &&
+    typeof eventSelected.id !== "undefined"
+  ) {
     searchReturn = { ...searchReturn, eventSelected: eventSelected.id };
   }
 
-  console.log("validSearch searchReturn entregue >>>>>>>>");
-  console.log(searchReturn);
   return searchReturn;
 }

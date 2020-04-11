@@ -58,3 +58,15 @@ header .container {
   border-radius: 6px;
   color: #fff;
 }
+
+.search input {
+  text-indent: 32px;
+  width: 250px;
+  height: 32px;
+}
+.search span svg {
+  position: absolute;
+  top: 8px;
+  left: 220px;
+  z-index: 10;
+}

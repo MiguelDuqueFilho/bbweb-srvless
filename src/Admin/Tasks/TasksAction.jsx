@@ -5,17 +5,17 @@ import { initialize } from "redux-form";
 import { showTabs, selectTab } from "../../common/Tabs/tabActions";
 import { validSearch } from "../../services/utils";
 
-export function getList(page = 1, searchFilter = {}) {
+const INITIAL_SEARCH_VALUES = {
+  searchHeader: "",
+  eventSelected: {},
+};
+
+export function getList(page = 1, searchFilter = INITIAL_SEARCH_VALUES) {
   const limit = 8;
   const validatedSearch = validSearch(searchFilter);
 
-  console.log("getList validatedSearch >>>>>>>");
-  console.log(validatedSearch);
-
   let params = { search: validatedSearch };
 
-  console.log("params>>>>>>>");
-  console.log(params);
   return (dispatch) => {
     api
       .get(`/tasks?page=${page}&limit=${limit}`, {
@@ -87,20 +87,32 @@ export function showDelete(tasks) {
   ];
 }
 
-export function init(page = 1, eventSelected = []) {
+export function init(page = 1, searchFilter = INITIAL_SEARCH_VALUES) {
   const INITIAL_VALUES = {
-    eventId: eventSelected.id,
+    eventId: searchFilter.eventSelected.id,
     Events: {
       0: {
-        eventName: eventSelected.eventName,
+        eventName: searchFilter.eventSelected.eventName,
       },
     },
   };
-  // const search = { eventId: eventSelected.id, searchPage: "" };
+
   return [
     showTabs("tabTimeLine", "tabCreate"),
     selectTab("tabTimeLine"),
-    // getList(page, search),
+    // getList(page, searchFilter),
     initialize("TasksForm", INITIAL_VALUES),
   ];
+}
+
+export function initForm(searchFilter = INITIAL_SEARCH_VALUES) {
+  const INITIAL_VALUES = {
+    eventId: searchFilter.eventSelected.id,
+    Events: {
+      0: {
+        eventName: searchFilter.eventSelected.eventName,
+      },
+    },
+  };
+  return [initialize("TasksForm", INITIAL_VALUES)];
 }

@@ -7,9 +7,24 @@ import "./Events.css";
 import { getList, showUpdate, showDelete } from "./EventsAction";
 
 class EventsList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { search: { ...props.search } };
+  }
+
   handlePageClick = (page) => {
-    this.props.getList(page);
+    this.props.getList(page, this.props.search);
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.search.searchHeader !== this.props.search.searchHeader ||
+      prevProps.search.eventSelected !== this.props.search.eventSelected
+    ) {
+      this.setState({ search: { ...this.props.search } });
+      this.props.getList(1, this.props.search);
+    }
+  }
 
   renderRows() {
     const list = this.props.listEvents.docs || [];
@@ -74,7 +89,10 @@ class EventsList extends Component {
     );
   }
 }
-const mapStateToProps = (state) => ({ listEvents: state.events.listEvents });
+const mapStateToProps = (state) => ({
+  listEvents: state.events.listEvents,
+  search: state.app.search,
+});
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ getList, showUpdate, showDelete }, dispatch);
 

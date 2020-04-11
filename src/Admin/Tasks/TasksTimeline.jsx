@@ -20,6 +20,7 @@ import {
 class TasksTimeline extends Component {
   constructor(props) {
     super(props);
+    this.state = { search: { ...props.search } };
     this.handlePageClick = this.handlePageClick.bind(this);
     this.renderRows = this.renderRows.bind(this);
   }
@@ -27,24 +28,15 @@ class TasksTimeline extends Component {
   componentDidMount() {
     this.props.getList(1, this.props.search);
   }
-
-  // static getDerivedStateFromProps(props, state) {
-  //   console.log("getDerivedStateFromProps");
-  //   console.log(props.eventSelected);
-  //   return props.eventSelected;
-  //   // return {
-  //   //   search: {
-  //   //     eventId: props.eventSelected === [] ? null : props.eventSelected.id,
-  //   //     searchPage: "",
-  //   //   },
-  //   // };
-  // }
-
-  // shouldComponentUpdate() {
-  //   console.log("shouldComponentUpdate");
-  //   console.log(this.state.eventSelected);
-  //   return this.state.eventSelected === [] ? false : true;
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.search.searchHeader !== this.props.search.searchHeader ||
+      prevProps.search.eventSelected !== this.props.search.eventSelected
+    ) {
+      this.setState({ search: { ...this.props.search } });
+      this.props.getList(1, this.props.search);
+    }
+  }
 
   handlePageClick = (page) => {
     this.props.getList(page, this.props.search);
@@ -150,7 +142,6 @@ class TasksTimeline extends Component {
 
 const mapStateToProps = (state) => ({
   listTasks: state.tasks.listTasks,
-  eventSelected: state.events.eventSelected,
   search: state.app.search,
 });
 const mapDispatchToProps = (dispatch) =>

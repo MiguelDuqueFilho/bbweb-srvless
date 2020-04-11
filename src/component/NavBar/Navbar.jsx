@@ -1,19 +1,20 @@
-import React, { Component } from "react";
+import React, { Component, dispatch } from "react";
 import { connect } from "react-redux";
-import { reduxForm, Field } from "redux-form";
+import { reduxForm, Field, reset } from "redux-form";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { logout } from "../../auth/AuthAction";
 import { setSearchHeader } from "../../main/mainAction";
+import { FaSearch, FaTimes } from "react-icons/fa";
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = { open: false, toggle: props.toggle };
-
     this.changeOpen = this.changeOpen.bind(this);
     this.logoff = this.logoff.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   changeOpen() {
@@ -28,10 +29,15 @@ class Navbar extends Component {
     this.props.setSearchHeader(values);
   }
 
+  onReset() {
+    this.props.clearSearchHeader();
+    dispatch(reset("Navbar"));
+  }
+
   render() {
     const { name } = this.props.user;
 
-    const { handleSubmit } = this.props || [];
+    const { handleSubmit, reset } = this.props || [];
     return (
       <div className="navbar-custom-menu">
         <form
@@ -39,20 +45,27 @@ class Navbar extends Component {
           onSubmit={handleSubmit((values) => this.onSubmit(values))}
         >
           <span className="form-group">
-            <div className="input-group no-border">
+            <div className="input-group search">
               <Field
-                className="form-control"
+                className="form-control "
                 component="input"
                 type="text"
                 name="search"
                 placeholder="Pesquisa..."
               />
-
+              <span
+                onClick={() => {
+                  reset();
+                  this.onSubmit();
+                }}
+              >
+                <FaTimes size={18} />
+              </span>
               <button
                 type="submit"
-                className="btn btn-white btn-round btn-just-icon "
+                className="btn btn-white btn-round btn-just-icon mr-3 text-decoration-none"
               >
-                <i className="fa fa-search "></i>
+                <FaSearch size={14} />
               </button>
             </div>
           </span>

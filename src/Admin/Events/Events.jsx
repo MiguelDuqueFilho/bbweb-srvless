@@ -9,16 +9,19 @@ import TabsHeader from "../../common/Tabs/tabsHeader";
 import TabsContent from "../../common/Tabs/tabsContent";
 import TabHeader from "../../common/Tabs/tabHeader";
 import TabContent from "../../common/Tabs/tabContent";
-import { init, create, update, remove } from "./EventsAction";
+import { init, create, update, remove, getList } from "./EventsAction";
 
 import EventsList from "./EventsList";
 import EventsForm from "./EventsForm";
 
 class Events extends Component {
-  componentDidMount() {
-    this.props.init(1);
+  constructor(props) {
+    super(props);
+    this.state = { search: { ...props.search } };
   }
-
+  componentDidMount() {
+    this.props.init(1, this.props.search);
+  }
   render() {
     return (
       <React.Fragment>
@@ -79,8 +82,11 @@ const mapDispatchToProps = (dispatch) =>
       create,
       update,
       remove,
+      getList,
     },
     dispatch
   );
-
-export default connect(null, mapDispatchToProps)(Events);
+const mapStateToProps = (state) => ({
+  search: state.app.search,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Events);

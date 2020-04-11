@@ -11,7 +11,7 @@ class EventsForm extends Component {
     this.backPage = this.backPage.bind(this);
   }
   backPage() {
-    this.props.init(this.props.listEvents.page);
+    this.props.init(this.props.listEvents.page, this.props.search);
   }
 
   render() {
@@ -155,6 +155,9 @@ EventsForm = reduxForm({
   form: "EventsForm",
   destroyOnUnmount: false,
 })(EventsForm);
-const mapStateToProps = (state) => ({ listEvents: state.events.listEvents });
+const mapStateToProps = (state) => ({
+  listEvents: state.events.listEvents,
+  search: state.app.search,
+});
 const mapDispatchToProps = (dispatch) => bindActionCreators({ init }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(EventsForm);

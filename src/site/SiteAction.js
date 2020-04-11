@@ -53,7 +53,6 @@ function submit(values, url, type) {
         dispatch([{ type, payload: resp.data.data }]);
       })
       .catch((e) => {
-        console.log(e);
         if (
           typeof e.message !== "undefined" &&
           typeof e.response.data.message === "undefined"

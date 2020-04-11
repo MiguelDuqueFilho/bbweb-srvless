@@ -18,7 +18,7 @@ class EventsSearch extends Component {
     this.props.getList(page);
   };
   componentDidMount() {
-    this.props.getList();
+    this.props.getList(1);
   }
 
   setEventSelect(event) {
@@ -86,7 +86,6 @@ class EventsSearch extends Component {
 
 const mapStateToProps = (state) => ({
   listEvents: state.events.listEvents,
-  eventselected: state.events.eventselected,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ getList, setEventSelected, closeModal }, dispatch);

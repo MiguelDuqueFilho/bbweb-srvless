@@ -2,16 +2,48 @@ import api from "../../services/api";
 import { toastr } from "react-redux-toastr";
 import { initialize } from "redux-form";
 import { showTabs, selectTab } from "../../common/Tabs/tabActions";
+import { validSearch } from "../../services/utils";
 
 const INITIAL_VALUES = {
   listEvents: { docs: [], pages: 0, total: 0, page: 1 },
 };
 
-export async function getList(page = 1, limit = 9) {
-  const request = await api.get(`/events?page=${page}&limit=${limit}`);
-  return {
-    type: "EVENTS_LIST_FETCHED",
-    payload: request.data.data,
+const INITIAL_SEARCH_VALUES = {
+  searchHeader: "",
+  eventSelected: {},
+};
+
+// export async function getList(page = 1, limit = 9) {
+//   const request = await api.get(`/events?page=${page}&limit=${limit}`);
+//   return {
+//     type: "EVENTS_LIST_FETCHED",
+//     payload: request.data.data,
+//   };
+// }
+export function getList(page = 1, searchFilter = INITIAL_SEARCH_VALUES) {
+  const limit = 9;
+  const validatedSearch = validSearch(searchFilter);
+
+  let params = { search: validatedSearch };
+
+  return (dispatch) => {
+    api
+      .get(`/events?page=${page}&limit=${limit}`, {
+        params,
+      })
+      .then((resp) => {
+        dispatch([{ type: "EVENTS_LIST_FETCHED", payload: resp.data.data }]);
+      })
+      .catch((e) => {
+        if (
+          typeof e.message !== "undefined" &&
+          typeof e.response.data.message === "undefined"
+        ) {
+          toastr.error("Erro", e.message);
+        } else {
+          toastr.warning("Alerta", e.response.data.message);
+        }
+      });
   };
 }
 
@@ -64,11 +96,11 @@ export function showDelete(events) {
   ];
 }
 
-export function init(page = 1) {
+export function init(page = 1, searchFilter = INITIAL_SEARCH_VALUES) {
   return [
     showTabs("tabList", "tabCreate"),
     selectTab("tabList"),
-    getList(page),
+    getList(page, searchFilter),
     initialize("EventsForm", INITIAL_VALUES),
   ];
 }

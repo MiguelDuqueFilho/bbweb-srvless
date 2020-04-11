@@ -3,13 +3,13 @@ import { reduxForm, Field, formValueSelector } from "redux-form";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Grid from "../../component/Grid/Grid";
-import { init } from "./TasksAction";
+import { init, initForm } from "./TasksAction";
 import { minValue1 } from "../AdminValidate";
 
 class TasksForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { isEventOnly: false };
+    this.state = { isEventOnly: false, search: { ...props.search } };
     this.backPage = this.backPage.bind(this);
     this.renderField = this.renderField.bind(this);
     this.renderSelectField = this.renderSelectField.bind(this);
@@ -17,7 +17,14 @@ class TasksForm extends Component {
   }
 
   backPage() {
-    this.props.init(this.props.listTasks.page, this.props.eventSelected);
+    this.props.init(this.props.listTasks.page, this.props.search);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.search.eventSelected !== this.props.search.eventSelected) {
+      this.setState({ search: { ...this.props.search } });
+      this.props.initForm(this.props.search);
+    }
   }
 
   renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
@@ -277,7 +284,8 @@ const selector = formValueSelector("TasksForm");
 const mapStateToProps = (state) => ({
   listTasks: state.tasks.listTasks,
   taskDurationValue: selector(state, "taskDuration"),
-  eventSelected: state.events.eventSelected,
+  search: state.app.search,
 });
-const mapDispatchToProps = (dispatch) => bindActionCreators({ init }, dispatch);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ init, initForm }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(TasksForm);

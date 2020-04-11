@@ -15,7 +15,7 @@ import TasksForm from "./TasksForm";
 
 class Tasks extends Component {
   componentDidMount() {
-    this.props.init(1, this.props.eventSelected);
+    this.props.init(1, this.props.search);
   }
 
   render() {
@@ -82,6 +82,6 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 const mapStateToProps = (state) => ({
-  eventSelected: state.events.eventSelected,
+  search: state.app.search,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Tasks);
