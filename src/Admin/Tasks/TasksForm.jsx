@@ -9,14 +9,15 @@ import { minValue1 } from "../AdminValidate";
 class TasksForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { eventType: false };
+    this.state = { isEventOnly: false };
     this.backPage = this.backPage.bind(this);
     this.renderField = this.renderField.bind(this);
     this.renderSelectField = this.renderSelectField.bind(this);
     this.onDurationFieldChange = this.onDurationFieldChange.bind(this);
   }
+
   backPage() {
-    this.props.init(this.props.listTasks.page);
+    this.props.init(this.props.listTasks.page, this.props.eventSelected);
   }
 
   renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
@@ -56,7 +57,7 @@ class TasksForm extends Component {
 
   render() {
     const { handleSubmit, readOnly } = this.props;
-
+    // console.log(this.props.eventSelected);
     return (
       <div className="row">
         <div className="col-12">
@@ -73,8 +74,30 @@ class TasksForm extends Component {
                     name="id"
                     hidden={true}
                   />
-                  <div className="col-sm-8 form-group">
-                    <label htmlFor="taskSectionId">Nome</label>
+                  <div className="col-1 col-sm-1 col-md-1 form-group">
+                    <label htmlFor="eventId"># Evento</label>
+                    <Field
+                      className="form-control"
+                      component="input"
+                      type="number"
+                      name="eventId"
+                      readOnly={true}
+                    />
+                  </div>
+                  <div className="col-6 col-sm-6 col-md-6 form-group">
+                    <label htmlFor="Events[0]['eventName']">
+                      Nome do Evento
+                    </label>
+                    <Field
+                      className="form-control"
+                      component="input"
+                      type="text"
+                      name="Events[0]['eventName']"
+                      readOnly={true}
+                    />
+                  </div>
+                  <div className="col-sm-3 form-group">
+                    <label htmlFor="taskSectionId">Seção</label>
                     <Field
                       className="form-control"
                       component={this.renderSelectField}
@@ -97,7 +120,7 @@ class TasksForm extends Component {
                 </div>
                 <div className="form-row">
                   <div className="col-sm-8 form-group">
-                    <label htmlFor="taskName">Nome</label>
+                    <label htmlFor="taskName">Nome da tarefa</label>
                     <Field
                       className="form-control"
                       component="input"
@@ -109,8 +132,8 @@ class TasksForm extends Component {
                   </div>
                 </div>
                 <div className="form-row">
-                  <div className="col-12 form-group">
-                    <label htmlFor="taskDescription">Descrição</label>
+                  <Grid cols="12" className="form-group">
+                    <label htmlFor="taskDescription">Descrição da tarefa</label>
                     <Field
                       className="form-control"
                       component="input"
@@ -119,11 +142,11 @@ class TasksForm extends Component {
                       placeholder="Entre a descrição"
                       readOnly={readOnly}
                     />
-                  </div>
+                  </Grid>
                 </div>
                 <div className="form-row">
                   <Grid cols="12 6 6 2 2" className="form-group">
-                    <label htmlFor="taskDuration">Duração</label>
+                    <label htmlFor="taskDuration">Duração (dia)s</label>
                     <Field
                       className="form-control"
                       component="input"
@@ -146,15 +169,14 @@ class TasksForm extends Component {
                   <Grid
                     cols="12 6 3 1 1"
                     className="form-group"
-                    // hidden={this.props.taskDurationValue !== 0 ? true : false}
                     hidden={!this.state.eventType}
                   >
-                    <label htmlFor="taskStartTime">Hora</label>
+                    <label htmlFor="taskTime">Hora</label>
                     <Field
                       className="form-control"
                       component="input"
                       type="time"
-                      name="taskStartTime"
+                      name="taskTime"
                       readOnly={readOnly}
                     />
                   </Grid>
@@ -193,7 +215,9 @@ class TasksForm extends Component {
                       readOnly={readOnly}
                     />
                   </Grid>
-                  <Grid cols="12 6 3 2 2" className="form-group">
+                </div>
+                <div className="form-row">
+                  <Grid cols="12 6 3 3 3" className="form-group">
                     <label htmlFor="taskStatusId">Status</label>
                     <Field
                       className="form-control"
@@ -207,6 +231,16 @@ class TasksForm extends Component {
                       <option value="3">Alerta</option>
                       <option value="4">Atrasada</option>
                     </Field>
+                  </Grid>
+                  <Grid cols="12 6 3 3 3" className="form-group">
+                    <label htmlFor="taskCompleted">% Concluída</label>
+                    <Field
+                      className="form-control"
+                      component="input"
+                      type="number"
+                      name="taskCompleted"
+                      readOnly={readOnly}
+                    />
                   </Grid>
                 </div>
                 <div className="d-flex flex-wrap justify-content-between mt-3">
@@ -243,6 +277,7 @@ const selector = formValueSelector("TasksForm");
 const mapStateToProps = (state) => ({
   listTasks: state.tasks.listTasks,
   taskDurationValue: selector(state, "taskDuration"),
+  eventSelected: state.events.eventSelected,
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({ init }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(TasksForm);

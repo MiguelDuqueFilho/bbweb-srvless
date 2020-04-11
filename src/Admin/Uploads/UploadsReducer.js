@@ -1,6 +1,6 @@
 const INITIAL_STATE = {
-  listUploads: [],
-  listUploadsPdf: []
+  listUploads: { docs: [], pages: 0, total: 0, page: 1 },
+  listUploadsPdf: [],
 };
 
 export default (state = INITIAL_STATE, action) => {

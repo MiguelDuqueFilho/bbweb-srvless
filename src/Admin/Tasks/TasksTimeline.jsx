@@ -10,7 +10,6 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
-
 import {
   FaRegTrashAlt,
   FaPencilAlt,
@@ -25,8 +24,30 @@ class TasksTimeline extends Component {
     this.renderRows = this.renderRows.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getList(1, this.props.search);
+  }
+
+  // static getDerivedStateFromProps(props, state) {
+  //   console.log("getDerivedStateFromProps");
+  //   console.log(props.eventSelected);
+  //   return props.eventSelected;
+  //   // return {
+  //   //   search: {
+  //   //     eventId: props.eventSelected === [] ? null : props.eventSelected.id,
+  //   //     searchPage: "",
+  //   //   },
+  //   // };
+  // }
+
+  // shouldComponentUpdate() {
+  //   console.log("shouldComponentUpdate");
+  //   console.log(this.state.eventSelected);
+  //   return this.state.eventSelected === [] ? false : true;
+  // }
+
   handlePageClick = (page) => {
-    this.props.getList(page);
+    this.props.getList(page, this.props.search);
   };
 
   renderRows() {
@@ -97,7 +118,7 @@ class TasksTimeline extends Component {
         <div className="row">
           <div className="col-sm-12 ">
             <div className="card">
-              <h4 className="p-3 m-2 bg-primary shadown text-white rounded-lg">
+              <h4 className="p-3 m-2 bg-primary shadow text-white rounded-lg">
                 Tarefas
               </h4>
               <Pagination
@@ -105,6 +126,7 @@ class TasksTimeline extends Component {
                 current={this.props.listTasks.page}
                 total={this.props.listTasks.total}
                 showLessItems
+                defaultPageSize={8}
                 showTitle={false}
               />
               <div className="card-body">
@@ -115,6 +137,7 @@ class TasksTimeline extends Component {
                 current={this.props.listTasks.page}
                 total={this.props.listTasks.total}
                 showLessItems
+                defaultPageSize={8}
                 showTitle={false}
               />
             </div>
@@ -125,7 +148,11 @@ class TasksTimeline extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({ listTasks: state.tasks.listTasks });
+const mapStateToProps = (state) => ({
+  listTasks: state.tasks.listTasks,
+  eventSelected: state.events.eventSelected,
+  search: state.app.search,
+});
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ getList, showUpdate, showDelete }, dispatch);
 

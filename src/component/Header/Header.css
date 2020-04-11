@@ -13,5 +13,17 @@ header .container {
 header .title-link a {
   color: gray;
   font-size: 1.3em;
-  padding-left: 50px;
+  padding-left: 20px;
+}
+
+.header-toggle {
+  font-size: 1.8em;
+  margin-left: 2px;
+  color: #333;
+}
+
+@media (min-width: 1199.98px) {
+  header .header-toggle {
+    display: none;
+  }
 }

@@ -5,17 +5,15 @@ import { bindActionCreators } from "redux";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { logout } from "../../auth/AuthAction";
-import { toggleChanged } from "../../main/mainAction";
+import { setSearchHeader } from "../../main/mainAction";
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = { open: false, toggle: props.toggle };
-    this.toggleChanged = this.toggleChanged.bind(this);
+
     this.changeOpen = this.changeOpen.bind(this);
     this.logoff = this.logoff.bind(this);
-
-    // this.onSubmit = this.onSubmit.bind(this);
   }
 
   changeOpen() {
@@ -26,13 +24,8 @@ class Navbar extends Component {
     this.props.logout();
   }
 
-  // onSubmit(values) {
-  //   console.log(values); // para pesquisa
-  // }
-
-  async toggleChanged() {
-    await this.setState({ toggle: !this.state.toggle });
-    await this.props.toggleChanged(this.state.toggle);
+  onSubmit(values) {
+    this.props.setSearchHeader(values);
   }
 
   render() {
@@ -43,9 +36,9 @@ class Navbar extends Component {
       <div className="navbar-custom-menu">
         <form
           className="navbar-form "
-          onSubmit={handleSubmit(values => this.onSubmit(values))}
+          onSubmit={handleSubmit((values) => this.onSubmit(values))}
         >
-          <span className="bmd-form-group">
+          <span className="form-group">
             <div className="input-group no-border">
               <Field
                 className="form-control"
@@ -65,15 +58,14 @@ class Navbar extends Component {
           </span>
         </form>
         <ul className="navbar-nav-custom">
-          <li className="nav-item-custom">
+          <li className="nav-item-custom nav-item-small-none">
             <Link className="nav-link-custom text-decoration-none" to="/admin">
               <i className="fa fa-bar-chart"></i>
             </Link>
           </li>
-          <li className="nav-item-custom dropdown">
-            <i onClick={this.changeOpen} className="fa fa-user mr-5">
-              {" "}
-              {name}
+          <li className="nav-item-custom dropdown mr-5">
+            <i onClick={this.changeOpen} className="fa fa-user ">
+              <span className="nav-item-small-none ml-2">{name}</span>
             </i>
 
             <div className="dropdown-menu-custom">
@@ -105,14 +97,6 @@ class Navbar extends Component {
               </div>
             </div>
           </li>
-          <li
-            className="nav-item-custom nav-toggle ml-5"
-            onClick={this.toggleChanged}
-          >
-            <i
-              className={`fa ${this.state.toggle ? "fa-times" : "fa-bars"} `}
-            ></i>
-          </li>
         </ul>
       </div>
     );
@@ -121,13 +105,12 @@ class Navbar extends Component {
 
 Navbar = reduxForm({
   form: "Navbar",
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
 })(Navbar);
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.auth.user,
-  toggle: state.app.toggle
 });
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ logout, toggleChanged }, dispatch);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ logout, setSearchHeader }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

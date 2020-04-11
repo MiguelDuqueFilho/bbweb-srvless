@@ -128,8 +128,8 @@ class UsersForm extends Component {
 
 UsersForm = reduxForm({
   form: "UsersForm",
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
 })(UsersForm);
-const mapStateToProps = state => ({ listUsers: state.users.listUsers });
-const mapDispatchToProps = dispatch => bindActionCreators({ init }, dispatch);
+const mapStateToProps = (state) => ({ listUsers: state.users.listUsers });
+const mapDispatchToProps = (dispatch) => bindActionCreators({ init }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(UsersForm);

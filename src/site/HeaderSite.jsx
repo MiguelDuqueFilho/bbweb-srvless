@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { Link } from "react-router-dom";
 import {
   FaBars,
+  FaTimes,
   FaHome,
   FaFacebookSquare,
   FaInstagram,
@@ -29,7 +30,7 @@ class HeaderSite extends Component {
     this.logoff = this.logoff.bind(this);
     this.state = {
       navClassName: "navbar-transparent",
-      collapsed: false,
+      collapsed: true,
       dropdown: false,
     };
   }
@@ -108,7 +109,6 @@ class HeaderSite extends Component {
         <div className="container">
           <nav
             className={`navbar  fixed-top navbar-expand-lg ${this.state.navClassName}`}
-            color-on-scroll="100"
             id="sectionsNav"
           >
             <div className="container-fluid ">
@@ -126,7 +126,11 @@ class HeaderSite extends Component {
                   aria-expanded="false"
                   aria-label="Toggle navigation"
                 >
-                  <FaBars className="icon" />
+                  {this.state.collapsed ? (
+                    <FaBars className="icon" />
+                  ) : (
+                    <FaTimes className="icon" />
+                  )}
                 </button>
               </div>
               <div className={`${classOne}`} id="navbarResponsive">

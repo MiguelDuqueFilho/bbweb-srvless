@@ -7,14 +7,14 @@ import "./Downloads.css";
 import { getList, showUpdate, showDelete } from "./DownloadsAction";
 
 class DownloadsList extends Component {
-  handlePageClick = page => {
+  handlePageClick = (page) => {
     this.props.getList(page);
   };
 
   renderRows() {
     const list = this.props.listDownloadsAll.docs || [];
 
-    return list.map(file => (
+    return list.map((file) => (
       <tr key={file.id}>
         <td className="td-custom">{file.id}</td>
         <td className="td-custom">{file.downloadTitle}</td>
@@ -44,7 +44,7 @@ class DownloadsList extends Component {
       <div className="row ">
         <div className="col-sm-12 ">
           <div className="card ">
-            <h4 className="p-3 m-2 bg-primary shadown text-white rounded-lg">
+            <h4 className="p-3 m-2 bg-primary shadow text-white rounded-lg">
               Downloads
             </h4>
             <div className="card-body ">
@@ -74,10 +74,10 @@ class DownloadsList extends Component {
     );
   }
 }
-const mapStateToProps = state => ({
-  listDownloadsAll: state.downloads.listDownloadsAll
+const mapStateToProps = (state) => ({
+  listDownloadsAll: state.downloads.listDownloadsAll,
 });
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ getList, showUpdate, showDelete }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(DownloadsList);

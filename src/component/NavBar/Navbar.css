@@ -5,7 +5,7 @@ header .container {
 .navbar-custom-menu {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: flex-end;
 }
 
 .navbar-nav-custom {
@@ -42,12 +42,8 @@ header .container {
 }
 
 @media (max-width: 992px) {
-  .navbar-form {
-    display: none;
-  }
-}
-@media (min-width: 1199.98px) {
-  .nav-item-custom.nav-toggle {
+  .navbar-form,
+  .nav-item-small-none {
     display: none;
   }
 }

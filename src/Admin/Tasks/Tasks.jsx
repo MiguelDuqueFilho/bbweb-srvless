@@ -9,13 +9,13 @@ import TabsHeader from "../../common/Tabs/tabsHeader";
 import TabsContent from "../../common/Tabs/tabsContent";
 import TabHeader from "../../common/Tabs/tabHeader";
 import TabContent from "../../common/Tabs/tabContent";
-import { init } from "./TasksAction";
+import { init, create, update, remove } from "./TasksAction";
 import TasksTimeline from "./TasksTimeline";
 import TasksForm from "./TasksForm";
 
 class Tasks extends Component {
   componentDidMount() {
-    this.props.init(1);
+    this.props.init(1, this.props.eventSelected);
   }
 
   render() {
@@ -75,10 +75,13 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       init,
-      // update,
-      // remove
+      create,
+      update,
+      remove,
     },
     dispatch
   );
-
-export default connect(null, mapDispatchToProps)(Tasks);
+const mapStateToProps = (state) => ({
+  eventSelected: state.events.eventSelected,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Tasks);

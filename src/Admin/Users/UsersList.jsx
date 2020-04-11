@@ -8,14 +8,14 @@ import "./UsersList.css";
 import { getList, showUpdate, showDelete } from "./UsersAction";
 
 class UsersList extends Component {
-  handlePageClick = page => {
+  handlePageClick = (page) => {
     this.props.getList(page);
   };
 
   renderRows() {
     const list = this.props.listUsers.docs || [];
 
-    return list.map(usr => (
+    return list.map((usr) => (
       <tr key={usr.id}>
         <td className="td-custom">{usr.id}</td>
         <td className="td-custom">{usr.userName}</td>
@@ -45,7 +45,7 @@ class UsersList extends Component {
       <div className="row">
         <div className="col-sm-12">
           <div className="card">
-            <h4 className="p-2 m-2 bg-primary  text-white rounded-lg">
+            <h4 className="p-3 m-2 bg-primary shadow text-white rounded-lg">
               Usuários
             </h4>
             <div className="card-body">
@@ -75,7 +75,7 @@ class UsersList extends Component {
     );
   }
 }
-const mapStateToProps = state => ({ listUsers: state.users.listUsers });
-const mapDispatchToProps = dispatch =>
+const mapStateToProps = (state) => ({ listUsers: state.users.listUsers });
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ getList, showUpdate, showDelete }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(UsersList);

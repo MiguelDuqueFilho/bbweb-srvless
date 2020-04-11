@@ -62,10 +62,12 @@
   color: #333;
 }
 
-.page-header-site .navbar-transparent .nav-item a.nav-link:hover,
+.page-header-site .navbar-transparent button > svg > path:hover,
 .page-header-site .navbar-transparent .nav-item span.nav-link:hover,
+.page-header-site .navbar-transparent .nav-item a.nav-link:hover,
 .page-header-site .navbar-transparent .nav-item .nav-link span:hover,
 .page-header-site .navbar-transparent .nav-item .nav-link a:hover,
+.page-header-site .navbar-color-on-scroll button > svg > path:hover,
 .page-header-site .navbar-color-on-scroll .nav-item span.nav-link:hover,
 .page-header-site .navbar-color-on-scroll .nav-item a.nav-link:hover,
 .page-header-site .navbar-color-on-scroll .nav-item .nav-link span:hover,

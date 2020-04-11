@@ -5,29 +5,29 @@ import { showTabs, selectTab } from "../../common/Tabs/tabActions";
 import FileSaver from "file-saver";
 
 const INITIAL_VALUES = {
-  listDownloadsall: { docs: [], pages: 0, total: 0, page: 1 }
+  listDownloadsall: { docs: [], pages: 0, total: 0, page: 1 },
 };
 
-export async function getList(page = 1, limit = 10) {
+export async function getList(page = 1, limit = 9) {
   const request = await api.get(`/downloads_all?page=${page}&limit=${limit}`);
   return {
     type: "DOWNLOAD_GET_ALL_FILES_REQUEST",
-    payload: request.data.data
+    payload: request.data.data,
   };
 }
 
-export const getDownloads = () => dispatch => {
+export const getDownloads = () => (dispatch) => {
   api
     .get("/downloads")
-    .then(resp => {
+    .then((resp) => {
       dispatch([
         {
           type: "DOWNLOAD_GET_FILES_REQUEST",
-          payload: resp.data.data
-        }
+          payload: resp.data.data,
+        },
       ]);
     })
-    .catch(error => {
+    .catch((error) => {
       if (error.response) {
         toastr.error("Error", error.response.data.message);
       } else if (error.request) {
@@ -51,14 +51,14 @@ export function remove(values) {
 }
 
 export function submit(values, method) {
-  return dispatch => {
+  return (dispatch) => {
     const id = values.id ? values.id : "";
     api[method](`/downloads/${id}`, values)
-      .then(resp => {
+      .then((resp) => {
         toastr.success("Sucesso", "Operação realizada com sucesso.");
         dispatch(init());
       })
-      .catch(e => {
+      .catch((e) => {
         if (
           typeof e.message !== "undefined" &&
           typeof e.response.data.message === "undefined"
@@ -72,12 +72,12 @@ export function submit(values, method) {
 }
 
 export function fileUpdateSelected(fileId) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch([
       {
         type: "DOWNLOAD_SELECTED_FILES_UPLOAD",
-        payload: fileId
-      }
+        payload: fileId,
+      },
     ]);
   };
 }
@@ -86,7 +86,7 @@ export function showUpdate(file) {
   return [
     showTabs("tabUpdate"),
     selectTab("tabUpdate"),
-    initialize("DownloadsForm", file)
+    initialize("DownloadsForm", file),
   ];
 }
 
@@ -94,7 +94,7 @@ export function showDelete(file) {
   return [
     showTabs("tabDelete"),
     selectTab("tabDelete"),
-    initialize("DownloadsForm", file)
+    initialize("DownloadsForm", file),
   ];
 }
 
@@ -104,37 +104,37 @@ export function init(page = 1) {
     selectTab("tabList"),
     getList(page),
     getDownloads(),
-    initialize("DownloadsForm", INITIAL_VALUES)
+    initialize("DownloadsForm", INITIAL_VALUES),
   ];
 }
 
-export const downloadFile = (fileId, fileName) => async dispatch => {
+export const downloadFile = (fileId, fileName) => async (dispatch) => {
   try {
     dispatch({
-      type: "DOWNLOAD_FILE_REQUEST"
+      type: "DOWNLOAD_FILE_REQUEST",
     });
 
     const {
       data,
-      headers: { "content-type": fileType }
+      headers: { "content-type": fileType },
     } = await api.get(`/downloads/${fileId}`, {
       responseType: "blob",
-      timeout: 30000
+      timeout: 30000,
     });
 
     const newFile = new File([data], fileName, {
-      type: fileType
+      type: fileType,
     });
 
     await FileSaver.saveAs(newFile, fileName);
 
     dispatch({
-      type: "DOWNLOAD_FILE_SUCCESS"
+      type: "DOWNLOAD_FILE_SUCCESS",
     });
     toastr.success("Sucesso", "Arquivo baixado com sucesso!");
   } catch (error) {
     dispatch({
-      type: "DOWNLOAD_FILE_ERROR"
+      type: "DOWNLOAD_FILE_ERROR",
     });
 
     if (error.response) {

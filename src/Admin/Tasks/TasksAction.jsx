@@ -1,17 +1,39 @@
 import api from "../../services/api";
 import { toastr } from "react-redux-toastr";
+
 import { initialize } from "redux-form";
 import { showTabs, selectTab } from "../../common/Tabs/tabActions";
+import { validSearch } from "../../services/utils";
 
-const INITIAL_VALUES = {
-  listTasks: { docs: [], pages: 0, total: 0, page: 1 },
-};
+export function getList(page = 1, searchFilter = {}) {
+  const limit = 8;
+  const validatedSearch = validSearch(searchFilter);
 
-export async function getList(page = 1, limit = 10) {
-  const request = await api.get(`/tasks?page=${page}&limit=${limit}`);
-  return {
-    type: "TASKS_LIST_FETCHED",
-    payload: request.data.data,
+  console.log("getList validatedSearch >>>>>>>");
+  console.log(validatedSearch);
+
+  let params = { search: validatedSearch };
+
+  console.log("params>>>>>>>");
+  console.log(params);
+  return (dispatch) => {
+    api
+      .get(`/tasks?page=${page}&limit=${limit}`, {
+        params,
+      })
+      .then((resp) => {
+        dispatch([{ type: "TASKS_LIST_FETCHED", payload: resp.data.data }]);
+      })
+      .catch((e) => {
+        if (
+          typeof e.message !== "undefined" &&
+          typeof e.response.data.message === "undefined"
+        ) {
+          toastr.error("Erro", e.message);
+        } else {
+          toastr.warning("Alerta", e.response.data.message);
+        }
+      });
   };
 }
 
@@ -49,6 +71,7 @@ export function submit(values, method) {
 }
 
 export function showUpdate(tasks) {
+  console.log(tasks);
   return [
     showTabs("tabUpdate"),
     selectTab("tabUpdate"),
@@ -64,11 +87,20 @@ export function showDelete(tasks) {
   ];
 }
 
-export function init(page = 1) {
+export function init(page = 1, eventSelected = []) {
+  const INITIAL_VALUES = {
+    eventId: eventSelected.id,
+    Events: {
+      0: {
+        eventName: eventSelected.eventName,
+      },
+    },
+  };
+  // const search = { eventId: eventSelected.id, searchPage: "" };
   return [
     showTabs("tabTimeLine", "tabCreate"),
     selectTab("tabTimeLine"),
-    getList(page),
+    // getList(page, search),
     initialize("TasksForm", INITIAL_VALUES),
   ];
 }

@@ -4,14 +4,16 @@ import { initialize } from "redux-form";
 import { showTabs, selectTab } from "../../common/Tabs/tabActions";
 
 const INITIAL_VALUES = {
-  listUsers: { docs: [], pages: 0, total: 0, page: 1 }
+  listUsers: { docs: [], pages: 0, total: 0, page: 1 },
 };
 
-export async function getList(page = 1, limit = 10) {
-  const request = await api.get(`/users?page=${page}&limit=${limit}`);
+export async function getList(page = 1, limit = 9) {
+  const request = await api.get(`/users`, {
+    params: { page, limit },
+  });
   return {
     type: "USERS_LIST_FETCHED",
-    payload: request.data.data
+    payload: request.data.data,
   };
 }
 
@@ -28,14 +30,14 @@ export function remove(values) {
 }
 
 export function submit(values, method) {
-  return dispatch => {
+  return (dispatch) => {
     const id = values.id ? values.id : "";
     api[method](`/users/${id}`, values)
-      .then(resp => {
+      .then((resp) => {
         toastr.success("Sucesso", "Operação realizada com sucesso.");
         dispatch(init());
       })
-      .catch(e => {
+      .catch((e) => {
         if (
           typeof e.message !== "undefined" &&
           typeof e.response.data.message === "undefined"
@@ -52,7 +54,7 @@ export function showUpdate(users) {
   return [
     showTabs("tabUpdate"),
     selectTab("tabUpdate"),
-    initialize("UsersForm", users)
+    initialize("UsersForm", users),
   ];
 }
 
@@ -60,7 +62,7 @@ export function showDelete(users) {
   return [
     showTabs("tabDelete"),
     selectTab("tabDelete"),
-    initialize("UsersForm", users)
+    initialize("UsersForm", users),
   ];
 }
 
@@ -69,6 +71,6 @@ export function init(page = 1) {
     showTabs("tabList", "tabCreate"),
     selectTab("tabList"),
     getList(page),
-    initialize("UsersForm", INITIAL_VALUES)
+    initialize("UsersForm", INITIAL_VALUES),
   ];
 }

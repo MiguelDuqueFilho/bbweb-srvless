@@ -21,7 +21,7 @@ class DownloadsCard extends Component {
   renderRows() {
     const list = this.props.listDownloads || [];
     const cols = list.length <= 2 ? "12 12 6 6 6 " : "12 12 6 4 3 ";
-    return list.map(file => (
+    return list.map((file) => (
       <CustomBox
         key={file.id}
         className="card-download "
@@ -41,7 +41,7 @@ class DownloadsCard extends Component {
       <div className="row">
         <div className="col-sm-12 ">
           <div className="card">
-            <h4 className="p-3 m-2 bg-primary shadown text-white rounded-lg">
+            <h4 className="p-3 m-2 bg-primary shadow text-white rounded-lg">
               Download View
             </h4>
             <div className="card-body">
@@ -63,9 +63,9 @@ class DownloadsCard extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  listDownloads: state.downloads.listDownloads
+const mapStateToProps = (state) => ({
+  listDownloads: state.downloads.listDownloads,
 });
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ downloadFile, getDownloads }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(DownloadsCard);

@@ -17,7 +17,7 @@ class Upload extends Component {
       files: [],
       uploading: false,
       uploadProgress: {},
-      successfullUploaded: false
+      successfullUploaded: false,
     };
 
     this.onFilesAdded = this.onFilesAdded.bind(this);
@@ -27,15 +27,15 @@ class Upload extends Component {
   }
 
   onFilesAdded(files) {
-    this.setState(prevState => ({
-      files: prevState.files.concat(files)
+    this.setState((prevState) => ({
+      files: prevState.files.concat(files),
     }));
   }
 
   async uploadFiles() {
     this.setState({ uploadProgress: {}, uploading: true });
     const promises = [];
-    this.state.files.forEach(file => {
+    this.state.files.forEach((file) => {
       promises.push(this.sendRequest(file));
     });
     try {
@@ -51,24 +51,24 @@ class Upload extends Component {
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();
 
-      req.upload.addEventListener("progress", event => {
+      req.upload.addEventListener("progress", (event) => {
         if (event.lengthComputable) {
           const copy = { ...this.state.uploadProgress };
           copy[file.name] = {
             state: "pending",
-            percentage: (event.loaded / event.total) * 100
+            percentage: (event.loaded / event.total) * 100,
           };
         }
       });
 
-      req.upload.addEventListener("load", event => {
+      req.upload.addEventListener("load", (event) => {
         const copy = { ...this.state.uploadProgress };
         copy[file.name] = { state: "done", percentage: 100 };
         this.setState({ uploadProgress: copy });
         resolve(req.response);
       });
 
-      req.upload.addEventListener("error", event => {
+      req.upload.addEventListener("error", (event) => {
         const copy = { ...this.state.uploadProgress };
         copy[file.name] = { state: "error", percentage: 0 };
         this.setState({ uploadProgress: copy });
@@ -95,7 +95,7 @@ class Upload extends Component {
             alt="done"
             style={{
               opacity:
-                uploadProgress && uploadProgress.state === "done" ? 0.5 : 0
+                uploadProgress && uploadProgress.state === "done" ? 0.5 : 0,
             }}
           />
         </div>
@@ -112,7 +112,7 @@ class Upload extends Component {
               files: [],
               uploading: false,
               successfullUploaded: false,
-              uploadProgress: {}
+              uploadProgress: {},
             });
             this.props.init(this.props.listUploads.page);
           }}
@@ -140,7 +140,7 @@ class Upload extends Component {
         <div className="row">
           <div className="col-sm-12 ">
             <div className="card">
-              <h4 className="p-3 m-2 bg-primary shadown text-white rounded-lg">
+              <h4 className="p-3 m-2 bg-primary shadow text-white rounded-lg">
                 Área para carregar arquivos - veja sites de compressão :
                 <a
                   className="text-warning "
@@ -172,7 +172,7 @@ class Upload extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {this.state.files.map(file => {
+                      {this.state.files.map((file) => {
                         return (
                           <tr key={file.name}>
                             <td className="td-custom">
@@ -198,9 +198,9 @@ class Upload extends Component {
     );
   }
 }
-const mapDispatchToProps = dispatch => bindActionCreators({ init }, dispatch);
-const mapStateToProps = state => ({
+const mapDispatchToProps = (dispatch) => bindActionCreators({ init }, dispatch);
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  listUploads: state.uploads.listUploads
+  listUploads: state.uploads.listUploads,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Upload);

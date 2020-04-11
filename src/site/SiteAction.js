@@ -13,25 +13,25 @@ export function getStatus(values) {
 }
 
 function submitEmail(values, url) {
-  return dispatch => {
+  return (dispatch) => {
     api
       .post(url, values)
-      .then(resp => {
+      .then((resp) => {
         if (resp.data.success === true) {
           toastr.success("Ok", resp.data.message);
           dispatch([
             { type: "SENDEMAIL_FETCHED", payload: resp.data.success },
-            resetForm("doubtsForm")
+            resetForm("doubtsForm"),
           ]);
         } else {
           toastr.warning("Alerta", resp.data.message);
           dispatch([
             { type: "SENDEMAIL_FETCHED", payload: resp.data.success },
-            resetForm("doubtsForm")
+            resetForm("doubtsForm"),
           ]);
         }
       })
-      .catch(e => {
+      .catch((e) => {
         if (
           typeof e.message !== "undefined" &&
           typeof e.response.data.message === "undefined"
@@ -46,13 +46,14 @@ function submitEmail(values, url) {
 }
 
 function submit(values, url, type) {
-  return dispatch => {
+  return (dispatch) => {
     api
       .get(url, values)
-      .then(resp => {
+      .then((resp) => {
         dispatch([{ type, payload: resp.data.data }]);
       })
-      .catch(e => {
+      .catch((e) => {
+        console.log(e);
         if (
           typeof e.message !== "undefined" &&
           typeof e.response.data.message === "undefined"

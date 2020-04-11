@@ -153,8 +153,8 @@ class EventsForm extends Component {
 
 EventsForm = reduxForm({
   form: "EventsForm",
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
 })(EventsForm);
-const mapStateToProps = state => ({ listEvents: state.events.listEvents });
-const mapDispatchToProps = dispatch => bindActionCreators({ init }, dispatch);
+const mapStateToProps = (state) => ({ listEvents: state.events.listEvents });
+const mapDispatchToProps = (dispatch) => bindActionCreators({ init }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(EventsForm);

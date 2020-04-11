@@ -5,14 +5,14 @@ import { showTabs, selectTab } from "../../common/Tabs/tabActions";
 
 const INITIAL_VALUES = {
   listUploads: { docs: [], pages: 0, total: 0, page: 1 },
-  listUploadsPdf: []
+  listUploadsPdf: [],
 };
 
-export async function getList(page = 1, limit = 10) {
+export async function getList(page = 1, limit = 9) {
   const request = await api.get(`/uploads?page=${page}&limit=${limit}`);
   return {
     type: "UPLOADS_GET_LIST_REQUEST",
-    payload: request.data.data
+    payload: request.data.data,
   };
 }
 
@@ -20,7 +20,7 @@ export async function getPdf() {
   const request = await api.get(`/uploadstype/pdf`);
   return {
     type: "UPLOADS_GET_PDF_REQUEST",
-    payload: request.data.data
+    payload: request.data.data,
   };
 }
 
@@ -33,14 +33,14 @@ export function remove(values) {
 }
 
 export function submit(values, method) {
-  return dispatch => {
+  return (dispatch) => {
     const id = values.id ? values.id : "";
     api[method](`/uploads/${id}`, values)
-      .then(resp => {
+      .then((resp) => {
         toastr.success("Sucesso", "Operação realizada com sucesso.");
         dispatch(init());
       })
-      .catch(e => {
+      .catch((e) => {
         if (
           typeof e.message !== "undefined" &&
           typeof e.response.data.message === "undefined"
@@ -57,7 +57,7 @@ export function showUpdate(file) {
   return [
     showTabs("tabUpdate"),
     selectTab("tabUpdate"),
-    initialize("UploadsForm", file)
+    initialize("UploadsForm", file),
   ];
 }
 
@@ -65,7 +65,7 @@ export function showDelete(file) {
   return [
     showTabs("tabDelete"),
     selectTab("tabDelete"),
-    initialize("UploadsForm", file)
+    initialize("UploadsForm", file),
   ];
 }
 
@@ -74,6 +74,6 @@ export function init(page = 1) {
     showTabs("tabList", "tabFiles"),
     selectTab("tabList"),
     getList(page),
-    initialize("UploadsForm", INITIAL_VALUES)
+    initialize("UploadsForm", INITIAL_VALUES),
   ];
 }

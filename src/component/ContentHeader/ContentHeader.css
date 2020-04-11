@@ -1,5 +1,11 @@
-.content-header h6 span {
-  color: #999;
+.content-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #333;
+}
+
+.content-header h4 span {
 }
 .content-header .title {
   color: var(--title);
@@ -8,4 +14,24 @@
 .content-header .subtitle {
   color: var(--subtitle);
   font-size: 0.6em;
+}
+
+.content-header .search-event {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 40px;
+}
+
+.content-header .event-selected {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 10px;
+  padding-right: 40px;
+  background-color: transparent;
+  color: #999;
+  font-size: 1.4em;
 }

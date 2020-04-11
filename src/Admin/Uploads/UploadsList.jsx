@@ -7,14 +7,14 @@ import "./Uploads.css";
 import { getList, showUpdate, showDelete } from "./UploadsAction";
 
 class UploadsList extends Component {
-  handlePageClick = page => {
+  handlePageClick = (page) => {
     this.props.getList(page);
   };
 
   renderRows() {
     const list = this.props.listUploads.docs || [];
 
-    return list.map(file => (
+    return list.map((file) => (
       <tr key={file.id}>
         <td className="td-custom">{file.id}</td>
         <td className="td-custom">{file.fileName}</td>
@@ -45,7 +45,7 @@ class UploadsList extends Component {
       <div className="row ">
         <div className="col-sm-12 ">
           <div className="card ">
-            <h4 className="p-3 m-2 bg-primary shadown text-white rounded-lg">
+            <h4 className="p-3 m-2 bg-primary shadow text-white rounded-lg">
               Uploads
             </h4>
             <div className="card-body ">
@@ -76,10 +76,10 @@ class UploadsList extends Component {
     );
   }
 }
-const mapStateToProps = state => ({
-  listUploads: state.uploads.listUploads
+const mapStateToProps = (state) => ({
+  listUploads: state.uploads.listUploads,
 });
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ getList, showUpdate, showDelete }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(UploadsList);

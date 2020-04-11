@@ -1,8 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import "./Modal.css";
 
 export default function Modal(props) {
-  const showHideClassName = props.show
+  const { showModal } = useSelector((state) => ({
+    showModal: state.modal.show,
+  }));
+  const showHideClassName = showModal
     ? "modal display-block"
     : "modal display-none";
 

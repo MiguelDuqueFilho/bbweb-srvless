@@ -22,13 +22,10 @@
   width: 40%;
 }
 
-table {
-  width: 100%;
-  table-layout: fixed;
-}
-
 table .td-actions {
-  padding: 0px 12px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 ul.rc-pagination {

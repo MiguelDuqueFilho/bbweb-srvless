@@ -1,7 +1,7 @@
 const INITIAL_STATE = {
   listDownloads: [],
-  listDownloadsAll: [],
-  fileUploadSelected: null
+  listDownloadsAll: { docs: [], pages: 0, total: 0, page: 1 },
+  fileUploadSelected: null,
 };
 
 export default (state = INITIAL_STATE, action) => {
