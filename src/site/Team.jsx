@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Team.css";
-import bruna from "../assets/img/avatar_bruna.png";
-import tamires from "../assets/img/avatar_tamires.png";
+import { urls } from "../services/utils";
+import Grid from "../component/Grid/Grid";
 
 export default class Team extends Component {
   render() {
@@ -13,17 +13,20 @@ export default class Team extends Component {
             <div className="col-md-6">
               <div className="team-player">
                 <div className="card card-plain">
-                  <div className="col-5 ml-auto mr-auto m-2">
+                  <Grid cols="10 9 8 7 6" className=" ml-auto mr-auto m-2">
                     <img
-                      src={bruna}
+                      src={`${urls.BASE_URL}/teams/bruna/img`}
                       alt="Bruna"
                       className="img-raised rounded-circle img-fluid"
                     />
-                  </div>
+                  </Grid>
                   <div className="card-title">Bruna Duque</div>
                   <small className="card-description ">Publicitária</small>
                   <div className="card-footer justify-content-center bg-white ">
-                    <a href="/#" className="btn btn-link btn-just-icon">
+                    <a
+                      href="https://instagram.com/bruduque_?igshid=1r3q8i736iuu"
+                      className="btn btn-link btn-just-icon"
+                    >
                       <i className="fa fa-instagram"></i>
                     </a>
                     <a href="/#" className="btn btn-link btn-just-icon">
@@ -36,13 +39,13 @@ export default class Team extends Component {
             <div className="col-md-6">
               <div className="team-player">
                 <div className="card card-plain">
-                  <div className="col-5 ml-auto mr-auto m-2">
+                  <Grid cols="10 9 8 7 6" className=" ml-auto mr-auto m-2">
                     <img
-                      src={tamires}
+                      src={`${urls.BASE_URL}/teams/tamires/img`}
                       alt="Tamires"
                       className="img-raised rounded-circle img-fluid"
                     />
-                  </div>
+                  </Grid>
                   <div className="card-title">Tamires</div>
                   <small className="card-description text-muted">
                     Assessoria

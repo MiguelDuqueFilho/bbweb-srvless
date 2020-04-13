@@ -8,6 +8,7 @@ import { required, email } from "./doubtsValidate";
 import { reduxForm, Field } from "redux-form";
 import { sendemail } from "./SiteAction";
 import InputIcon from "../common/form/InputIcon";
+import TextareaIcon from "../common/form/textareaIcon";
 
 class Doubts extends Component {
   onSubmit(values) {
@@ -27,7 +28,7 @@ class Doubts extends Component {
           </h5>
           <form
             className="contact-form"
-            onSubmit={handleSubmit(values => this.onSubmit(values))}
+            onSubmit={handleSubmit((values) => this.onSubmit(values))}
           >
             <div className="row">
               <div className="col-md-9  ml-auto mr-auto">
@@ -64,10 +65,11 @@ class Doubts extends Component {
                 <div className="form-group text-left bmd-form-group">
                   <Field
                     className="form-control row={4}"
-                    component="textarea"
+                    component={TextareaIcon}
                     type="textarea"
                     name="messageEmail"
                     placeholder="Mensagem..."
+                    icon="comment"
                   />
                 </div>
               </div>
@@ -89,6 +91,6 @@ class Doubts extends Component {
 
 Doubts = reduxForm({ form: "doubtsForm" })(Doubts);
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ sendemail }, dispatch);
 export default connect(null, mapDispatchToProps)(Doubts);

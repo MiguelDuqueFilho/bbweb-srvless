@@ -65,7 +65,7 @@ class Navbar extends Component {
                 type="submit"
                 className="btn btn-white btn-round btn-just-icon mr-3 text-decoration-none"
               >
-                <FaSearch size={14} />
+                <FaSearch size={18} className="mb-1" />
               </button>
             </div>
           </span>

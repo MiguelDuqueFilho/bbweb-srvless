@@ -55,7 +55,6 @@ const INITIAL_SEARCH_VALUES = {
 };
 
 export function validSearch(search = INITIAL_SEARCH_VALUES) {
-  console.log(search);
   const { searchHeader, eventSelected } = search;
 
   let searchReturn = {};

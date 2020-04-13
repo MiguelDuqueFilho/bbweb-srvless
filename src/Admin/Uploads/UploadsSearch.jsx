@@ -20,6 +20,7 @@ class UploadsSearch extends Component {
     event.preventDefault();
     const fileId = event.target.getAttribute("data-item");
     this.props.fileUpdateSelected(fileId);
+    this.props.closeModal();
   }
 
   renderRows(props) {

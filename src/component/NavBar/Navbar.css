@@ -63,10 +63,13 @@ header .container {
   text-indent: 32px;
   width: 250px;
   height: 32px;
+  margin-top: 1px;
 }
 .search span svg {
   position: absolute;
   top: 8px;
   left: 220px;
   z-index: 10;
+  font-weight: 300;
+  color: #333;
 }

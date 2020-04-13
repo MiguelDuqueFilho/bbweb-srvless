@@ -15,6 +15,7 @@ class DownloadsForm extends Component {
     this.backPage = this.backPage.bind(this);
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
     this.getFileUpload = this.getFileUpload.bind(this);
   }
 
@@ -30,22 +31,26 @@ class DownloadsForm extends Component {
     }
   }
 
-  getFileUpload = fileSelected =>
+  getFileUpload = (fileSelected) =>
     this.props.listUploadsPdf.filter(
-      file => parseInt(file.id) === parseInt(fileSelected)
+      (file) => parseInt(file.id) === parseInt(fileSelected)
     );
 
   backPage() {
     this.props.init(this.props.listDownloadsAll.page);
   }
 
-  showModal = event => {
+  showModal = (event) => {
     event.preventDefault();
     this.setState({ show: true });
   };
 
-  hideModal = event => {
+  hideModal = (event) => {
     event.preventDefault();
+    this.setState({ show: false });
+  };
+
+  closeModal = (event) => {
     this.setState({ show: false });
   };
 
@@ -95,7 +100,7 @@ class DownloadsForm extends Component {
                 </div>
 
                 <Modal show={this.state.show} handleClose={this.hideModal}>
-                  <UploadsSearch />
+                  <UploadsSearch closeModal={this.closeModal} />
                 </Modal>
 
                 <div className="form-row">
@@ -171,15 +176,15 @@ class DownloadsForm extends Component {
 
 DownloadsForm = reduxForm({
   form: "DownloadsForm",
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
 })(DownloadsForm);
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   listDownloadsAll: state.downloads.listDownloadsAll,
   listUploadsPdf: state.uploads.listUploadsPdf,
-  fileUploadSelected: state.downloads.fileUploadSelected
+  fileUploadSelected: state.downloads.fileUploadSelected,
 });
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ init, getPdf }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(DownloadsForm);

@@ -16,6 +16,7 @@
   padding-top: 8px;
 }
 
+.main-menu-item .menu-item:focus,
 .main-menu-item .menu-item:hover {
   background-color: var(--primary);
   border-radius: 6px;

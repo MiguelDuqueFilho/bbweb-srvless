@@ -12,7 +12,6 @@ import TabReducer from "../common/Tabs/tabReducer";
 import DownloadsReducer from "../Admin/Downloads/DownloadsReducer";
 import UploadsReducer from "../Admin/Uploads/UploadsReducer";
 import TasksReducer from "../Admin/Tasks/TasksReducer";
-import ModalReducer from "../component/Modal/ModalReducer";
 
 const rootReducer = combineReducers({
   app: mainReducer,
@@ -27,7 +26,6 @@ const rootReducer = combineReducers({
   downloads: DownloadsReducer,
   uploads: UploadsReducer,
   toastr: toastrReducer,
-  modal: ModalReducer,
 });
 
 export default rootReducer;

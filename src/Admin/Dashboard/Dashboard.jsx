@@ -11,7 +11,8 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      summary: this.props.summary
+      summary: this.props.summary,
+      photo: null,
     };
   }
 
@@ -57,7 +58,7 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateProps = store => ({ summary: store.dashboard.summary });
-const mapDispatchToProps = dispatch =>
+const mapStateProps = (store) => ({ summary: store.dashboard.summary });
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ getSummary }, dispatch);
 export default connect(mapStateProps, mapDispatchToProps)(Dashboard);

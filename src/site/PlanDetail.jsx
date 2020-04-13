@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { urls } from "../services/utils";
 import { getTypes } from "./SiteAction";
 import "./Site.css";
 
@@ -21,7 +22,7 @@ class PlanDetail extends Component {
   filterPlan(url) {
     const types = this.props.site.eventTypes || [];
     if (types.length === 0) return;
-    const type = types.find(typ => {
+    const type = types.find((typ) => {
       return typ.eventTypeUrl === url;
     });
 
@@ -89,7 +90,7 @@ class PlanDetail extends Component {
         <BannerBody
           title=""
           subtitle=""
-          banner={require(`../assets/img${url}_banner.png`)}
+          banner={`${urls.BASE_URL}/bannerplan${url}/img`}
         />
         <div className="main main-raised">
           {this.filterPlan(url)}
@@ -101,7 +102,7 @@ class PlanDetail extends Component {
   }
 }
 
-const mapStateToProps = state => ({ auth: state.auth, site: state.site });
-const mapDispatchToProps = dispatch =>
+const mapStateToProps = (state) => ({ auth: state.auth, site: state.site });
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ getTypes }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(PlanDetail);

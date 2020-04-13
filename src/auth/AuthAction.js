@@ -33,8 +33,6 @@ function submit(values, url, history) {
           resetForm("authForm"),
         ]);
         if (resp.data.success === true) {
-          // console.log("userTypeContent(resp.data.data.type).href");
-          // console.log(userTypeContent(resp.data.data.type).href);
           history.push(userTypeContent(resp.data.data.type).href);
           toastr.success("Ok", resp.data.message);
         } else {

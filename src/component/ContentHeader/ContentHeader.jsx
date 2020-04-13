@@ -6,7 +6,6 @@ import "./ContentHeader.css";
 import EventsSearch from "../../Admin/Events/EventsSearch";
 import Modal from "../../component/Modal/Modal";
 import If from "../../common/operator/if";
-import { openModal, closeModal } from "../../component/Modal/ModalActions";
 import { clearSelected } from "../../main/mainAction";
 
 export default function ContentHeader(props) {
@@ -18,13 +17,15 @@ export default function ContentHeader(props) {
   const showModal = (e) => {
     e.preventDefault();
     setShow(true);
-    dispatch(openModal());
   };
 
   const hideModal = (e) => {
     e.preventDefault();
     setShow(false);
-    dispatch(closeModal());
+  };
+
+  const closeModal = (e) => {
+    setShow(false);
   };
 
   const clear = (e) => {
@@ -46,7 +47,7 @@ export default function ContentHeader(props) {
       <div>
         <If test={user.type === 1}>
           <Modal show={show} handleClose={hideModal}>
-            <EventsSearch />
+            <EventsSearch closeModal={closeModal} />
           </Modal>
           <div className="search-event">
             <span onClick={showModal} className="btn btn-primary shadow">

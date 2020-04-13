@@ -5,7 +5,6 @@ import Pagination from "rc-pagination";
 import "./Events.css";
 import { getList } from "./EventsAction";
 import { setEventSelected } from "../../main/mainAction";
-import { closeModal } from "../../component/Modal/ModalActions";
 
 class EventsSearch extends Component {
   constructor(props) {
@@ -88,6 +87,6 @@ const mapStateToProps = (state) => ({
   listEvents: state.events.listEvents,
 });
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ getList, setEventSelected, closeModal }, dispatch);
+  bindActionCreators({ getList, setEventSelected }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventsSearch);

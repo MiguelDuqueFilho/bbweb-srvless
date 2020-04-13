@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
+import { urls } from "../services/utils";
 import "./Auth.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -27,7 +28,7 @@ class Auth extends Component {
   changeForgot() {
     this.setState({
       loginMode: this.state.loginMode,
-      forgotMode: !this.state.forgotMode
+      forgotMode: !this.state.forgotMode,
     });
   }
 
@@ -48,13 +49,16 @@ class Auth extends Component {
     return (
       <React.Fragment>
         <HeaderSite />
-        <div className="page-header">
+        <div
+          className="page-header"
+          style={{ backgroundImage: `url(${urls.BASE_URL}/banner/img)` }}
+        >
           <div className="container">
             <Row>
               <Grid cols="11 9 7 5 5" className="ml-auto mr-auto">
                 <div className="card card-login">
                   <form
-                    onSubmit={handleSubmit(values => this.onSubmit(values))}
+                    onSubmit={handleSubmit((values) => this.onSubmit(values))}
                   >
                     <div className="card-header card-header-primary text-center">
                       <h4 className="card-title">
@@ -185,9 +189,9 @@ class Auth extends Component {
 }
 
 Auth = reduxForm({
-  form: "authForm"
+  form: "authForm",
 })(Auth);
-const mapStateToProps = state => ({ auth: state.auth });
-const mapDispatchToProps = dispatch =>
+const mapStateToProps = (state) => ({ auth: state.auth });
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ login, signup, forgot }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Auth);

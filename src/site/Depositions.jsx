@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./Depositions.css";
+import { urls } from "../services/utils";
 import Grid from "../component/Grid/Grid";
-import Banner from "../assets/img/banner-inicial-4.png";
+// import Banner from "../assets/img/banner-inicial-4.png";
 
 export default class Depositions extends Component {
   render() {
@@ -15,11 +16,14 @@ export default class Depositions extends Component {
         <div className="top-content">
           <div className="container-fluid">
             <div className="carrousel slide">
-              <div className="carrousel-inner">
-                <Grid cols="3 3 3 3 3" className="carrousel-item">
-                  {/* <div className="carrousel-item col-3"> */}
-                  <div className="card mb-2">
-                    <img src={Banner} alt="img1" className="car-img-top" />
+              <div className="carrousel-inner flex-wrap">
+                <Grid cols="10 10 6 4 3" className="carrousel-item">
+                  <div className="card mb-5">
+                    <img
+                      src={`${urls.BASE_URL}/depositions/0/img`}
+                      alt="img1"
+                      className="car-img-top"
+                    />
                     <div className="card-body">
                       <h4 className="card-title">
                         Casamento de Fulano e Ciclano
@@ -27,11 +31,14 @@ export default class Depositions extends Component {
                       <p className="card-text">Maravilhoso</p>
                     </div>
                   </div>
-                  {/* </div> */}
                 </Grid>
-                <div className="carrousel-item col-3">
-                  <div className="card mb-2">
-                    <img src={Banner} alt="img1" className="car-img-top" />
+                <Grid cols="10 10 6 4 3" className="carrousel-item">
+                  <div className="card mb-5">
+                    <img
+                      src={`${urls.BASE_URL}/depositions/0/img`}
+                      alt="img1"
+                      className="car-img-top"
+                    />
                     <div className="card-body">
                       <h4 className="card-title">
                         Casamento de Amélia e Francisco
@@ -39,19 +46,27 @@ export default class Depositions extends Component {
                       <p className="card-text">Adorei a tudo</p>
                     </div>
                   </div>
-                </div>
-                <div className="carrousel-item  col-3">
-                  <div className="card  mb-2">
-                    <img src={Banner} alt="img1" className="car-img-top" />
+                </Grid>
+                <Grid cols="10 10 6 4 3" className="carrousel-item">
+                  <div className="card  mb-5">
+                    <img
+                      src={`${urls.BASE_URL}/depositions/0/img`}
+                      alt="img1"
+                      className="car-img-top"
+                    />
                     <div className="card-body">
                       <h4 className="card-title">Casamento de Maria e João</h4>
                       <p className="card-text">Superou minhas expectativas</p>
                     </div>
                   </div>
-                </div>
-                <div className="carrousel-item  col-3">
-                  <div className="card mb-2">
-                    <img src={Banner} alt="img1" className="car-img-top" />
+                </Grid>
+                <Grid cols="10 10 6 4 3" className="carrousel-item">
+                  <div className="card mb-5">
+                    <img
+                      src={`${urls.BASE_URL}/depositions/0/img`}
+                      alt="img1"
+                      className="car-img-top"
+                    />
                     <div className="card-body">
                       <h4 className="card-title">
                         Casamento de Maria e Marisa
@@ -59,7 +74,7 @@ export default class Depositions extends Component {
                       <p className="card-text">Melhor impossível</p>
                     </div>
                   </div>
-                </div>
+                </Grid>
               </div>
             </div>
           </div>
