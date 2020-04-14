@@ -9,7 +9,7 @@ import { minValue1 } from "../AdminValidate";
 class TasksForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { isEventOnly: false, search: { ...props.search } };
+    this.state = { search: { ...props.search } };
     this.backPage = this.backPage.bind(this);
     this.renderField = this.renderField.bind(this);
     this.renderSelectField = this.renderSelectField.bind(this);

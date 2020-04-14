@@ -9,7 +9,7 @@ import "./Site.css";
 import HeaderSite from "./HeaderSite";
 import BannerBody from "./BannerBody";
 import Plans from "./Plans";
-import Depositions from "./Depositions";
+import DepositionsSite from "./DepositionsSite";
 import Team from "./Team";
 import Doubts from "./Doubts";
 import FooterSite from "./FooterSite";
@@ -45,7 +45,7 @@ class Site extends Component {
         />
         <div className="main main-raised">
           <Plans />
-          <Depositions />
+          <DepositionsSite />
           <Team />
           <Doubts />
         </div>

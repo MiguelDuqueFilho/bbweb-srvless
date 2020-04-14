@@ -3,15 +3,15 @@ import { reduxForm, Field, change } from "redux-form";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { init } from "../Downloads/DownloadsAction";
+import { init, initForm } from "../Depositions/DepositionsAction";
 import { getPdf } from "../Uploads/UploadsAction";
 import Modal from "../../component/Modal/Modal";
 import UploadsSearch from "../Uploads/UploadsSearch";
 
-class DownloadsForm extends Component {
+class DepositionsForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { show: false };
+    this.state = { show: false, search: { ...props.search } };
     this.backPage = this.backPage.bind(this);
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
@@ -19,25 +19,37 @@ class DownloadsForm extends Component {
     this.getFileUpload = this.getFileUpload.bind(this);
   }
 
-  componentDidUpdate() {
-    if (this.props.fileUploadSelectPdf !== null) {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.search.eventSelected !== this.props.search.eventSelected) {
+      this.setState({ search: { ...this.props.search } });
+      this.props.initForm(this.props.search);
+    }
+    if (this.props.fileUploadSelectImg !== null) {
       const fileSelect =
-        this.getFileUpload(this.props.fileUploadSelectPdf) || [];
+        this.getFileUpload(this.props.fileUploadSelectImg) || [];
+      console.log("fileSelect >>>>>>");
+      console.log(fileSelect);
       const { dispatch } = this.props;
       dispatch(
-        change("DownloadsForm", "downloadFilename", fileSelect["0"].fileName)
+        change(
+          "DepositionsForm",
+          "depositionFilename",
+          fileSelect["0"].fileName
+        )
       );
-      dispatch(change("DownloadsForm", "downloadUploadId", fileSelect["0"].id));
+      dispatch(
+        change("DepositionsForm", "depositionUploadId", fileSelect["0"].id)
+      );
     }
   }
 
   getFileUpload = (fileSelected) =>
-    this.props.listUploadsPdf.filter(
+    this.props.listUploadsImg.filter(
       (file) => parseInt(file.id) === parseInt(fileSelected)
     );
 
   backPage() {
-    this.props.init(this.props.listDownloadsAll.page);
+    this.props.init(this.props.listDepositionsAll.page, this.props.search);
   }
 
   showModal = (event) => {
@@ -73,13 +85,38 @@ class DownloadsForm extends Component {
                     name="id"
                     hidden={true}
                   />
-                  <div className="col-sm-8  form-group">
-                    <label htmlFor="downloadTitle">Titulo</label>
+                </div>
+                <div className="form-row">
+                  <div className="col-1 col-sm-1 col-md-1 form-group">
+                    <label htmlFor="eventId"># Evento</label>
+                    <Field
+                      className="form-control"
+                      component="input"
+                      type="number"
+                      name="eventId"
+                      readOnly={true}
+                    />
+                  </div>
+                  <div className="col-6 col-sm-6 col-md-6 form-group">
+                    <label htmlFor="Events[0]['eventName']">
+                      Nome do Evento
+                    </label>
                     <Field
                       className="form-control"
                       component="input"
                       type="text"
-                      name="downloadTitle"
+                      name="Events[0]['eventName']"
+                      readOnly={true}
+                    />
+                  </div>
+
+                  <div className="col-sm-8  form-group">
+                    <label htmlFor="depositionTitle">Titulo</label>
+                    <Field
+                      className="form-control"
+                      component="input"
+                      type="text"
+                      name="depositionTitle"
                       placeholder="Digite o Titulo"
                       readOnly={readOnly}
                     />
@@ -87,12 +124,12 @@ class DownloadsForm extends Component {
                 </div>
                 <div className="form-row">
                   <div className="col-12 form-group">
-                    <label htmlFor="downloadDescription">Descrição</label>
+                    <label htmlFor="depositionDescription">Descrição</label>
                     <Field
                       className="form-control"
-                      component="input"
+                      component="textarea"
                       type="text"
-                      name="downloadDescription"
+                      name="depositionDescription"
                       placeholder="Digite a descrição"
                       readOnly={readOnly}
                     />
@@ -100,17 +137,17 @@ class DownloadsForm extends Component {
                 </div>
 
                 <Modal show={this.state.show} handleClose={this.hideModal}>
-                  <UploadsSearch closeModal={this.closeModal} type="pdf" />
+                  <UploadsSearch closeModal={this.closeModal} type="img" />
                 </Modal>
 
                 <div className="form-row">
                   <div className="col-3 col-sm-3 col-md-3 form-group">
-                    <label htmlFor="downloadUploadId">Id do Upload</label>
+                    <label htmlFor="depositionUploadId">Id do Upload</label>
                     <Field
                       className="form-control"
                       component="input"
                       type="number"
-                      name="downloadUploadId"
+                      name="depositionUploadId"
                       readOnly={true}
                     />
                     <button
@@ -122,24 +159,24 @@ class DownloadsForm extends Component {
                     </button>
                   </div>
                   <div className="col-9 col-sm-9 col-md-9 form-group">
-                    <label htmlFor="downloadFilename">Nome do arquivo</label>
+                    <label htmlFor="depositionFilename">Nome do arquivo</label>
                     <Field
                       className="form-control"
                       component="input"
                       type="text"
-                      name="downloadFilename"
+                      name="depositionFilename"
                       readOnly={true}
                     />
                   </div>
                 </div>
                 <div className="form-row">
                   <div className="col-8 col-sm-4 col-md-4  form-group">
-                    <label htmlFor="downloadShow">Mostrar no site</label>
+                    <label htmlFor="depositionShow">Mostrar no site</label>
                     <Field
                       className="form-control"
                       component="select"
                       type="select"
-                      name="downloadShow"
+                      name="depositionShow"
                       readOnly={readOnly}
                     >
                       <option defaultValue value={false}>
@@ -174,17 +211,18 @@ class DownloadsForm extends Component {
   }
 }
 
-DownloadsForm = reduxForm({
-  form: "DownloadsForm",
+DepositionsForm = reduxForm({
+  form: "DepositionsForm",
   destroyOnUnmount: false,
-})(DownloadsForm);
+})(DepositionsForm);
 
 const mapStateToProps = (state) => ({
-  listDownloadsAll: state.downloads.listDownloadsAll,
-  listUploadsPdf: state.uploads.listUploadsPdf,
-  fileUploadSelectPdf: state.downloads.fileUploadSelectPdf,
+  listDepositionsAll: state.depositions.listDepositionsAll,
+  listUploadsImg: state.uploads.listUploadsImg,
+  fileUploadSelectImg: state.depositions.fileUploadSelectImg,
+  search: state.app.search,
 });
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ init, getPdf }, dispatch);
+  bindActionCreators({ init, getPdf, initForm }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(DownloadsForm);
+export default connect(mapStateToProps, mapDispatchToProps)(DepositionsForm);

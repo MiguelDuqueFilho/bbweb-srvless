@@ -24,6 +24,14 @@ export async function getPdf() {
   };
 }
 
+export async function getImg() {
+  const request = await api.get(`/uploadstype/png`);
+  return {
+    type: "UPLOADS_GET_IMG_REQUEST",
+    payload: request.data.data,
+  };
+}
+
 export function update(values) {
   return submit(values, "put");
 }

@@ -10,6 +10,7 @@ import EventsReducer from "../Admin/Events/EventsReducer";
 import UsersReducer from "../Admin/Users/UsersReducer";
 import TabReducer from "../common/Tabs/tabReducer";
 import DownloadsReducer from "../Admin/Downloads/DownloadsReducer";
+import DepositionsReducer from "../Admin/Depositions/DepositionsReducer";
 import UploadsReducer from "../Admin/Uploads/UploadsReducer";
 import TasksReducer from "../Admin/Tasks/TasksReducer";
 
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   users: UsersReducer,
   form: formReducer,
   downloads: DownloadsReducer,
+  depositions: DepositionsReducer,
   uploads: UploadsReducer,
   toastr: toastrReducer,
 });

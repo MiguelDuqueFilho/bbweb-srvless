@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "./Uploads.css";
-import { getPdf } from "./UploadsAction";
-import { fileUpdateSelected } from "../Downloads/DownloadsAction";
+import { getPdf, getImg } from "./UploadsAction";
+import { fileUpdateSelectedPdf } from "../Downloads/DownloadsAction";
+import { fileUpdateSelectedImg } from "../Depositions/DepositionsAction";
 
 class UploadsSearch extends Component {
   constructor(props) {
@@ -13,18 +14,22 @@ class UploadsSearch extends Component {
   }
 
   componentDidMount() {
-    this.props.getPdf();
+    if (this.props.type === "img") this.props.getImg();
+    if (this.props.type === "pdf") this.props.getPdf();
   }
 
   setFilename(event) {
     event.preventDefault();
     const fileId = event.target.getAttribute("data-item");
-    this.props.fileUpdateSelected(fileId);
+    if (this.props.type === "img") this.props.fileUpdateSelectedImg(fileId);
+    if (this.props.type === "pdf") this.props.fileUpdateSelectedPdf(fileId);
     this.props.closeModal();
   }
 
   renderRows(props) {
-    const list = props.listUploadsPdf || [];
+    let list = [];
+    if (this.props.type === "img") list = props.listUploadsImg || [];
+    if (this.props.type === "pdf") list = props.listUploadsPdf || [];
 
     return list.map((file) => (
       <tr key={file.id}>
@@ -74,9 +79,14 @@ class UploadsSearch extends Component {
 
 const mapStateToProps = (state) => ({
   listUploadsPdf: state.uploads.listUploadsPdf,
-  fileUploadSelected: state.downloads.fileUploadSelected,
+  listUploadsImg: state.uploads.listUploadsImg,
+  fileUpdateSelectImg: state.depositions.fileUpdateSelectImg,
+  fileUploadSelectPdf: state.downloads.fileUploadSelectPdf,
 });
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ getPdf, fileUpdateSelected }, dispatch);
+  bindActionCreators(
+    { getPdf, getImg, fileUpdateSelectedPdf, fileUpdateSelectedImg },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(UploadsSearch);

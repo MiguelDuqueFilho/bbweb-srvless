@@ -3,26 +3,52 @@ import { toastr } from "react-redux-toastr";
 import { initialize } from "redux-form";
 import { showTabs, selectTab } from "../../common/Tabs/tabActions";
 import FileSaver from "file-saver";
+import { validSearch } from "../../services/utils";
 
-const INITIAL_VALUES = {
-  listDownloadsall: { docs: [], pages: 0, total: 0, page: 1 },
+// const INITIAL_VALUES = {
+//   listDepositionsall: { docs: [], pages: 0, total: 0, page: 1 },
+// };
+
+const INITIAL_SEARCH_VALUES = {
+  searchHeader: "",
+  eventSelected: {},
 };
 
-export async function getList(page = 1, limit = 9) {
-  const request = await api.get(`/downloads_all?page=${page}&limit=${limit}`);
-  return {
-    type: "DOWNLOAD_GET_ALL_FILES_REQUEST",
-    payload: request.data.data,
+export function getList(page = 1, searchFilter = INITIAL_SEARCH_VALUES) {
+  const limit = 8;
+  const validatedSearch = validSearch(searchFilter);
+
+  let params = { search: validatedSearch };
+
+  return (dispatch) => {
+    api
+      .get(`/depositions_all??page=${page}&limit=${limit}`, {
+        params,
+      })
+      .then((resp) => {
+        dispatch([
+          { type: "DEPOSITION_GET_ALL_FILES_REQUEST", payload: resp.data.data },
+        ]);
+      })
+      .catch((error) => {
+        if (error.response) {
+          toastr.error("Error", error.response.data.message);
+        } else if (error.request) {
+          toastr.error("Error", error.request);
+        } else {
+          toastr.error("Error", error.message);
+        }
+      });
   };
 }
 
-export const getDownloads = () => (dispatch) => {
+export const getDepositions = () => (dispatch) => {
   api
-    .get("/downloads")
+    .get("/depositions")
     .then((resp) => {
       dispatch([
         {
-          type: "DOWNLOAD_GET_FILES_REQUEST",
+          type: "DEPOSITION_GET_FILES_REQUEST",
           payload: resp.data.data,
         },
       ]);
@@ -53,7 +79,7 @@ export function remove(values) {
 export function submit(values, method) {
   return (dispatch) => {
     const id = values.id ? values.id : "";
-    api[method](`/downloads/${id}`, values)
+    api[method](`/depositions/${id}`, values)
       .then((resp) => {
         toastr.success("Sucesso", "Operação realizada com sucesso.");
         dispatch(init());
@@ -71,11 +97,11 @@ export function submit(values, method) {
   };
 }
 
-export function fileUpdateSelectedPdf(fileId) {
+export function fileUpdateSelectedImg(fileId) {
   return (dispatch) => {
     dispatch([
       {
-        type: "DOWNLOAD_SELECTED_FILES_UPLOAD",
+        type: "DEPOSITION_SELECTED_FILES_UPLOAD",
         payload: fileId,
       },
     ]);
@@ -86,7 +112,7 @@ export function showUpdate(file) {
   return [
     showTabs("tabUpdate"),
     selectTab("tabUpdate"),
-    initialize("DownloadsForm", file),
+    initialize("DepositionsForm", file),
   ];
 }
 
@@ -94,30 +120,51 @@ export function showDelete(file) {
   return [
     showTabs("tabDelete"),
     selectTab("tabDelete"),
-    initialize("DownloadsForm", file),
+    initialize("DepositionsForm", file),
   ];
 }
 
-export function init(page = 1) {
+export function init(page = 1, searchFilter = INITIAL_SEARCH_VALUES) {
+  const INITIAL_VALUES = {
+    eventId: searchFilter.eventSelected.id,
+    Events: {
+      0: {
+        eventName: searchFilter.eventSelected.eventName,
+      },
+    },
+  };
+
   return [
     showTabs("tabView", "tabList", "tabCreate"),
     selectTab("tabList"),
-    getList(page),
-    getDownloads(),
-    initialize("DownloadsForm", INITIAL_VALUES),
+    // getList(page),
+    // getDepositions(),
+    initialize("DepositionsForm", INITIAL_VALUES),
   ];
 }
 
-export const downloadFile = (fileId, fileName) => async (dispatch) => {
+export function initForm(searchFilter = INITIAL_SEARCH_VALUES) {
+  const INITIAL_VALUES = {
+    eventId: searchFilter.eventSelected.id,
+    Events: {
+      0: {
+        eventName: searchFilter.eventSelected.eventName,
+      },
+    },
+  };
+  return [initialize("DepositionsForm", INITIAL_VALUES)];
+}
+
+export const depositionFile = (fileId, fileName) => async (dispatch) => {
   try {
     dispatch({
-      type: "DOWNLOAD_FILE_REQUEST",
+      type: "DEPOSITION_FILE_REQUEST",
     });
 
     const {
       data,
       headers: { "content-type": fileType },
-    } = await api.get(`/downloads/${fileId}`, {
+    } = await api.get(`/depositions/${fileId}`, {
       responseType: "blob",
       timeout: 30000,
     });
@@ -129,12 +176,12 @@ export const downloadFile = (fileId, fileName) => async (dispatch) => {
     await FileSaver.saveAs(newFile, fileName);
 
     dispatch({
-      type: "DOWNLOAD_FILE_SUCCESS",
+      type: "DEPOSITION_FILE_SUCCESS",
     });
     toastr.success("Sucesso", "Arquivo baixado com sucesso!");
   } catch (error) {
     dispatch({
-      type: "DOWNLOAD_FILE_ERROR",
+      type: "DEPOSITION_FILE_ERROR",
     });
 
     if (error.response) {

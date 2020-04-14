@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import "./Depositions.css";
+import "./DepositionsSite.css";
 import { urls } from "../services/utils";
 import Grid from "../component/Grid/Grid";
 // import Banner from "../assets/img/banner-inicial-4.png";
 
-export default class Depositions extends Component {
+export default class DepositionsSite extends Component {
   render() {
     return (
       <div className="section text-center">
@@ -20,8 +20,8 @@ export default class Depositions extends Component {
                 <Grid cols="10 10 6 4 3" className="carrousel-item">
                   <div className="card mb-5">
                     <img
-                      src={`${urls.BASE_URL}/depositions/0/img`}
-                      alt="img1"
+                      src={`${urls.BASE_URL}/deposition/1/img`}
+                      alt="deposition_1"
                       className="car-img-top"
                     />
                     <div className="card-body">
@@ -35,8 +35,8 @@ export default class Depositions extends Component {
                 <Grid cols="10 10 6 4 3" className="carrousel-item">
                   <div className="card mb-5">
                     <img
-                      src={`${urls.BASE_URL}/depositions/0/img`}
-                      alt="img1"
+                      src={`${urls.BASE_URL}/deposition/2/img`}
+                      alt="deposition_2"
                       className="car-img-top"
                     />
                     <div className="card-body">
@@ -50,8 +50,8 @@ export default class Depositions extends Component {
                 <Grid cols="10 10 6 4 3" className="carrousel-item">
                   <div className="card  mb-5">
                     <img
-                      src={`${urls.BASE_URL}/depositions/0/img`}
-                      alt="img1"
+                      src={`${urls.BASE_URL}/deposition/3/img`}
+                      alt="deposition_3"
                       className="car-img-top"
                     />
                     <div className="card-body">
@@ -63,8 +63,8 @@ export default class Depositions extends Component {
                 <Grid cols="10 10 6 4 3" className="carrousel-item">
                   <div className="card mb-5">
                     <img
-                      src={`${urls.BASE_URL}/depositions/0/img`}
-                      alt="img1"
+                      src={`${urls.BASE_URL}/deposition/4/img`}
+                      alt="deposition_4"
                       className="car-img-top"
                     />
                     <div className="card-body">
