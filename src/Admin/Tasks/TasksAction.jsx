@@ -89,6 +89,7 @@ export function showDelete(tasks) {
 
 export function init(page = 1, searchFilter = INITIAL_SEARCH_VALUES) {
   const INITIAL_VALUES = {
+    listTasks: { docs: [], pages: 0, total: 0, page: 1 },
     eventId: searchFilter.eventSelected.id,
     Events: {
       0: {

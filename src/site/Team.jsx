@@ -20,17 +20,17 @@ export default class Team extends Component {
                       className="img-raised rounded-circle img-fluid"
                     />
                   </Grid>
-                  <div className="card-title">Bruna Duque</div>
+                  <div className="card-title mt-3">Bruna Duque</div>
                   <small className="card-description ">Publicitária</small>
                   <div className="card-footer justify-content-center bg-white ">
+                    <a href="/#" className="btn btn-link btn-just-icon">
+                      <i className="fa fa-facebook-square"></i>
+                    </a>
                     <a
                       href="https://instagram.com/bruduque_?igshid=1r3q8i736iuu"
                       className="btn btn-link btn-just-icon"
                     >
                       <i className="fa fa-instagram"></i>
-                    </a>
-                    <a href="/#" className="btn btn-link btn-just-icon">
-                      <i className="fa fa-facebook-square"></i>
                     </a>
                   </div>
                 </div>
@@ -46,16 +46,16 @@ export default class Team extends Component {
                       className="img-raised rounded-circle img-fluid"
                     />
                   </Grid>
-                  <div className="card-title">Tamires</div>
+                  <div className="card-title mt-3">Tamires</div>
                   <small className="card-description text-muted">
                     Assessoria
                   </small>
                   <div className="card-footer justify-content-center bg-white ">
                     <a href="/#" className="btn btn-link btn-just-icon">
-                      <i className="fa fa-instagram"></i>
+                      <i className="fa fa-facebook-square"></i>
                     </a>
                     <a href="/#" className="btn btn-link btn-just-icon">
-                      <i className="fa fa-facebook-square"></i>
+                      <i className="fa fa-instagram"></i>
                     </a>
                   </div>
                 </div>

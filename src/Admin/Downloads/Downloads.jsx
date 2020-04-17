@@ -31,13 +31,16 @@ class Downloads extends Component {
         <Content>
           <Tabs>
             <TabsHeader>
+              <TabHeader label="Visão" icon="download" target="tabView" />
               <TabHeader label="Listar" icon="bars" target="tabList" />
               <TabHeader label="Incluir" icon="plus" target="tabCreate" />
-              <TabHeader label="Visão" icon="download" target="tabView" />
               <TabHeader label="Alterar" icon="pencil" target="tabUpdate" />
               <TabHeader label="Excluir" icon="trash-o" target="tabDelete" />
             </TabsHeader>
             <TabsContent>
+              <TabContent id="tabView">
+                <DownloadsCard />
+              </TabContent>
               <TabContent id="tabList">
                 <DownloadsList />
               </TabContent>
@@ -48,9 +51,6 @@ class Downloads extends Component {
                   submitLabel="Incluir"
                   submitClass="primary"
                 />
-              </TabContent>
-              <TabContent id="tabView">
-                <DownloadsCard />
               </TabContent>
               <TabContent id="tabUpdate">
                 <DownloadsForm

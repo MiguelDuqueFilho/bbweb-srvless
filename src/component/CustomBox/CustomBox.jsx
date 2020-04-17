@@ -1,5 +1,4 @@
 import React from "react";
-import "./CustomBox.css";
 import Grid from "../Grid/Grid";
 import If from "../../common/operator/if";
 
@@ -8,9 +7,9 @@ export default function CustomBox(props) {
     <Grid cols={props.cols} className={props.className}>
       <div className={`card bg-${props.cols}`}>
         <div className="card-body">
-          <div className="icon">
+          <div className={`icon `}>
             <h5 className="card-title">
-              <i className={`mr-2 fa fa-${props.icon}`}></i>
+              <i className={`mr-2 fa fa-${props.icon} text-${props.color}`}></i>
               <span>{props.value}</span>
             </h5>
           </div>

@@ -1,10 +1,41 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import "./DepositionsSite.css";
+import { getDepositionsShow } from "./SiteAction";
 import { urls } from "../services/utils";
 import Grid from "../component/Grid/Grid";
-// import Banner from "../assets/img/banner-inicial-4.png";
 
-export default class DepositionsSite extends Component {
+class DepositionsSite extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      timestamp: new Date().getTime(),
+    };
+  }
+  componentDidMount() {
+    this.props.getDepositionsShow();
+  }
+  renderRows() {
+    const list = this.props.site.siteDepositions || [];
+
+    return list.map((list) => (
+      <Grid key={list.id} cols="10 10 6 4 3" className="carrousel-item">
+        <div className="card mb-5">
+          <img
+            src={`${urls.BASE_URL}/deposition/${list.id}/img?v=${this.state.timestamp}`}
+            alt="deposition"
+          />
+          <div className="card-body">
+            <h4 className="card-title">{list.Events[0]["eventName"]}</h4>
+            <h5 className="card-title">{list.depositionTitle}</h5>
+            <p className="card-text">{list.depositionDescription}</p>
+          </div>
+        </div>
+      </Grid>
+    ));
+  }
+
   render() {
     return (
       <div className="section text-center">
@@ -17,64 +48,7 @@ export default class DepositionsSite extends Component {
           <div className="container-fluid">
             <div className="carrousel slide">
               <div className="carrousel-inner flex-wrap">
-                <Grid cols="10 10 6 4 3" className="carrousel-item">
-                  <div className="card mb-5">
-                    <img
-                      src={`${urls.BASE_URL}/deposition/1/img`}
-                      alt="deposition_1"
-                      className="car-img-top"
-                    />
-                    <div className="card-body">
-                      <h4 className="card-title">
-                        Casamento de Fulano e Ciclano
-                      </h4>
-                      <p className="card-text">Maravilhoso</p>
-                    </div>
-                  </div>
-                </Grid>
-                <Grid cols="10 10 6 4 3" className="carrousel-item">
-                  <div className="card mb-5">
-                    <img
-                      src={`${urls.BASE_URL}/deposition/2/img`}
-                      alt="deposition_2"
-                      className="car-img-top"
-                    />
-                    <div className="card-body">
-                      <h4 className="card-title">
-                        Casamento de Amélia e Francisco
-                      </h4>
-                      <p className="card-text">Adorei a tudo</p>
-                    </div>
-                  </div>
-                </Grid>
-                <Grid cols="10 10 6 4 3" className="carrousel-item">
-                  <div className="card  mb-5">
-                    <img
-                      src={`${urls.BASE_URL}/deposition/3/img`}
-                      alt="deposition_3"
-                      className="car-img-top"
-                    />
-                    <div className="card-body">
-                      <h4 className="card-title">Casamento de Maria e João</h4>
-                      <p className="card-text">Superou minhas expectativas</p>
-                    </div>
-                  </div>
-                </Grid>
-                <Grid cols="10 10 6 4 3" className="carrousel-item">
-                  <div className="card mb-5">
-                    <img
-                      src={`${urls.BASE_URL}/deposition/4/img`}
-                      alt="deposition_4"
-                      className="car-img-top"
-                    />
-                    <div className="card-body">
-                      <h4 className="card-title">
-                        Casamento de Maria e Marisa
-                      </h4>
-                      <p className="card-text">Melhor impossível</p>
-                    </div>
-                  </div>
-                </Grid>
+                {this.renderRows()}
               </div>
             </div>
           </div>
@@ -83,3 +57,8 @@ export default class DepositionsSite extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({ site: state.site });
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ getDepositionsShow }, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(DepositionsSite);

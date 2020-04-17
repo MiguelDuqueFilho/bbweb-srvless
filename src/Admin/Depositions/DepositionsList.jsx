@@ -16,6 +16,7 @@ class DepositionsList extends Component {
 
   componentDidMount() {
     this.props.getList(1, this.props.search);
+    this.setState({ search: { ...this.props.search } });
   }
   componentDidUpdate(prevProps, prevState) {
     if (
@@ -37,8 +38,8 @@ class DepositionsList extends Component {
     return list.map((file) => (
       <tr key={file.id}>
         <td className="td-custom">{file.id}</td>
+        <td className="td-custom">{file.Events[0]["eventName"]}</td>
         <td className="td-custom">{file.depositionTitle}</td>
-        {/* <td className="td-custom">{file.depositionDescription}</td> */}
         <td className="td-custom">{file.depositionShow ? "Sim" : "Não"}</td>
         <td className="td-actions">
           <button
@@ -72,8 +73,8 @@ class DepositionsList extends Component {
                 <thead>
                   <tr>
                     <th className="th-custom w-5">#</th>
+                    <th className="th-custom w-30">Evento</th>
                     <th className="th-custom w-40">Titulo</th>
-                    {/* <th className="th-custom w-30">Descrição</th> */}
                     <th className="th-custom w-10">Site</th>
                     <th className="th-actions w-15">Ações</th>
                   </tr>

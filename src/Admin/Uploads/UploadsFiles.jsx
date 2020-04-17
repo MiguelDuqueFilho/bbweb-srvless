@@ -40,6 +40,7 @@ class Upload extends Component {
     });
     try {
       await Promise.all(promises);
+
       this.setState({ successfullUploaded: true, uploading: false });
     } catch (e) {
       // Not Production ready! Do some error handling here instead...

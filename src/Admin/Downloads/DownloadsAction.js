@@ -56,6 +56,7 @@ export function submit(values, method) {
     api[method](`/downloads/${id}`, values)
       .then((resp) => {
         toastr.success("Sucesso", "Operação realizada com sucesso.");
+        fileUpdateSelectedPdf(null);
         dispatch(init());
       })
       .catch((e) => {

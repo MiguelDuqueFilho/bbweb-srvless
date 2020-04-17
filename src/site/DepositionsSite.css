@@ -2,9 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: baseline;
+  margin-top: 20px;
 }
 
 .top-content .carrousel-inner img {
-  height: 80%;
-  width: 100%;
+  max-height: 250px;
+  width: auto;
 }

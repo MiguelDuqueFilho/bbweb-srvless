@@ -8,8 +8,8 @@ export function sendemail(values) {
 export function getTypes(values) {
   return submit(values, "/eventtypes", "EVENTTYPES_FETCHED");
 }
-export function getStatus(values) {
-  return submit(values, "/eventstatus", "EVENTSTATUS_FETCHED");
+export function getDepositionsShow(values) {
+  return submit(values, "/depositions", "DEPOSITIONS_SITE_FETCHED");
 }
 
 function submitEmail(values, url) {

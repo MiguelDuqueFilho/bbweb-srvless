@@ -12,12 +12,6 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, listDepositions: action.payload };
     case "DEPOSITION_SELECTED_FILES_UPLOAD":
       return { ...state, fileUploadSelectImg: action.payload };
-    case "DEPOSITION_FILE_REQUEST":
-      return state;
-    case "DEPOSITION_FILE_SUCCESS":
-      return state;
-    case "DEPOSITION_FILE_ERROR":
-      return state;
     default:
       return state;
   }

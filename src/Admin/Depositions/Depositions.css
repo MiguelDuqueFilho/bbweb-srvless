@@ -1,15 +1,83 @@
+.deposition-rows {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+}
+
 div.card-deposition {
+  height: auto;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.card-deposition .deposition-actions {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 10px;
+  align-items: center;
+  padding-right: 5%;
+  padding-left: 5%;
 }
 
-.content-view .card,
 .card-deposition .card {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.14), 0 6px 3px -1px rgba(0, 0, 0, 0.2),
     0 1px 5px 0 rgba(0, 0, 0, 0.12);
-  margin-bottom: 10px;
+  margin: 5px;
+  overflow: hidden;
+}
+
+.card-hearder-deposition {
+  text-align: justify;
+  position: relative;
+}
+
+.card-header-deposition img {
+  max-height: 250px;
+  width: 100%;
+}
+
+.card-deposition .card .card-body-deposition {
+  text-align: justify;
+  position: relative;
+  padding: 5%;
+}
+
+.card-body-deposition .icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: first baseline;
+  align-content: center;
+}
+
+.card-deposition .card i {
+  font-size: 1.4em;
+  margin-right: 10px;
+  font-weight: 500;
+  position: absolute;
+  padding: 10px;
+}
+
+.card-body-deposition .card-title {
+  color: var(--title-color);
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.5em;
+  text-align: center;
+}
+.card-body-deposition .card-subtitle {
+  color: var(--title-color);
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.5em;
+  text-align: center;
+}
+
+.card-body-deposition .card-text {
+  font-weight: 100;
+  font-size: 0.9em;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .w-5 {

@@ -3,7 +3,11 @@ import { reduxForm, Field, change } from "redux-form";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { init, initForm } from "../Depositions/DepositionsAction";
+import {
+  init,
+  initForm,
+  fileUpdateSelectedImg,
+} from "../Depositions/DepositionsAction";
 import { getPdf } from "../Uploads/UploadsAction";
 import Modal from "../../component/Modal/Modal";
 import UploadsSearch from "../Uploads/UploadsSearch";
@@ -27,8 +31,6 @@ class DepositionsForm extends Component {
     if (this.props.fileUploadSelectImg !== null) {
       const fileSelect =
         this.getFileUpload(this.props.fileUploadSelectImg) || [];
-      console.log("fileSelect >>>>>>");
-      console.log(fileSelect);
       const { dispatch } = this.props;
       dispatch(
         change(
@@ -37,9 +39,7 @@ class DepositionsForm extends Component {
           fileSelect["0"].fileName
         )
       );
-      dispatch(
-        change("DepositionsForm", "depositionUploadId", fileSelect["0"].id)
-      );
+      dispatch(change("DepositionsForm", "uploadId", fileSelect["0"].id));
     }
   }
 
@@ -50,6 +50,7 @@ class DepositionsForm extends Component {
 
   backPage() {
     this.props.init(this.props.listDepositionsAll.page, this.props.search);
+    this.props.fileUpdateSelectedImg(null);
   }
 
   showModal = (event) => {
@@ -142,12 +143,12 @@ class DepositionsForm extends Component {
 
                 <div className="form-row">
                   <div className="col-3 col-sm-3 col-md-3 form-group">
-                    <label htmlFor="depositionUploadId">Id do Upload</label>
+                    <label htmlFor="uploadId">Id da imagem</label>
                     <Field
                       className="form-control"
                       component="input"
                       type="number"
-                      name="depositionUploadId"
+                      name="uploadId"
                       readOnly={true}
                     />
                     <button
@@ -155,11 +156,11 @@ class DepositionsForm extends Component {
                       className="btn btn-primary mt-2"
                       onClick={this.showModal}
                     >
-                      Pesquisa Arquivos
+                      Pesquisa imagem
                     </button>
                   </div>
                   <div className="col-9 col-sm-9 col-md-9 form-group">
-                    <label htmlFor="depositionFilename">Nome do arquivo</label>
+                    <label htmlFor="depositionFilename">Nome da imagem</label>
                     <Field
                       className="form-control"
                       component="input"
@@ -179,9 +180,10 @@ class DepositionsForm extends Component {
                       name="depositionShow"
                       readOnly={readOnly}
                     >
-                      <option defaultValue value={false}>
-                        Não
+                      <option defaultValue value={""}>
+                        Selecione mostrar imagem
                       </option>
+                      <option value={false}>Não</option>
                       <option value={true}>Sim</option>
                     </Field>
                   </div>
@@ -223,6 +225,9 @@ const mapStateToProps = (state) => ({
   search: state.app.search,
 });
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ init, getPdf, initForm }, dispatch);
+  bindActionCreators(
+    { init, getPdf, initForm, fileUpdateSelectedImg },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(DepositionsForm);

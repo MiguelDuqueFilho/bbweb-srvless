@@ -1,5 +1,7 @@
 const INITIAL_STATE = {
-  sendemail: false
+  sendemail: false,
+  eventTypes: [],
+  siteDepositions: [],
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -8,8 +10,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, sendemail: true };
     case "EVENTTYPES_FETCHED":
       return { ...state, eventTypes: action.payload };
-    case "EVENTSTATUS_FETCHED":
-      return { ...state, eventStatus: action.payload };
+    case "DEPOSITIONS_SITE_FETCHED":
+      return { ...state, siteDepositions: action.payload };
     default:
       return state;
   }

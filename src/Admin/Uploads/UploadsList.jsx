@@ -7,6 +7,12 @@ import "./Uploads.css";
 import { getList, showUpdate, showDelete } from "./UploadsAction";
 
 class UploadsList extends Component {
+  constructor(props) {
+    super(props);
+    this.handlePageClick = this.handlePageClick.bind(this);
+    this.renderRows = this.renderRows.bind(this);
+  }
+
   handlePageClick = (page) => {
     this.props.getList(page);
   };

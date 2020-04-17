@@ -31,13 +31,16 @@ class Depositions extends Component {
         <Content>
           <Tabs>
             <TabsHeader>
+              <TabHeader label="Visão" icon="star" target="tabView" />
               <TabHeader label="Listar" icon="bars" target="tabList" />
               <TabHeader label="Incluir" icon="plus" target="tabCreate" />
-              <TabHeader label="Visão" icon="star" target="tabView" />
               <TabHeader label="Alterar" icon="pencil" target="tabUpdate" />
               <TabHeader label="Excluir" icon="trash-o" target="tabDelete" />
             </TabsHeader>
             <TabsContent>
+              <TabContent id="tabView">
+                <DepositionsCard />
+              </TabContent>
               <TabContent id="tabList">
                 <DepositionsList />
               </TabContent>
@@ -48,9 +51,6 @@ class Depositions extends Component {
                   submitLabel="Incluir"
                   submitClass="primary"
                 />
-              </TabContent>
-              <TabContent id="tabView">
-                <DepositionsCard />
               </TabContent>
               <TabContent id="tabUpdate">
                 <DepositionsForm
@@ -87,5 +87,7 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-
-export default connect(null, mapDispatchToProps)(Depositions);
+const mapStateToProps = (state) => ({
+  search: state.app.search,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Depositions);

@@ -27,6 +27,7 @@ class TasksTimeline extends Component {
 
   componentDidMount() {
     this.props.getList(1, this.props.search);
+    this.setState({ search: { ...this.props.search } });
   }
   componentDidUpdate(prevProps, prevState) {
     if (

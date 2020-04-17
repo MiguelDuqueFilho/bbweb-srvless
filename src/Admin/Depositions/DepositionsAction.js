@@ -2,12 +2,7 @@ import api from "../../services/api";
 import { toastr } from "react-redux-toastr";
 import { initialize } from "redux-form";
 import { showTabs, selectTab } from "../../common/Tabs/tabActions";
-import FileSaver from "file-saver";
 import { validSearch } from "../../services/utils";
-
-// const INITIAL_VALUES = {
-//   listDepositionsall: { docs: [], pages: 0, total: 0, page: 1 },
-// };
 
 const INITIAL_SEARCH_VALUES = {
   searchHeader: "",
@@ -22,7 +17,7 @@ export function getList(page = 1, searchFilter = INITIAL_SEARCH_VALUES) {
 
   return (dispatch) => {
     api
-      .get(`/depositions_all??page=${page}&limit=${limit}`, {
+      .get(`/depositions_all?page=${page}&limit=${limit}`, {
         params,
       })
       .then((resp) => {
@@ -82,6 +77,7 @@ export function submit(values, method) {
     api[method](`/depositions/${id}`, values)
       .then((resp) => {
         toastr.success("Sucesso", "Operação realizada com sucesso.");
+        fileUpdateSelectedImg(null);
         dispatch(init());
       })
       .catch((e) => {
@@ -109,6 +105,7 @@ export function fileUpdateSelectedImg(fileId) {
 }
 
 export function showUpdate(file) {
+  fileUpdateSelectedImg(null);
   return [
     showTabs("tabUpdate"),
     selectTab("tabUpdate"),
@@ -117,6 +114,7 @@ export function showUpdate(file) {
 }
 
 export function showDelete(file) {
+  fileUpdateSelectedImg(null);
   return [
     showTabs("tabDelete"),
     selectTab("tabDelete"),
@@ -126,19 +124,21 @@ export function showDelete(file) {
 
 export function init(page = 1, searchFilter = INITIAL_SEARCH_VALUES) {
   const INITIAL_VALUES = {
+    listDownloadsall: { docs: [], pages: 0, total: 0, page: 1 },
     eventId: searchFilter.eventSelected.id,
     Events: {
       0: {
         eventName: searchFilter.eventSelected.eventName,
       },
     },
+    uploadId: null,
+    depositionFilename: "",
   };
-
+  fileUpdateSelectedImg(null);
   return [
     showTabs("tabView", "tabList", "tabCreate"),
     selectTab("tabList"),
-    // getList(page),
-    // getDepositions(),
+    // getList(page, searchFilter),
     initialize("DepositionsForm", INITIAL_VALUES),
   ];
 }
@@ -154,41 +154,3 @@ export function initForm(searchFilter = INITIAL_SEARCH_VALUES) {
   };
   return [initialize("DepositionsForm", INITIAL_VALUES)];
 }
-
-export const depositionFile = (fileId, fileName) => async (dispatch) => {
-  try {
-    dispatch({
-      type: "DEPOSITION_FILE_REQUEST",
-    });
-
-    const {
-      data,
-      headers: { "content-type": fileType },
-    } = await api.get(`/depositions/${fileId}`, {
-      responseType: "blob",
-      timeout: 30000,
-    });
-
-    const newFile = new File([data], fileName, {
-      type: fileType,
-    });
-
-    await FileSaver.saveAs(newFile, fileName);
-
-    dispatch({
-      type: "DEPOSITION_FILE_SUCCESS",
-    });
-    toastr.success("Sucesso", "Arquivo baixado com sucesso!");
-  } catch (error) {
-    dispatch({
-      type: "DEPOSITION_FILE_ERROR",
-    });
-
-    if (error.response) {
-      toastr.error("Erro", error.response.data.message);
-      alert(error.response.data.message);
-    } else {
-      toastr.error("Erro", "Ocorreu um erro ao baixar este arquivo");
-    }
-  }
-};

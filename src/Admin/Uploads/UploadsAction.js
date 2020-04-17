@@ -25,7 +25,7 @@ export async function getPdf() {
 }
 
 export async function getImg() {
-  const request = await api.get(`/uploadstype/png`);
+  const request = await api.get(`/uploadstype/img`);
   return {
     type: "UPLOADS_GET_IMG_REQUEST",
     payload: request.data.data,

@@ -3,7 +3,7 @@ import { reduxForm, Field, change } from "redux-form";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { init } from "../Downloads/DownloadsAction";
+import { init, fileUpdateSelectedPdf } from "../Downloads/DownloadsAction";
 import { getPdf } from "../Uploads/UploadsAction";
 import Modal from "../../component/Modal/Modal";
 import UploadsSearch from "../Uploads/UploadsSearch";
@@ -38,6 +38,7 @@ class DownloadsForm extends Component {
 
   backPage() {
     this.props.init(this.props.listDownloadsAll.page);
+    this.props.fileUpdateSelectedPdf(null);
   }
 
   showModal = (event) => {
@@ -185,6 +186,6 @@ const mapStateToProps = (state) => ({
   fileUploadSelectPdf: state.downloads.fileUploadSelectPdf,
 });
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ init, getPdf }, dispatch);
+  bindActionCreators({ init, getPdf, fileUpdateSelectedPdf }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(DownloadsForm);
