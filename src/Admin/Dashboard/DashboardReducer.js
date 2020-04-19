@@ -1,9 +1,13 @@
-const INITIAL_STATE = { summary: { credit: 0, debt: 0 } };
+const INITIAL_STATE = {
+  summary: {
+    taskSummary: {},
+  },
+};
 
-export default function(state = INITIAL_STATE, action) {
+export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
-    case "BILLING_SUMMARY_FETCHED":
-      return { ...state, summary: action.payload.data };
+    case "DASHBOARD_SUMMARY_FETCHED":
+      return { ...state, summary: action.payload };
     default:
       return state;
   }

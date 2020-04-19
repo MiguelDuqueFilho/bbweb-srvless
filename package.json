@@ -14,6 +14,7 @@
     "rc-pagination": "^2.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-google-charts": "^3.0.15",
     "react-icons": "^3.9.0",
     "react-parallax": "^3.0.3",
     "react-redux": "^7.1.3",

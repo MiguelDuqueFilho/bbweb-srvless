@@ -31,8 +31,8 @@ class Depositions extends Component {
         <Content>
           <Tabs>
             <TabsHeader>
-              <TabHeader label="Visão" icon="star" target="tabView" />
               <TabHeader label="Listar" icon="bars" target="tabList" />
+              <TabHeader label="Visão" icon="star" target="tabView" />
               <TabHeader label="Incluir" icon="plus" target="tabCreate" />
               <TabHeader label="Alterar" icon="pencil" target="tabUpdate" />
               <TabHeader label="Excluir" icon="trash-o" target="tabDelete" />

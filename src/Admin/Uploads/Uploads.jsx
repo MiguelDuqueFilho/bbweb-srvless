@@ -37,11 +37,11 @@ class Uploads extends Component {
               <TabHeader label="Excluir" icon="trash-o" target="tabDelete" />
             </TabsHeader>
             <TabsContent>
-              <TabContent id="tabList">
-                <UploadsList />
-              </TabContent>
               <TabContent id="tabFiles">
                 <UploadsFiles />
+              </TabContent>
+              <TabContent id="tabList">
+                <UploadsList />
               </TabContent>
               <TabContent id="tabUpdate">
                 <UploadsForm

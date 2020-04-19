@@ -1,9 +1,19 @@
 import api from "../../services/api";
+import { validSearch } from "../../services/utils";
 
-export function getSummary() {
-  const request = api.get("/dashboard");
+const INITIAL_SEARCH_VALUES = {
+  searchHeader: "",
+  eventSelected: {},
+};
+export async function getSummary(searchFilter = INITIAL_SEARCH_VALUES) {
+  const validatedSearch = validSearch(searchFilter);
+
+  let params = { search: validatedSearch };
+  const request = await api.get("/dashboard", {
+    params,
+  });
   return {
-    type: "BILLING_SUMMARY_FETCHED",
-    payload: request
+    type: "DASHBOARD_SUMMARY_FETCHED",
+    payload: request.data.data,
   };
 }

@@ -1,0 +1,13 @@
+.dashboard-charts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.dashboard-charts .dashboard-chart-item {
+  margin: 20px;
+
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.14), 0 6px 3px -1px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}

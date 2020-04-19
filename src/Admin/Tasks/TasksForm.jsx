@@ -237,6 +237,7 @@ class TasksForm extends Component {
                       <option value="2">Em dia</option>
                       <option value="3">Alerta</option>
                       <option value="4">Atrasada</option>
+                      <option value="5">Concluída</option>
                     </Field>
                   </Grid>
                   <Grid cols="12 6 3 3 3" className="form-group">
