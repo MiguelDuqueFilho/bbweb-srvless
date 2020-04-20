@@ -1,6 +1,9 @@
 const INITIAL_STATE = {
   summary: {
     taskSummary: {},
+    taskPercent: {},
+    dataTaskChat: [],
+    dataTaskPercent: [],
   },
 };
 

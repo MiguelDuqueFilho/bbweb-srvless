@@ -71,7 +71,6 @@ export function submit(values, method) {
 }
 
 export function showUpdate(tasks) {
-  console.log(tasks);
   return [
     showTabs("tabUpdate"),
     selectTab("tabUpdate"),

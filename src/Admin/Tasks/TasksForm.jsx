@@ -64,7 +64,7 @@ class TasksForm extends Component {
 
   render() {
     const { handleSubmit, readOnly } = this.props;
-    // console.log(this.props.eventSelected);
+
     return (
       <div className="row">
         <div className="col-12">

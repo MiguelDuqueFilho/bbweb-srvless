@@ -13,13 +13,6 @@ const INITIAL_SEARCH_VALUES = {
   eventSelected: {},
 };
 
-// export async function getList(page = 1, limit = 9) {
-//   const request = await api.get(`/events?page=${page}&limit=${limit}`);
-//   return {
-//     type: "EVENTS_LIST_FETCHED",
-//     payload: request.data.data,
-//   };
-// }
 export function getList(page = 1, searchFilter = INITIAL_SEARCH_VALUES) {
   const limit = 9;
   const validatedSearch = validSearch(searchFilter);

@@ -13,12 +13,15 @@ class EventsSearch extends Component {
     this.renderRows = this.renderRows.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.listEvents.total === 0) {
+      this.props.getList();
+    }
+  }
+
   handlePageClick = (page) => {
     this.props.getList(page);
   };
-  componentDidMount() {
-    this.props.getList(1);
-  }
 
   setEventSelect(event) {
     event.preventDefault();
@@ -34,6 +37,7 @@ class EventsSearch extends Component {
       <tr key={Event.id} className="tr-custom">
         <td className="td-custom">{Event.id}</td>
         <td className="td-custom">{Event.eventName}</td>
+        <td className="td-custom">{Event.EventStatus[0].eventStatusName}</td>
         <td className="td-actions">
           <button
             className={`btn btn-${
@@ -64,7 +68,8 @@ class EventsSearch extends Component {
             <thead>
               <tr className="tr-custom">
                 <th className="th-custom w-10">#</th>
-                <th className="th-custom w-40">Nome </th>
+                <th className="th-custom w-30">Nome </th>
+                <th className="th-custom w-15">Status</th>
                 <th className="th-actions w-15">selecionar</th>
               </tr>
             </thead>

@@ -14,9 +14,7 @@ class Dashboard extends Component {
     this.state = {
       search: { ...props.search },
       summary: props.summary,
-      dataTaskChat: [],
     };
-    this.renderTaskChart = this.renderTaskChart.bind(this);
   }
 
   componentDidMount() {
@@ -30,27 +28,8 @@ class Dashboard extends Component {
     }
 
     if (prevProps.summary !== this.props.summary) {
-      this.setState({ summary: { ...this.props.summary } });
-      this.renderTaskChart();
+      this.setState({ summary: this.props.summary });
     }
-  }
-
-  renderTaskChart() {
-    const { taskSummary } = this.props.summary || {};
-
-    let dataContent = Object.keys(taskSummary).map((key, index) => {
-      const keyItem = taskSummary[key]["TaskStatus.taskStatusName"];
-      const valueItem = taskSummary[key]["taskCount"];
-      let item = [keyItem, valueItem];
-
-      return item;
-    });
-
-    const data = [["Tarefas", "Quantidade de tarefas"], ...dataContent];
-
-    this.setState({ dataTaskChat: data });
-
-    return;
   }
 
   render() {
@@ -63,6 +42,110 @@ class Dashboard extends Component {
         />
         <Content>
           <div className="dashboard-charts">
+            <div className="dashboard-chart-item">
+              <Chart
+                width={450}
+                height={300}
+                chartType="PieChart"
+                loader={<div>Carregando gráfico...</div>}
+                data={this.state.summary.dataTaskChat}
+                options={{
+                  title: "Atividades de Eventos em andamento",
+                  // Just add this option
+                  is3D: true,
+                }}
+                rootProps={{ "data-testid": "2" }}
+              />
+            </div>
+            <div className="dashboard-chart-item dashboard-chart-item-2x">
+              <Chart
+                width={"100%"}
+                Height={"100%"}
+                chartType="BarChart"
+                loader={<div>Carregando gráfico...</div>}
+                data={this.state.summary.dataTaskPercent}
+                options={{
+                  title: "Porcentagem de conclusão da tarefa do evento acima",
+                  hAxis: {
+                    title: "% Concluída",
+                  },
+                  vAxis: {
+                    title: "Numero Tarefa",
+                  },
+                }}
+                rootProps={{ "data-testid": "6" }}
+                chartPackages={["corechart", "controls"]}
+                render={({ renderControl, renderChart }) => {
+                  return (
+                    <div style={{ display: "flex", margin: "2%" }}>
+                      <div style={{ width: "35%" }}>
+                        {renderControl(() => true)}
+                      </div>
+                      <div style={{ width: "65%", margin: "2%" }}>
+                        <p>
+                          {typeof this.state.search.eventSelected.eventName ===
+                          "undefined"
+                            ? "Todos os Eventos"
+                            : this.state.search.eventSelected.eventName}
+                        </p>
+                        {renderChart()}
+                      </div>
+                    </div>
+                  );
+                }}
+                controls={[
+                  {
+                    controlType: "StringFilter",
+                    options: {
+                      filterColumnIndex: 0,
+                      matchType: "any", // 'prefix' | 'exact',
+                      ui: {
+                        label: "Pesquisa # atividades : ",
+                      },
+                    },
+                  },
+                  {
+                    controlType: "NumberRangeFilter",
+                    controlID: "percent-filter",
+                    options: {
+                      filterColumnIndex: 1,
+                      ui: {
+                        labelStacking: "vertical",
+                        label: "Seleção % :",
+                        allowTyping: false,
+                        allowMultiple: false,
+                      },
+                    },
+                  },
+                ]}
+              />
+            </div>
+          </div>
+          <div className="dashboard-charts">
+            <div className="dashboard-chart-item">
+              <Chart
+                width={450}
+                height={300}
+                chartType="AreaChart"
+                loader={<div>Carregando gráfico...</div>}
+                data={[
+                  ["Year", "Sales", "Expenses"],
+                  ["2013", 1000, 400],
+                  ["2014", 1170, 460],
+                  ["2015", 660, 1120],
+                  ["2016", 1030, 540],
+                ]}
+                options={{
+                  title: "Company Performance",
+                  hAxis: { title: "Year", titleTextStyle: { color: "#333" } },
+                  vAxis: { minValue: 0 },
+                  // For the legend to fit, we make the chart area smaller
+                  chartArea: { width: "50%", height: "70%" },
+                  // lineWidth: 25
+                }}
+              />
+            </div>
+
             <div className="dashboard-chart-item">
               <Chart
                 width={450}
@@ -89,46 +172,6 @@ class Dashboard extends Component {
                   },
                 }}
                 legendToggle
-              />
-            </div>
-            <div className="dashboard-chart-item">
-              <Chart
-                width={450}
-                height={300}
-                chartType="AreaChart"
-                loader={<div>Carregando gráfico...</div>}
-                data={[
-                  ["Year", "Sales", "Expenses"],
-                  ["2013", 1000, 400],
-                  ["2014", 1170, 460],
-                  ["2015", 660, 1120],
-                  ["2016", 1030, 540],
-                ]}
-                options={{
-                  title: "Company Performance",
-                  hAxis: { title: "Year", titleTextStyle: { color: "#333" } },
-                  vAxis: { minValue: 0 },
-                  // For the legend to fit, we make the chart area smaller
-                  chartArea: { width: "50%", height: "70%" },
-                  // lineWidth: 25
-                }}
-              />
-            </div>
-          </div>
-          <div className="dashboard-charts">
-            <div className="dashboard-chart-item row">
-              <Chart
-                width={450}
-                height={300}
-                chartType="PieChart"
-                loader={<div>Carregando gráfico...</div>}
-                data={this.state.dataTaskChat}
-                options={{
-                  title: "Atividades de Eventos em andamento",
-                  // Just add this option
-                  is3D: true,
-                }}
-                rootProps={{ "data-testid": "2" }}
               />
             </div>
             <div className="dashboard-chart-item">
