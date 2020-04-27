@@ -1,8 +1,23 @@
-.card-footer {
+.team-player .card-footer,
+.team-player .card {
   border: none;
 }
 
 .team-player .card-title,
 .card-footer i {
   font-size: 1.6em;
+}
+.team-content .card-plain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.team-player .card-footer {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  background-color: white;
 }

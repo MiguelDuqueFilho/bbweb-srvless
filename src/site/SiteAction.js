@@ -24,7 +24,7 @@ function submitEmail(values, url) {
             resetForm("doubtsForm"),
           ]);
         } else {
-          toastr.warning("Alerta", resp.data.message);
+          toastr.error("Erro", resp.data.message);
           dispatch([
             { type: "SENDEMAIL_FETCHED", payload: resp.data.success },
             resetForm("doubtsForm"),
@@ -33,12 +33,12 @@ function submitEmail(values, url) {
       })
       .catch((e) => {
         if (
-          typeof e.message !== "undefined" &&
+          typeof e.name !== "undefined" &&
           typeof e.response.data.message === "undefined"
         ) {
-          toastr.error("Erro11", e.message);
+          toastr.error(e.name, e.message);
         } else {
-          toastr.warning("Alerta", e.response.data.message);
+          toastr.error("Erro", e.response.data.message);
         }
         dispatch(resetForm("doubtsForm"));
       });
@@ -53,13 +53,10 @@ function submit(values, url, type) {
         dispatch([{ type, payload: resp.data.data }]);
       })
       .catch((e) => {
-        if (
-          typeof e.message !== "undefined" &&
-          typeof e.response.data.message === "undefined"
-        ) {
-          toastr.error("Erro12", e.message);
+        if (typeof e.name !== "undefined") {
+          toastr.error(e.name, e.message);
         } else {
-          toastr.warning("Alerta", e.response.data.message);
+          toastr.error("Erro", e.response.data.message);
         }
       });
   };

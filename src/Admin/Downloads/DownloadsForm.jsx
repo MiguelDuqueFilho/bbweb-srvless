@@ -3,8 +3,8 @@ import { reduxForm, Field, change } from "redux-form";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { init, fileUpdateSelectedPdf } from "../Downloads/DownloadsAction";
-import { getPdf } from "../Uploads/UploadsAction";
+import { init, fileUpdateSelectedDoc } from "../Downloads/DownloadsAction";
+import { getDoc } from "../Uploads/UploadsAction";
 import Modal from "../../component/Modal/Modal";
 import UploadsSearch from "../Uploads/UploadsSearch";
 
@@ -20,25 +20,25 @@ class DownloadsForm extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.fileUploadSelectPdf !== null) {
+    if (this.props.fileUploadSelectDoc !== null) {
       const fileSelect =
-        this.getFileUpload(this.props.fileUploadSelectPdf) || [];
+        this.getFileUpload(this.props.fileUploadSelectDoc) || [];
       const { dispatch } = this.props;
       dispatch(
         change("DownloadsForm", "downloadFilename", fileSelect["0"].fileName)
       );
-      dispatch(change("DownloadsForm", "downloadUploadId", fileSelect["0"].id));
+      dispatch(change("DownloadsForm", "uploadId", fileSelect["0"].id));
     }
   }
 
   getFileUpload = (fileSelected) =>
-    this.props.listUploadsPdf.filter(
+    this.props.listUploadsDoc.filter(
       (file) => parseInt(file.id) === parseInt(fileSelected)
     );
 
   backPage() {
     this.props.init(this.props.listDownloadsAll.page);
-    this.props.fileUpdateSelectedPdf(null);
+    this.props.fileUpdateSelectedDoc(null);
   }
 
   showModal = (event) => {
@@ -98,20 +98,31 @@ class DownloadsForm extends Component {
                       readOnly={readOnly}
                     />
                   </div>
+                  <div className="col-12 form-group">
+                    <label htmlFor="downloadDescription">Descrição</label>
+                    <Field
+                      className="form-control"
+                      component="input"
+                      type="text"
+                      name="downloadDescription"
+                      placeholder="Digite a descrição"
+                      readOnly={readOnly}
+                    />
+                  </div>
                 </div>
 
                 <Modal show={this.state.show} handleClose={this.hideModal}>
-                  <UploadsSearch closeModal={this.closeModal} type="pdf" />
+                  <UploadsSearch closeModal={this.closeModal} type="doc" />
                 </Modal>
 
                 <div className="form-row">
                   <div className="col-3 col-sm-3 col-md-3 form-group">
-                    <label htmlFor="downloadUploadId">Id do Upload</label>
+                    <label htmlFor="uploadId">Id do Upload</label>
                     <Field
                       className="form-control"
                       component="input"
                       type="number"
-                      name="downloadUploadId"
+                      name="uploadId"
                       readOnly={true}
                     />
                     <button
@@ -182,10 +193,10 @@ DownloadsForm = reduxForm({
 
 const mapStateToProps = (state) => ({
   listDownloadsAll: state.downloads.listDownloadsAll,
-  listUploadsPdf: state.uploads.listUploadsPdf,
-  fileUploadSelectPdf: state.downloads.fileUploadSelectPdf,
+  listUploadsDoc: state.uploads.listUploadsDoc,
+  fileUploadSelectDoc: state.downloads.fileUploadSelectDoc,
 });
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ init, getPdf, fileUpdateSelectedPdf }, dispatch);
+  bindActionCreators({ init, getDoc, fileUpdateSelectedDoc }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(DownloadsForm);

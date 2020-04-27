@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import { reduxForm, Field, change } from "redux-form";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
+// import { urls } from "../../services/utils";
 import {
   init,
   initForm,
   fileUpdateSelectedImg,
 } from "../Depositions/DepositionsAction";
-import { getPdf } from "../Uploads/UploadsAction";
 import Modal from "../../component/Modal/Modal";
 import UploadsSearch from "../Uploads/UploadsSearch";
 
@@ -36,7 +35,7 @@ class DepositionsForm extends Component {
         change(
           "DepositionsForm",
           "depositionFilename",
-          fileSelect["0"].fileName
+          fileSelect["0"].filePath
         )
       );
       dispatch(change("DepositionsForm", "uploadId", fileSelect["0"].id));
@@ -159,7 +158,27 @@ class DepositionsForm extends Component {
                       Pesquisa imagem
                     </button>
                   </div>
-                  <div className="col-9 col-sm-9 col-md-9 form-group">
+                  <div className="col-8 form-group">
+                    <label htmlFor="depositionFilename">
+                      Nome da imagem carregada
+                    </label>
+                    <Field
+                      className="form-control"
+                      component="input"
+                      type="text"
+                      name="depositionFilename"
+                      placeholder="Digite a descrição"
+                      readOnly={true}
+                    />
+                  </div>
+                  <div>
+                    {/* <img
+                      src={`${urls.BASE_URL}/images/depositions/deposition_${item.id}.jpeg?v=${this.state.timestamp}`}
+                      alt="deposition"
+                    /> */}
+                  </div>
+
+                  {/* <div className="col-9 col-sm-9 col-md-9 form-group">
                     <label htmlFor="depositionFilename">Nome da imagem</label>
                     <Field
                       className="form-control"
@@ -168,7 +187,7 @@ class DepositionsForm extends Component {
                       name="depositionFilename"
                       readOnly={true}
                     />
-                  </div>
+                  </div> */}
                 </div>
                 <div className="form-row">
                   <div className="col-8 col-sm-4 col-md-4  form-group">
@@ -225,9 +244,6 @@ const mapStateToProps = (state) => ({
   search: state.app.search,
 });
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    { init, getPdf, initForm, fileUpdateSelectedImg },
-    dispatch
-  );
+  bindActionCreators({ init, initForm, fileUpdateSelectedImg }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(DepositionsForm);

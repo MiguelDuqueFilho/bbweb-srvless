@@ -90,7 +90,7 @@ class PlanDetail extends Component {
         <BannerBody
           title=""
           subtitle=""
-          banner={`${urls.BASE_URL}/bannerplan${url}/img`}
+          banner={`${urls.BASE_URL}/images/banners${url}.png`}
         />
         <div className="main main-raised">
           {this.filterPlan(url)}

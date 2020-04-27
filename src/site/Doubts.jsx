@@ -19,19 +19,19 @@ class Doubts extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <div className="section text-center">
-        <div className="col-md-7 ml-auto mr-auto">
+      <div className="container ">
+        <div className="doubts-content col-md-12 ml-auto mr-auto">
           <h2 className="title">Dúvidas ou Sugestões</h2>
-          <h5 className="description text-center">
+          <h6 className="description text-center mb-3">
             Escreva algumas linhas sobre Dúvidas ou Sugestões e entre em
-            contato. Nós responderemos a você em algumas horas.
-          </h5>
+            contato. Nós responderemos em breve.
+          </h6>
           <form
             className="contact-form"
             onSubmit={handleSubmit((values) => this.onSubmit(values))}
           >
             <div className="row">
-              <div className="col-md-9  ml-auto mr-auto">
+              <div className="col-md-9 ml-auto mr-auto">
                 <div className="form-group bmd-form-group">
                   {/* <input type="text" name="client_name" className="form-control"> */}
                   <Field
@@ -59,7 +59,6 @@ class Doubts extends Component {
                 </div>
               </div>
             </div>
-
             <div className="row">
               <div className="col-md-9 ml-auto mr-auto">
                 <div className="form-group text-left bmd-form-group">

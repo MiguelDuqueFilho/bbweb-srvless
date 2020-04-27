@@ -1,11 +1,15 @@
 .top-content .carrousel-inner {
   display: flex;
   justify-content: center;
+  align-content: center;
   align-items: baseline;
   margin-top: 20px;
+  min-width: 250px;
 }
 
 .top-content .carrousel-inner img {
-  max-height: 250px;
+  height: auto;
+  max-height: 100%;
   width: auto;
+  max-width: 100%;
 }

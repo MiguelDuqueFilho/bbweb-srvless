@@ -1,7 +1,7 @@
 const INITIAL_STATE = {
   listDownloads: [],
   listDownloadsAll: { docs: [], pages: 0, total: 0, page: 1 },
-  fileUploadSelectPdf: null,
+  fileUploadSelectDoc: null,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -11,7 +11,7 @@ export default (state = INITIAL_STATE, action) => {
     case "DOWNLOAD_GET_FILES_REQUEST":
       return { ...state, listDownloads: action.payload };
     case "DOWNLOAD_SELECTED_FILES_UPLOAD":
-      return { ...state, fileUploadSelectPdf: action.payload };
+      return { ...state, fileUploadSelectDoc: action.payload };
     case "DOWNLOAD_FILE_REQUEST":
       return state;
     case "DOWNLOAD_FILE_SUCCESS":

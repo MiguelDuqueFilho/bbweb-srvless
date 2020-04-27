@@ -5,10 +5,10 @@ import { showTabs, selectTab } from "../../common/Tabs/tabActions";
 
 const INITIAL_VALUES = {
   listUploads: { docs: [], pages: 0, total: 0, page: 1 },
-  listUploadsPdf: [],
+  listUploadsDoc: [],
 };
 
-export async function getList(page = 1, limit = 9) {
+export async function getList(page = 1, limit = 10) {
   const request = await api.get(`/uploads?page=${page}&limit=${limit}`);
   return {
     type: "UPLOADS_GET_LIST_REQUEST",
@@ -16,10 +16,10 @@ export async function getList(page = 1, limit = 9) {
   };
 }
 
-export async function getPdf() {
-  const request = await api.get(`/uploadstype/pdf`);
+export async function getDoc() {
+  const request = await api.get(`/uploadstype/doc`);
   return {
-    type: "UPLOADS_GET_PDF_REQUEST",
+    type: "UPLOADS_GET_DOC_REQUEST",
     payload: request.data.data,
   };
 }
@@ -50,12 +50,12 @@ export function submit(values, method) {
       })
       .catch((e) => {
         if (
-          typeof e.message !== "undefined" &&
+          typeof e.name !== "undefined" &&
           typeof e.response.data.message === "undefined"
         ) {
-          toastr.error("Erro", e.message);
+          toastr.error(e.name, e.message);
         } else {
-          toastr.warning("Alerta", e.response.data.message);
+          toastr.error("Erro", e.response.data.message);
         }
       });
   };

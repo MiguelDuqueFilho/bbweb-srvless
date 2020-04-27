@@ -69,9 +69,9 @@ class Upload extends Component {
         resolve(req.response);
       });
 
-      req.upload.addEventListener("error", (event) => {
+      req.upload.addEventListener("Erro", (event) => {
         const copy = { ...this.state.uploadProgress };
-        copy[file.name] = { state: "error", percentage: 0 };
+        copy[file.name] = { state: "Erro", percentage: 0 };
         this.setState({ uploadProgress: copy });
         reject(req.response);
       });
@@ -144,13 +144,13 @@ class Upload extends Component {
               <h4 className="p-3 m-2 bg-primary shadow text-white rounded-lg">
                 Área para carregar arquivos - veja sites de compressão :
                 <a
-                  className="text-warning "
+                  className="text-white "
                   href="https://www.ilovepdf.com/pt/comprimir_pdf"
                 >
                   <i className="ml-3 mr-3 fa fa-compress"> pdf</i>
                 </a>
                 <a
-                  className="text-warning "
+                  className="text-white "
                   href="https://www.iloveimg.com/pt/comprimir-imagem"
                 >
                   <i className="ml-3 mr-3 fa fa-image "> imagem</i>

@@ -38,7 +38,7 @@ class AuthRecovery extends Component {
               <Grid cols="11 9 7 5 5" className="ml-auto mr-auto">
                 <div className="card card-login">
                   <form
-                    onSubmit={handleSubmit(values => this.onSubmit(values))}
+                    onSubmit={handleSubmit((values) => this.onSubmit(values))}
                   >
                     <div className="card-header card-header-primary text-center">
                       <h4 className="card-title">Troca de Senha</h4>
@@ -112,9 +112,9 @@ class AuthRecovery extends Component {
 }
 
 AuthRecovery = reduxForm({
-  form: "AuthRecoveryForm"
+  form: "AuthRecoveryForm",
 })(AuthRecovery);
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ passwordRecovery }, dispatch);
 export default connect(null, mapDispatchToProps)(AuthRecovery);

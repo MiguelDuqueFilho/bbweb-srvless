@@ -36,16 +36,14 @@ function submit(values, url, history) {
           history.push(userTypeContent(resp.data.data.type).href);
           toastr.success("Ok", resp.data.message);
         } else {
-          toastr.warning("Alerta", resp.data.message);
+          toastr.error("Erro", resp.data.message);
         }
       })
-      .catch((error) => {
-        if (error.response) {
-          toastr.error("Error2", error.response.data.message);
-        } else if (error.request) {
-          toastr.error("Error3", error.request);
+      .catch((e) => {
+        if (typeof e.name !== "undefined") {
+          toastr.error(e.name, e.message);
         } else {
-          toastr.error("Error4", error.message);
+          toastr.error("Erro", e.response.data.message);
         }
 
         dispatch(resetForm("authForm"));
@@ -66,16 +64,17 @@ export function submitForgot(values, url, history) {
           );
           history.push("/");
         } else {
-          toastr.warning("Alerta", resp.data.message);
+          toastr.error("Erro", resp.data.message);
         }
       })
-      .catch((error) => {
-        if (error.response) {
-          toastr.error("Error5", error.response.data.message);
-        } else if (error.request) {
-          toastr.error("Error6", error.request);
+      .catch((e) => {
+        if (
+          typeof e.name !== "undefined" &&
+          typeof e.response.data.message === "undefined"
+        ) {
+          toastr.error(e.name, e.message);
         } else {
-          toastr.error("Error7", error.message);
+          toastr.error("Erro", e.response.data.message);
         }
         dispatch(resetForm("authForm"));
       });
@@ -90,13 +89,11 @@ export function validateToken(token) {
         .then((resp) => {
           dispatch({ type: "TOKEN_VALIDATED", payload: true });
         })
-        .catch((error) => {
-          if (error.response) {
-            toastr.error("Error8", error.response.data.message);
-          } else if (error.request) {
-            toastr.error("Error9", error.request);
+        .catch((e) => {
+          if (typeof e.name !== "undefined") {
+            toastr.error(e.name, e.message);
           } else {
-            toastr.error("Error10", error.message);
+            toastr.error("Erro", e.response.data.message);
           }
           dispatch({ type: "TOKEN_VALIDATED", payload: false });
         });
@@ -113,13 +110,14 @@ export function passwordRecovery(values, history) {
           history.push("/");
           toastr.success("Recuperação", "Troca de senha com sucesso.");
         })
-        .catch((error) => {
-          if (error.response) {
-            toastr.error("Error", "Token invalido ou expirado!!");
-          } else if (error.request) {
-            toastr.error("Error14", error.request);
+        .catch((e) => {
+          if (
+            typeof e.name !== "undefined" &&
+            typeof e.response.data.message === "undefined"
+          ) {
+            toastr.error(e.name, e.message);
           } else {
-            toastr.error("Error15", error.message);
+            toastr.error("Erro", "Token invalido ou expirado!!");
           }
         });
     }
@@ -135,13 +133,14 @@ export function changePassword(values, history) {
           history.push("/");
           toastr.success("Ok", "Troca de senha com sucesso.");
         })
-        .catch((error) => {
-          if (error.response) {
-            toastr.error("Error", "Erro na troca de senha!!");
-          } else if (error.request) {
-            toastr.error("Error18", error.request);
+        .catch((e) => {
+          if (
+            typeof e.name !== "undefined" &&
+            typeof e.response.data.message === "undefined"
+          ) {
+            toastr.error(e.name, e.message);
           } else {
-            toastr.error("Error19", error.message);
+            toastr.error("Erro", "Erro na troca de senha!!");
           }
         });
     }

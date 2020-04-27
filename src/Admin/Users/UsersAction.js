@@ -7,7 +7,7 @@ const INITIAL_VALUES = {
   listUsers: { docs: [], pages: 0, total: 0, page: 1 },
 };
 
-export async function getList(page = 1, limit = 9) {
+export async function getList(page = 1, limit = 10) {
   const request = await api.get(`/users`, {
     params: { page, limit },
   });
@@ -39,12 +39,12 @@ export function submit(values, method) {
       })
       .catch((e) => {
         if (
-          typeof e.message !== "undefined" &&
+          typeof e.name !== "undefined" &&
           typeof e.response.data.message === "undefined"
         ) {
-          toastr.error("Erro1", e.message);
+          toastr.error(e.name, e.message);
         } else {
-          toastr.warning("Alerta", e.response.data.message);
+          toastr.error("Erro", e.response.data.message);
         }
       });
   };

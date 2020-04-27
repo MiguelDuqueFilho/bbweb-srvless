@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import path from "path";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "./Depositions.css";
@@ -32,7 +33,7 @@ class DepositionsCard extends Component {
     ) {
       this.setState({ search: { ...this.props.search } });
       this.props.getList(1, this.props.search);
-      this.setState({ timestamp: new Date().getTime() });
+      this.setState({ timestamp: new Date().getDate() });
     }
   }
 
@@ -66,7 +67,11 @@ class DepositionsCard extends Component {
         <div className="card mb-5">
           <div className="card-header-deposition">
             <img
-              src={`${urls.BASE_URL}/deposition/${item.id}/img?v=${this.state.timestamp}`}
+              src={`${urls.BASE_URL}/images/depositions/deposition_${
+                item.id
+              }${path.extname(item.depositionFilename)}?v=${
+                this.state.timestamp
+              }`}
               alt="deposition"
             />
           </div>

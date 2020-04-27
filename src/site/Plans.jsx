@@ -26,7 +26,7 @@ class Plans extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container-fluid">
         <div className="section text-center">
           <div className="row">
             <div className="col-md-10 ml-auto mr-auto">

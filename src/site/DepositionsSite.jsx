@@ -20,11 +20,11 @@ class DepositionsSite extends Component {
     const list = this.props.site.siteDepositions || [];
 
     return list.map((list) => (
-      <Grid key={list.id} cols="10 10 6 4 3" className="carrousel-item">
+      <Grid key={list.id} cols="12 12 6 4 3" className="carrousel-item">
         <div className="card mb-5">
           <img
-            src={`${urls.BASE_URL}/deposition/${list.id}/img?v=${this.state.timestamp}`}
-            alt="deposition"
+            src={`${urls.BASE_URL}/images/depositions/deposition_${list.id}.jpeg?v=${this.state.timestamp}`}
+            alt="depositions"
           />
           <div className="card-body">
             <h4 className="card-title">{list.Events[0]["eventName"]}</h4>
@@ -38,9 +38,9 @@ class DepositionsSite extends Component {
 
   render() {
     return (
-      <div className="section text-center">
+      <div className="container-fluid">
         <div className="row">
-          <div className="col-md-10 ml-auto mr-auto">
+          <div className="col-md-12 ml-auto mr-auto">
             <h2 className="title">Depoimentos</h2>
           </div>
         </div>

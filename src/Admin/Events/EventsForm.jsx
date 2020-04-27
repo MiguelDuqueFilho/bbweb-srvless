@@ -7,7 +7,6 @@ import { init } from "./EventsAction";
 class EventsForm extends Component {
   constructor(props) {
     super(props);
-
     this.backPage = this.backPage.bind(this);
   }
   backPage() {

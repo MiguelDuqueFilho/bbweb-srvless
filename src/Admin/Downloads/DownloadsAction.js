@@ -8,7 +8,7 @@ const INITIAL_VALUES = {
   listDownloadsall: { docs: [], pages: 0, total: 0, page: 1 },
 };
 
-export async function getList(page = 1, limit = 9) {
+export async function getList(page = 1, limit = 10) {
   const request = await api.get(`/downloads_all?page=${page}&limit=${limit}`);
   return {
     type: "DOWNLOAD_GET_ALL_FILES_REQUEST",
@@ -27,13 +27,15 @@ export const getDownloads = () => (dispatch) => {
         },
       ]);
     })
-    .catch((error) => {
-      if (error.response) {
-        toastr.error("Error", error.response.data.message);
-      } else if (error.request) {
-        toastr.error("Error", error.request);
+    .catch((e) => {
+      console.log(e);
+      if (
+        typeof e.name !== "undefined" &&
+        typeof e.response.data === "undefined"
+      ) {
+        toastr.error(e.name, e.message);
       } else {
-        toastr.error("Error", error.message);
+        toastr.error("Erro", e.response.data.message);
       }
     });
 };
@@ -56,23 +58,23 @@ export function submit(values, method) {
     api[method](`/downloads/${id}`, values)
       .then((resp) => {
         toastr.success("Sucesso", "Operação realizada com sucesso.");
-        fileUpdateSelectedPdf(null);
+        fileUpdateSelectedDoc(null);
         dispatch(init());
       })
       .catch((e) => {
         if (
-          typeof e.message !== "undefined" &&
+          typeof e.name !== "undefined" &&
           typeof e.response.data.message === "undefined"
         ) {
-          toastr.error("Erro", e.message);
+          toastr.error(e.name, e.message);
         } else {
-          toastr.warning("Alerta", e.response.data.message);
+          toastr.error("Erro", e.response.data.message);
         }
       });
   };
 }
 
-export function fileUpdateSelectedPdf(fileId) {
+export function fileUpdateSelectedDoc(fileId) {
   return (dispatch) => {
     dispatch([
       {
@@ -133,16 +135,18 @@ export const downloadFile = (fileId, fileName) => async (dispatch) => {
       type: "DOWNLOAD_FILE_SUCCESS",
     });
     toastr.success("Sucesso", "Arquivo baixado com sucesso!");
-  } catch (error) {
+  } catch (e) {
     dispatch({
       type: "DOWNLOAD_FILE_ERROR",
     });
-
-    if (error.response) {
-      toastr.error("Erro", error.response.data.message);
-      alert(error.response.data.message);
+    if (
+      typeof e.name !== "undefined" &&
+      typeof e.response.data.message === "undefined"
+    ) {
+      toastr.error(e.name, e.message);
     } else {
-      toastr.error("Erro", "Ocorreu um erro ao baixar este arquivo");
+      toastr.error("Erro", e.response.data.message);
+      alert(e.response.data.message);
     }
   }
 };

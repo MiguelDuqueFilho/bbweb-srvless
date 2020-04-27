@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "./Uploads.css";
-import { getPdf, getImg } from "./UploadsAction";
-import { fileUpdateSelectedPdf } from "../Downloads/DownloadsAction";
+import { getDoc, getImg } from "./UploadsAction";
+import { fileUpdateSelectedDoc } from "../Downloads/DownloadsAction";
 import { fileUpdateSelectedImg } from "../Depositions/DepositionsAction";
 
 class UploadsSearch extends Component {
@@ -15,21 +15,21 @@ class UploadsSearch extends Component {
 
   componentDidMount() {
     if (this.props.type === "img") this.props.getImg();
-    if (this.props.type === "pdf") this.props.getPdf();
+    if (this.props.type === "doc") this.props.getDoc();
   }
 
   setFilename(event) {
     event.preventDefault();
     const fileId = event.target.getAttribute("data-item");
     if (this.props.type === "img") this.props.fileUpdateSelectedImg(fileId);
-    if (this.props.type === "pdf") this.props.fileUpdateSelectedPdf(fileId);
+    if (this.props.type === "doc") this.props.fileUpdateSelectedDoc(fileId);
     this.props.closeModal();
   }
 
   renderRows(props) {
     let list = [];
     if (this.props.type === "img") list = props.listUploadsImg || [];
-    if (this.props.type === "pdf") list = props.listUploadsPdf || [];
+    if (this.props.type === "doc") list = props.listUploadsDoc || [];
 
     return list.map((file) => (
       <tr key={file.id}>
@@ -78,14 +78,14 @@ class UploadsSearch extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  listUploadsPdf: state.uploads.listUploadsPdf,
+  listUploadsDoc: state.uploads.listUploadsDoc,
   listUploadsImg: state.uploads.listUploadsImg,
   fileUpdateSelectImg: state.depositions.fileUpdateSelectImg,
-  fileUploadSelectPdf: state.downloads.fileUploadSelectPdf,
+  fileUploadSelectDoc: state.downloads.fileUploadSelectDoc,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
-    { getPdf, getImg, fileUpdateSelectedPdf, fileUpdateSelectedImg },
+    { getDoc, getImg, fileUpdateSelectedDoc, fileUpdateSelectedImg },
     dispatch
   );
 

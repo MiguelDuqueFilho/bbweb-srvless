@@ -10,7 +10,7 @@ const INITIAL_SEARCH_VALUES = {
 };
 
 export function getList(page = 1, searchFilter = INITIAL_SEARCH_VALUES) {
-  const limit = 8;
+  const limit = 10;
   const validatedSearch = validSearch(searchFilter);
 
   let params = { search: validatedSearch };
@@ -25,13 +25,11 @@ export function getList(page = 1, searchFilter = INITIAL_SEARCH_VALUES) {
           { type: "DEPOSITION_GET_ALL_FILES_REQUEST", payload: resp.data.data },
         ]);
       })
-      .catch((error) => {
-        if (error.response) {
-          toastr.error("Error", error.response.data.message);
-        } else if (error.request) {
-          toastr.error("Error", error.request);
+      .catch((e) => {
+        if (typeof e.name !== "undefined") {
+          toastr.error("Erro", e.message);
         } else {
-          toastr.error("Error", error.message);
+          toastr.error("Erro", e.response.data.message);
         }
       });
   };
@@ -48,13 +46,17 @@ export const getDepositions = () => (dispatch) => {
         },
       ]);
     })
-    .catch((error) => {
-      if (error.response) {
-        toastr.error("Error", error.response.data.message);
-      } else if (error.request) {
-        toastr.error("Error", error.request);
+    .catch((e) => {
+      console.log(e);
+      console.log(e.name);
+      console.log(e.response.data);
+      if (
+        typeof e.name !== "undefined" &&
+        typeof e.response.data.message === "undefined"
+      ) {
+        toastr.error(e.name, e.message);
       } else {
-        toastr.error("Error", error.message);
+        toastr.error("Erro", e.response.data.message);
       }
     });
 };
@@ -82,12 +84,12 @@ export function submit(values, method) {
       })
       .catch((e) => {
         if (
-          typeof e.message !== "undefined" &&
+          typeof e.name !== "undefined" &&
           typeof e.response.data.message === "undefined"
         ) {
-          toastr.error("Erro", e.message);
+          toastr.error(e.name, e.message);
         } else {
-          toastr.warning("Alerta", e.response.data.message);
+          toastr.error("Erro", e.response.data.message);
         }
       });
   };
@@ -138,7 +140,7 @@ export function init(page = 1, searchFilter = INITIAL_SEARCH_VALUES) {
   return [
     showTabs("tabView", "tabList", "tabCreate"),
     selectTab("tabList"),
-    // getList(page, searchFilter),
+    getList(page, searchFilter),
     initialize("DepositionsForm", INITIAL_VALUES),
   ];
 }

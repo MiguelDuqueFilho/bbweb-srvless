@@ -30,7 +30,7 @@ class Site extends Component {
         <BannerBody
           title="BeBride"
           subtitle="Venha conversar com a gente."
-          banner={`${urls.BASE_URL}/banner/img`}
+          banner={`${urls.BASE_URL}/images/banners/banner_2.png`}
         />
         <div className="main main-raised">
           <Plans />

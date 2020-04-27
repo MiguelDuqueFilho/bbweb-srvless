@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router";
 import { reduxForm, Field } from "redux-form";
 import { urls } from "../services/utils";
 import "./Auth.css";
@@ -51,7 +52,9 @@ class Auth extends Component {
         <HeaderSite />
         <div
           className="page-header"
-          style={{ backgroundImage: `url(${urls.BASE_URL}/banner/img)` }}
+          style={{
+            backgroundImage: `url(${urls.BASE_URL}/images/banners/banner_1.png)`,
+          }}
         >
           <div className="container">
             <Row>
@@ -194,4 +197,4 @@ Auth = reduxForm({
 const mapStateToProps = (state) => ({ auth: state.auth });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ login, signup, forgot }, dispatch);
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Auth));

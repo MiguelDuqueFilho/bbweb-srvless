@@ -11,7 +11,7 @@ const INITIAL_SEARCH_VALUES = {
 };
 
 export function getList(page = 1, searchFilter = INITIAL_SEARCH_VALUES) {
-  const limit = 8;
+  const limit = 10;
   const validatedSearch = validSearch(searchFilter);
 
   let params = { search: validatedSearch };
@@ -26,12 +26,12 @@ export function getList(page = 1, searchFilter = INITIAL_SEARCH_VALUES) {
       })
       .catch((e) => {
         if (
-          typeof e.message !== "undefined" &&
+          typeof e.name !== "undefined" &&
           typeof e.response.data.message === "undefined"
         ) {
-          toastr.error("Erro", e.message);
+          toastr.error(e.name, e.message);
         } else {
-          toastr.warning("Alerta", e.response.data.message);
+          toastr.error("Erro", e.response.data.message);
         }
       });
   };
@@ -59,12 +59,12 @@ export function submit(values, method) {
       })
       .catch((e) => {
         if (
-          typeof e.message !== "undefined" &&
+          typeof e.name !== "undefined" &&
           typeof e.response.data.message === "undefined"
         ) {
-          toastr.error("Erro", e.message);
+          toastr.error(e.name, e.message);
         } else {
-          toastr.warning("Alerta", e.response.data.message);
+          toastr.error("Erro", e.response.data.message);
         }
       });
   };

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { reduxForm, Field } from "redux-form";
-
+import path from "path";
+import { reduxForm, Field, formValueSelector } from "redux-form";
+import { urls } from "../../services/utils";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { init } from "./UploadsAction";
@@ -8,6 +9,9 @@ import { init } from "./UploadsAction";
 class UploadsForm extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      timestamp: new Date().getTime(),
+    };
     this.backPage = this.backPage.bind(this);
   }
 
@@ -71,7 +75,7 @@ class UploadsForm extends Component {
                   </div>
                 </div>
                 <div className="form-row">
-                  <div className="col-8 col-sm-4 col-md-4  form-group">
+                  <div className="col-3   form-group">
                     <label htmlFor="fileSize">Tamanho</label>
                     <Field
                       className="form-control"
@@ -81,7 +85,7 @@ class UploadsForm extends Component {
                       readOnly={true}
                     />
                   </div>
-                  <div className="col-8 col-sm-4 col-md-4  form-group">
+                  <div className="col-3   form-group">
                     <label htmlFor="fileUse">Em uso</label>
                     <Field
                       className="form-control"
@@ -95,6 +99,15 @@ class UploadsForm extends Component {
                       </option>
                       <option value={true}>Sim</option>
                     </Field>
+                  </div>
+
+                  <div className="col-6 upload-image">
+                    <img
+                      src={`${urls.BASE_URL}/images/uploads/${path.basename(
+                        this.props.valuefilePath
+                      )}?v=${this.state.timestamp}`}
+                      alt={`uploads ${path.basename(this.props.valuefilePath)}`}
+                    />
                   </div>
                 </div>
 
@@ -124,12 +137,20 @@ class UploadsForm extends Component {
 
 UploadsForm = reduxForm({
   form: "UploadsForm",
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
 })(UploadsForm);
 
-const mapStateToProps = state => ({
-  listUploads: state.uploads.listUploads
+const selector = formValueSelector("UploadsForm");
+
+UploadsForm = connect((state) => {
+  return {
+    valuefilePath: selector(state, "filePath"),
+  };
+})(UploadsForm);
+
+const mapStateToProps = (state) => ({
+  listUploads: state.uploads.listUploads,
 });
-const mapDispatchToProps = dispatch => bindActionCreators({ init }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ init }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(UploadsForm);
