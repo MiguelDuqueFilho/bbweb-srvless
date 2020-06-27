@@ -5,7 +5,7 @@
   align-items: center;
   font-family: "Roboto Slab";
   font-size: 1.2em;
-  font-weight: 300;
+  font-weight: 200;
   color: white;
   height: 900px;
 }
@@ -13,4 +13,13 @@
 .banner-body span {
   font-size: 3em;
   margin: 3px;
+}
+
+.banner-body .title {
+  font-family: "Roboto slab";
+  font-size: 64px;
+}
+.banner-body .subtitle {
+  font-family: "PT Serif", serif;
+  font-size: 24px;
 }

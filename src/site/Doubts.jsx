@@ -75,7 +75,10 @@ class Doubts extends Component {
             </div>
             <div className="row">
               <div className="col-md-4 ml-auto mr-auto text-center">
-                <button type="submit" className="btn btn-primary btn-raised">
+                <button
+                  type="submit"
+                  className="btn btn-primary btn-raised text-white"
+                >
                   Enviar mensagem
                 </button>
               </div>

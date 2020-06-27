@@ -48,13 +48,18 @@ class DepositionsCard extends Component {
       <Grid key={item.id} cols={cols} className="card-deposition">
         <If test={this.props.user.type === 1}>
           <div className="deposition-actions">
-            <span
+            <button
               className="btn btn-warning"
               readOnly={true}
               onClick={() => this.props.showUpdate(item)}
             >
               <FaPencilAlt size={18} />
-            </span>
+            </button>
+            <i
+              className={`icon fa fa-${
+                item.depositionShow ? "eye" : "eye-slash"
+              } `}
+            ></i>
             <button
               className="btn btn-danger"
               readOnly={true}
@@ -67,19 +72,12 @@ class DepositionsCard extends Component {
         <div className="card mb-5">
           <div className="card-header-deposition">
             <img
-              src={`${urls.BASE_URL}/images/depositions/deposition_${
-                item.id
-              }${path.extname(item.depositionFilename)}?v=${
-                this.state.timestamp
-              }`}
+              src={`${urls.BASE_URL}/images/depositions/${path.basename(
+                item.depositionFilename
+              )}?v=${this.state.timestamp}`}
               alt="deposition"
             />
           </div>
-          <i
-            className={`icon fa fa-${
-              item.depositionShow ? "eye" : "eye-slash"
-            } text-${item.depositionShow ? "black" : "danger"}`}
-          ></i>
           <div className="card-body-deposition">
             <h4 className="card-title">{item.Events[0]["eventName"]}</h4>
             <h5 className="card-subtitle">{item.depositionTitle}</h5>

@@ -1,24 +1,34 @@
 import React, { Component } from "react";
 import "./Plans.css";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { getTypes } from "./SiteAction";
+import { getModelTypes } from "../services/utils";
+import { FaHeart } from "react-icons/fa";
 
-class Plans extends Component {
-  componentDidMount() {
-    this.props.getTypes();
+import * as Go from "react-icons/go";
+import * as Gi from "react-icons/gi";
+
+const Icon = (props) => {
+  const { iconName } = props;
+  let icon = null;
+  if (iconName.substring(0, 2) === "Go") {
+    icon = React.createElement(Go[iconName]);
+  } else {
+    icon = React.createElement(Gi[iconName]);
   }
+  return icon;
+};
+class Plans extends Component {
   renderRows() {
-    const types = this.props.site.eventTypes || [];
+    const types = getModelTypes();
     return types.map((typ) => (
       <div key={typ.id} className="col-md-3">
         <div className="info">
           <div className="icon">
-            <i className={`fa fa-${typ.eventTypeIcon}`}></i>
+            <Icon iconName={typ.icon} />
           </div>
-          <h4 className="info-title">{`${typ.eventTypeName}`}</h4>
-          <p>{typ.eventTypeResumo}</p>
-          <a href={typ.eventTypeUrl}>Saiba Mais</a>
+          <h4 className="info-title">{`${typ.title}`}</h4>
+          <p>{typ.resume}</p>
+          <a href={typ.url}>Saiba Mais</a>
         </div>
       </div>
     ));
@@ -30,9 +40,13 @@ class Plans extends Component {
         <div className="section text-center">
           <div className="row">
             <div className="col-md-10 ml-auto mr-auto">
-              <h2 className="title">Nós cuidamos de tudo para você.</h2>
-              <h4 className="description">
-                Cada dia da organização do seu casamento deve ser celebrados.
+              <h2 className="title">
+                Noiva tranquila é noiva organizada.{" "}
+                <FaHeart size={22} className="text-primary" />
+              </h2>
+
+              <h4 className="description text-center">
+                Cada dia da organização do seu casamento deve ser celebrado.
               </h4>
             </div>
           </div>
@@ -46,6 +60,4 @@ class Plans extends Component {
 }
 
 const mapStateToProps = (state) => ({ site: state.site });
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ getTypes }, dispatch);
-export default connect(mapStateToProps, mapDispatchToProps)(Plans);
+export default connect(mapStateToProps, null)(Plans);

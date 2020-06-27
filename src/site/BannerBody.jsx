@@ -10,15 +10,14 @@ export default class BannerBody extends Component {
         bgImage={this.props.banner}
         bgImageAlt="Banner"
         bgImageStyle={{ height: 1400 }}
-        bgClassName="banner-parallax"
         strength={500}
       >
         <div className="banner-body">
           <div className="row">
             <div className="col-12 ml-auto mr-auto ">
-              <div className="title">
-                <h1>{this.props.title}</h1>
-                <h4>{this.props.subtitle}</h4>
+              <div>
+                <p className="title">{this.props.title}</p>
+                <p className="subtitle">{this.props.subtitle}</p>
               </div>
             </div>
           </div>

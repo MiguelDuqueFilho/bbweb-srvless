@@ -1,23 +1,26 @@
-.team-player .card-footer,
-.team-player .card {
-  border: none;
-}
-
-.team-player .card-title,
-.card-footer i {
-  font-size: 1.6em;
-}
-.team-content .card-plain {
+.team-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
 }
+.team-content .title {
+  padding-top: 50px;
+}
 
-.team-player .card-footer {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: center;
-  background-color: white;
+.team-content .card-title {
+  font-size: 20px;
+}
+.team-content .team-text-background {
+  background: rgba(199, 191, 230, 0.7);
+}
+
+.team-content .team-descr {
+  color: var(--description-color);
+  text-align: justify;
+  font-size: 18px;
+}
+
+.team-content .team-descr a i {
+  font-size: 32px;
 }

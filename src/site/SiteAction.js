@@ -5,9 +5,9 @@ import api from "../services/api";
 export function sendemail(values) {
   return submitEmail(values, "/sendemail");
 }
-export function getTypes(values) {
-  return submit(values, "/eventtypes", "EVENTTYPES_FETCHED");
-}
+// export function getTypes(values) {
+//   return submit(values, "/eventtypes", "EVENTTYPES_FETCHED");
+// }
 export function getDepositionsShow(values) {
   return submit(values, "/depositions", "DEPOSITIONS_SITE_FETCHED");
 }

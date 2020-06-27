@@ -17,6 +17,50 @@ export function JSDateFormat(date) {
   return temp;
 }
 
+export function getModelTypes(id = null) {
+  const ModelTypes = [
+    {
+      id: 1,
+      title: "Assessoria do Dia",
+      resume:
+        "Nossa Assessoria do Dia foi pensada com muito carinho para atender os noivos no dia do seu evento.",
+      icon: "GiPartyFlags",
+      url: "/advice_day",
+      show: false,
+    },
+    {
+      id: 2,
+      title: "Assessoria Final",
+      resume:
+        "O serviço de assessoria final começa a 60 dias (2 meses) antes do evento.",
+      icon: "GiBigDiamondRing",
+      url: "/advice_final",
+      show: false,
+    },
+    {
+      id: 3,
+      title: "Assessoria Completa",
+      resume:
+        "Sinônimo de tranquilidade. Nossa Assessoria Completa é um serviço desenvolvido desde o início dos preparativos.",
+      icon: "GiQueenCrown",
+      url: "/advice_complete",
+      show: false,
+    },
+    {
+      id: 4,
+      title: "Consultoria",
+      resume:
+        "Nossa Consultoria é o serviço ideal para o casal que deseja planejar e organizar seu próprio casamento.",
+      icon: "GoBook",
+      url: "/advice_consulting",
+      show: false,
+    },
+  ];
+  if (id === null) return ModelTypes;
+
+  return ModelTypes[id];
+}
+
 export function userTypeContent(userType) {
   const Type = {
     name: "none",

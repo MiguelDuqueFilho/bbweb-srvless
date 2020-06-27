@@ -1,17 +1,66 @@
 import React, { Component } from "react";
-import { reduxForm, Field } from "redux-form";
+import path from "path";
+import { reduxForm, Field, change, formValueSelector } from "redux-form";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { init } from "./EventsAction";
+import { init, initForm, fileUpdateSelectedImgEvt } from "./EventsAction";
+import Modal from "../../component/Modal/Modal";
+import UploadsSearch from "../Uploads/UploadsSearch";
+import { urls } from "../../services/utils";
 
 class EventsForm extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      show: false,
+      search: { ...props.search },
+      timestamp: new Date().getTime(),
+    };
     this.backPage = this.backPage.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.getFileUpload = this.getFileUpload.bind(this);
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.search.eventSelected !== this.props.search.eventSelected) {
+      this.setState({ search: { ...this.props.search } });
+      this.props.initForm(this.props.search);
+    }
+    if (this.props.fileUploadSelectImg !== null) {
+      const fileSelect =
+        this.getFileUpload(this.props.fileUploadSelectImg) || [];
+      const { dispatch } = this.props;
+      dispatch(change("EventsForm", "eventFilename", this.props.valuefilePath));
+      dispatch(change("EventsForm", "uploadId", fileSelect["0"].id));
+      fileUpdateSelectedImgEvt(null);
+    }
+  }
+
+  getFileUpload = (fileSelected) =>
+    this.props.listUploadsImg.filter(
+      (file) => parseInt(file.id) === parseInt(fileSelected)
+    );
+
   backPage() {
     this.props.init(this.props.listEvents.page, this.props.search);
+    this.props.fileUpdateSelectedImgEvt(null);
   }
+
+  showModal = (event) => {
+    event.preventDefault();
+    this.setState({ show: true });
+  };
+
+  hideModal = (event) => {
+    event.preventDefault();
+    this.setState({ show: false });
+  };
+
+  closeModal = (event) => {
+    this.setState({ show: false });
+  };
 
   render() {
     const { handleSubmit, readOnly } = this.props;
@@ -125,7 +174,53 @@ class EventsForm extends Component {
                     </Field>
                   </div>
                 </div>
-
+                <Modal show={this.state.show} handleClose={this.hideModal}>
+                  <UploadsSearch closeModal={this.closeModal} type="imgEvt" />
+                </Modal>
+                <div className="form-row">
+                  <div className="col-6 form-columns">
+                    <div className="form-group">
+                      <label htmlFor="uploadId">Id da imagem</label>
+                      <Field
+                        className="form-control"
+                        component="input"
+                        type="number"
+                        name="uploadId"
+                        readOnly={true}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="eventFilename">
+                        Nome da imagem carregada
+                      </label>
+                      <Field
+                        className="form-control"
+                        component="input"
+                        type="text"
+                        name="eventFilename"
+                        placeholder="Digite a descrição"
+                        readOnly={true}
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      className="btn btn-primary mt-2"
+                      onClick={this.showModal}
+                    >
+                      Pesquisa imagem
+                    </button>
+                  </div>
+                  <div className="upload-image">
+                    <img
+                      src={`${
+                        urls.BASE_URL
+                      }${this.props.valuefilePath.trim().substring(3)}?v=${
+                        this.state.timestamp
+                      }`}
+                      alt={`event ${path.basename(this.props.valuefilePath)}`}
+                    />
+                  </div>
+                </div>
                 <div className="d-flex flex-wrap justify-content-between mt-3">
                   <button
                     type="submit"
@@ -154,9 +249,23 @@ EventsForm = reduxForm({
   form: "EventsForm",
   destroyOnUnmount: false,
 })(EventsForm);
+
+const selector = formValueSelector("EventsForm");
+
+EventsForm = connect((state) => {
+  return {
+    valuefilePath: selector(state, "eventFilename")
+      ? selector(state, "eventFilename")
+      : " ",
+  };
+})(EventsForm);
+
 const mapStateToProps = (state) => ({
   listEvents: state.events.listEvents,
+  listUploadsImg: state.uploads.listUploadsImg,
+  fileUploadSelectImg: state.events.fileUploadSelectImg,
   search: state.app.search,
 });
-const mapDispatchToProps = (dispatch) => bindActionCreators({ init }, dispatch);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ init, initForm, fileUpdateSelectedImgEvt }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(EventsForm);

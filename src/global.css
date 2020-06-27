@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Roboto+Slab:200,400,700,900&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -15,11 +15,11 @@
   --aside-width: 260px;
   --footer-height: 40px;
   --shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2),
-    0 13px 24px -11px rgba(156, 39, 176, 0.6);
+    0 13px 24px -11px rgba(199, 191, 230, 0.6);
 
   --gray-300: #dee2e6;
   --title-color: #3c4858;
-  --subtitle-color: #999;
+  --description-color: #888;
 }
 
 body {
@@ -28,7 +28,8 @@ body {
 }
 
 body {
-  font-family: "Roboto", "Roboto Slab", "Helvetica", "Arial", sans-serif;
+  font-family: "Roboto", "Roboto Slab", "PT Serif", "Helvetica", "Arial",
+    sans-serif;
   font-weight: 300;
   line-height: 1.5em;
 }

@@ -33,8 +33,10 @@ div.card-deposition {
 }
 
 .card-header-deposition img {
-  max-height: 250px;
-  width: 100%;
+  height: auto;
+  max-height: 100%;
+  width: auto;
+  max-width: 100%;
 }
 
 .card-deposition .card .card-body-deposition {
@@ -43,19 +45,9 @@ div.card-deposition {
   padding: 5%;
 }
 
-.card-body-deposition .icon {
-  display: flex;
-  flex-direction: row;
-  justify-content: first baseline;
-  align-content: center;
-}
-
-.card-deposition .card i {
-  font-size: 1.4em;
-  margin-right: 10px;
+.deposition-actions .icon {
+  font-size: 1.6em;
   font-weight: 500;
-  position: absolute;
-  padding: 10px;
 }
 
 .card-body-deposition .card-title {

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import path from "path";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import "./DepositionsSite.css";
@@ -23,7 +24,9 @@ class DepositionsSite extends Component {
       <Grid key={list.id} cols="12 12 6 4 3" className="carrousel-item">
         <div className="card mb-5">
           <img
-            src={`${urls.BASE_URL}/images/depositions/deposition_${list.id}.jpeg?v=${this.state.timestamp}`}
+            src={`${urls.BASE_URL}/images/depositions/${path.basename(
+              list.depositionFilename
+            )}?v=${this.state.timestamp}`}
             alt="depositions"
           />
           <div className="card-body">

@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux";
 import {
   init,
   initForm,
-  fileUpdateSelectedImg,
+  fileUpdateSelectedImgDep,
 } from "../Depositions/DepositionsAction";
 import Modal from "../../component/Modal/Modal";
 import UploadsSearch from "../Uploads/UploadsSearch";
@@ -49,7 +49,7 @@ class DepositionsForm extends Component {
 
   backPage() {
     this.props.init(this.props.listDepositionsAll.page, this.props.search);
-    this.props.fileUpdateSelectedImg(null);
+    this.props.fileUpdateSelectedImgDep(null);
   }
 
   showModal = (event) => {
@@ -137,7 +137,7 @@ class DepositionsForm extends Component {
                 </div>
 
                 <Modal show={this.state.show} handleClose={this.hideModal}>
-                  <UploadsSearch closeModal={this.closeModal} type="img" />
+                  <UploadsSearch closeModal={this.closeModal} type="imgDep" />
                 </Modal>
 
                 <div className="form-row">
@@ -244,6 +244,6 @@ const mapStateToProps = (state) => ({
   search: state.app.search,
 });
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ init, initForm, fileUpdateSelectedImg }, dispatch);
+  bindActionCreators({ init, initForm, fileUpdateSelectedImgDep }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(DepositionsForm);

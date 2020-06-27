@@ -2,22 +2,22 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router-dom";
+import { GiCutDiamond } from "react-icons/gi";
 import {
   FaBars,
   FaTimes,
   FaHome,
   FaFacebookSquare,
   FaInstagram,
-  FaUserLock,
+  FaUserFriends,
   FaUserCheck,
   FaUserTimes,
-  FaAward,
   FaTools,
 } from "react-icons/fa";
 
 import "./HeaderSite.css";
 import If from "../common/operator/if";
-import { userTypeContent } from "../services/utils";
+import { userTypeContent, getModelTypes } from "../services/utils";
 
 import { logout } from "../auth/AuthAction";
 import Logo from "../component/Logo/Logo";
@@ -72,16 +72,16 @@ class HeaderSite extends Component {
   }
 
   renderRows() {
-    const types = this.props.site.eventTypes || [];
+    const types = getModelTypes();
+    console.log(types);
     return types.map((typ) => (
       <Link
         key={typ.id}
-        to={typ.eventTypeUrl}
+        to={typ.url}
         onClick={this.dropdownNavbar}
         className={`dropdown-item ${this.state.navClassName}`}
       >
-        <i className={`fa fa-${typ.eventTypeIcon} mr-2`}></i>{" "}
-        {typ.eventTypeName}
+        <i className={`fa fa-${typ.icon} mr-2`}></i> {typ.title}
       </Link>
     ));
   }
@@ -137,7 +137,7 @@ class HeaderSite extends Component {
                 <ul className="navbar-nav ml-auto mr-auto ">
                   <li className="nav-item level-1">
                     <Link className="nav-link text-decoration-none" to="/">
-                      <FaHome size={22} className="react-icons mr-2" />
+                      <FaHome className="react-icons mr-2" />
                       Home
                     </Link>
                   </li>
@@ -147,7 +147,7 @@ class HeaderSite extends Component {
                       className="dropdown-toggle nav-link mr-10"
                       data-toggle="dropdown"
                     >
-                      <FaAward size={22} className="react-icons mr-2" />
+                      <GiCutDiamond className="react-icons mr-2" />
                       Planos
                     </span>
                     <div>
@@ -162,7 +162,7 @@ class HeaderSite extends Component {
                         className="nav-link text-decoration-none"
                         to={userTypeContent(type).href}
                       >
-                        <FaTools size={22} className="react-icons mr-2" />
+                        <FaTools className="react-icons mr-2" />
                         {userTypeContent(type).name}
                       </Link>
                     </li>
@@ -173,7 +173,7 @@ class HeaderSite extends Component {
                         className="nav-link text-decoration-none"
                         to="/login"
                       >
-                        <FaUserCheck size={22} className="react-icons mr-2" />
+                        <FaUserCheck className="react-icons mr-2" />
                         {validToken ? name : ""}
                       </Link>
                     </li>
@@ -182,7 +182,7 @@ class HeaderSite extends Component {
                         onClick={this.logoff}
                         className="nav-link text-decoration-none"
                       >
-                        <FaUserTimes size={22} className="react-icons mr-2" />
+                        <FaUserTimes className="react-icons mr-2" />
                         Logoff
                       </span>
                     </li>
@@ -193,7 +193,7 @@ class HeaderSite extends Component {
                         className="nav-link text-decoration-none"
                         to="/login"
                       >
-                        <FaUserLock size={22} className="react-icons mr-2" />
+                        <FaUserFriends className="react-icons mr-2" />
                         Login / Registrar
                       </Link>
                     </li>
@@ -206,10 +206,7 @@ class HeaderSite extends Component {
                       data-placement="bottom"
                       href="https://www.facebook.com/bebridecasamentos"
                     >
-                      <FaFacebookSquare
-                        size={22}
-                        className="react-icons mr-2"
-                      />
+                      <FaFacebookSquare className="react-icons mr-2" />
                     </a>
                   </li>
                   <li className="nav-item level-1">
@@ -220,7 +217,7 @@ class HeaderSite extends Component {
                       data-placement="bottom"
                       href="https://www.instagram.com/bebridecasamentos"
                     >
-                      <FaInstagram size={22} className="react-icons mr-2" />
+                      <FaInstagram className="react-icons mr-2" />
                     </a>
                   </li>
                 </ul>

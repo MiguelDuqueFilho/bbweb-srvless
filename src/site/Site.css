@@ -19,19 +19,27 @@ h2.title {
   padding: 28px;
   position: relative;
   text-align: center;
-  font-size: 2rem;
+  font-size: 2.4rem;
   font-weight: 700;
-  font-family: "Roboto Slab", "Times New Roman", serif;
+  font-family: "roboto", "Times New Roman", serif;
   color: var(--title-color);
 }
 
 h5.description {
-  color: var(--subtitle-color);
-  font-size: 1.23em;
+  color: var(--description-color);
+  font-family: "PT Serif", "Times New Roman", serif;
+  text-align: justify;
+  font-size: 1.1em;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
+.description {
+  color: var(--description-color);
+  font-family: "PT Serif", "Times New Roman", serif;
+  text-align: justify;
+  font-size: 1.1em;
+}
 .img-raised {
   box-shadow: 0 5px 15px -8px rgba(0, 0, 0, 0.24),
     0 8px 10px -5px rgba(0, 0, 0, 0.2);

@@ -1,11 +1,12 @@
-.react-icons {
-  vertical-align: inherit;
-}
-
 .page-header-site {
   font-size: 1.1em;
-  font-family: "Roboto Slab";
+  font-family: "roboto";
   font-weight: 400;
+}
+
+.nav-item .react-icons {
+  vertical-align: sub;
+  font-size: 1.6em;
 }
 
 .navbar-translate button {
@@ -20,6 +21,7 @@
 .page-header-site i {
   font-size: 1.25em;
 }
+
 .page-header-site .navbar-transparent {
   transition: all 0.7s ease-out;
   color: white;
@@ -51,7 +53,7 @@
 .page-header-site .navbar-transparent .nav-item span.nav-link,
 .page-header-site .navbar-transparent .nav-item .nav-link span,
 .page-header-site .navbar-transparent .nav-item .nav-link a {
-  color: white;
+  color: #fff;
 }
 
 .page-header-site .navbar-color-on-scroll button > svg > path,
@@ -59,7 +61,7 @@
 .page-header-site .navbar-color-on-scroll .nav-item a.nav-link,
 .page-header-site .navbar-color-on-scroll .nav-item .nav-link span,
 .page-header-site .navbar-color-on-scroll .nav-item .nav-link a {
-  color: #333;
+  color: #000;
 }
 
 .page-header-site .navbar-transparent button > svg > path:hover,

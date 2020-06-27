@@ -79,7 +79,7 @@ export function submit(values, method) {
     api[method](`/depositions/${id}`, values)
       .then((resp) => {
         toastr.success("Sucesso", "Operação realizada com sucesso.");
-        fileUpdateSelectedImg(null);
+        fileUpdateSelectedImgDep(null);
         dispatch(init());
       })
       .catch((e) => {
@@ -95,7 +95,7 @@ export function submit(values, method) {
   };
 }
 
-export function fileUpdateSelectedImg(fileId) {
+export function fileUpdateSelectedImgDep(fileId) {
   return (dispatch) => {
     dispatch([
       {
@@ -107,7 +107,7 @@ export function fileUpdateSelectedImg(fileId) {
 }
 
 export function showUpdate(file) {
-  fileUpdateSelectedImg(null);
+  fileUpdateSelectedImgDep(null);
   return [
     showTabs("tabUpdate"),
     selectTab("tabUpdate"),
@@ -116,7 +116,7 @@ export function showUpdate(file) {
 }
 
 export function showDelete(file) {
-  fileUpdateSelectedImg(null);
+  fileUpdateSelectedImgDep(null);
   return [
     showTabs("tabDelete"),
     selectTab("tabDelete"),
@@ -136,7 +136,7 @@ export function init(page = 1, searchFilter = INITIAL_SEARCH_VALUES) {
     uploadId: null,
     depositionFilename: "",
   };
-  fileUpdateSelectedImg(null);
+  fileUpdateSelectedImgDep(null);
   return [
     showTabs("tabView", "tabList", "tabCreate"),
     selectTab("tabList"),

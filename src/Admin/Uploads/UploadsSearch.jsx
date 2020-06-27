@@ -4,7 +4,8 @@ import { bindActionCreators } from "redux";
 import "./Uploads.css";
 import { getDoc, getImg } from "./UploadsAction";
 import { fileUpdateSelectedDoc } from "../Downloads/DownloadsAction";
-import { fileUpdateSelectedImg } from "../Depositions/DepositionsAction";
+import { fileUpdateSelectedImgDep } from "../Depositions/DepositionsAction";
+import { fileUpdateSelectedImgEvt } from "../Events/EventsAction";
 
 class UploadsSearch extends Component {
   constructor(props) {
@@ -14,21 +15,25 @@ class UploadsSearch extends Component {
   }
 
   componentDidMount() {
-    if (this.props.type === "img") this.props.getImg();
+    if (this.props.type.substring(0, 3) === "img") this.props.getImg();
     if (this.props.type === "doc") this.props.getDoc();
   }
 
   setFilename(event) {
     event.preventDefault();
     const fileId = event.target.getAttribute("data-item");
-    if (this.props.type === "img") this.props.fileUpdateSelectedImg(fileId);
+    if (this.props.type === "imgDep")
+      this.props.fileUpdateSelectedImgDep(fileId);
+    if (this.props.type === "imgEvt")
+      this.props.fileUpdateSelectedImgEvt(fileId);
     if (this.props.type === "doc") this.props.fileUpdateSelectedDoc(fileId);
     this.props.closeModal();
   }
 
   renderRows(props) {
     let list = [];
-    if (this.props.type === "img") list = props.listUploadsImg || [];
+    if (this.props.type.substring(0, 3) === "img")
+      list = props.listUploadsImg || [];
     if (this.props.type === "doc") list = props.listUploadsDoc || [];
 
     return list.map((file) => (
@@ -85,7 +90,13 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
-    { getDoc, getImg, fileUpdateSelectedDoc, fileUpdateSelectedImg },
+    {
+      getDoc,
+      getImg,
+      fileUpdateSelectedDoc,
+      fileUpdateSelectedImgDep,
+      fileUpdateSelectedImgEvt,
+    },
     dispatch
   );
 
