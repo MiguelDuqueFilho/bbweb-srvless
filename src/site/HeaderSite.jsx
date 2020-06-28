@@ -12,7 +12,7 @@ import {
   FaUserFriends,
   FaUserCheck,
   FaUserTimes,
-  FaTools,
+  FaRegIdCard,
 } from "react-icons/fa";
 
 import "./HeaderSite.css";
@@ -73,7 +73,6 @@ class HeaderSite extends Component {
 
   renderRows() {
     const types = getModelTypes();
-    console.log(types);
     return types.map((typ) => (
       <Link
         key={typ.id}
@@ -162,7 +161,7 @@ class HeaderSite extends Component {
                         className="nav-link text-decoration-none"
                         to={userTypeContent(type).href}
                       >
-                        <FaTools className="react-icons mr-2" />
+                        <FaRegIdCard className="react-icons mr-2" />
                         {userTypeContent(type).name}
                       </Link>
                     </li>

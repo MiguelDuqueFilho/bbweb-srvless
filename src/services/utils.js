@@ -43,7 +43,7 @@ export function getModelTypes(id = null) {
       resume:
         "Sinônimo de tranquilidade. Nossa Assessoria Completa é um serviço desenvolvido desde o início dos preparativos.",
       icon: "GiQueenCrown",
-      url: "/advice_complete",
+      url: "/advice_completed",
       show: false,
     },
     {

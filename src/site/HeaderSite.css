@@ -4,6 +4,14 @@
   font-weight: 400;
 }
 
+.page-header-site .navbar-transparent .icon {
+  color: #fff;
+}
+
+.page-header-site .navbar-color-on-scroll .icon {
+  color: #999;
+}
+
 .nav-item .react-icons {
   vertical-align: sub;
   font-size: 1.6em;
@@ -61,7 +69,7 @@
 .page-header-site .navbar-color-on-scroll .nav-item a.nav-link,
 .page-header-site .navbar-color-on-scroll .nav-item .nav-link span,
 .page-header-site .navbar-color-on-scroll .nav-item .nav-link a {
-  color: #000;
+  color: #999;
 }
 
 .page-header-site .navbar-transparent button > svg > path:hover,

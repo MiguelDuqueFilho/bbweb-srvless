@@ -8,8 +8,8 @@ export default class Team extends Component {
       <div className="container-fluid team-content">
         <h2 className="title">Mas afinal, quem somos nós</h2>
 
-        <div className="row col-10 mr-auto ml-auto">
-          <div className="col-md-4 team-content ">
+        <div className="row col-12 mr-auto ml-auto">
+          <div className="col-md-3 team-content ">
             <img src={team} alt="team" className="rounded-circle img-fluid" />
             <div className="card-title text-center mt-3">
               Bruna Duque e Tamires de Araujo
@@ -30,7 +30,7 @@ export default class Team extends Component {
               </a>
             </div>
           </div>
-          <div className="col-md-8 mt-md-5 mt-3">
+          <div className="col-md-9 mt-5 mt-3">
             <p className="team-descr">
               Olá! Somos duas,{" "}
               <span className="team-text-background">Bruna e Tamires.</span> A

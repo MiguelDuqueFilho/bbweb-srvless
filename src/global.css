@@ -9,6 +9,10 @@
 }
 
 :root {
+  --ratio: 97 / 100;
+  --width: 98vmin;
+  --height: calc(var(--width) * var(--ratio));
+
   --logo-height: 95px;
   --header-height: 70px;
   --menu-top-height: 95px;
@@ -60,30 +64,4 @@ largura */
   width: var(--width);
   height: var(--height);
   text-align: center;
-} */
-
-/* Inside Styles */
-/* h1 {
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-h1, p {
-  margin-bottom: 3vmin;
-}
-
-img {
-  display: block;
-  margin: 3vmin auto;
-  width: 15vmin;
-}
-
-.bigred {
-  color: red;
-  font-size: 3em;
-} */
-
-/* Body */
-/* body {
-  background: #ccc;
 } */

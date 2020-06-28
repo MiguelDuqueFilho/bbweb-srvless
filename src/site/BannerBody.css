@@ -3,11 +3,12 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-family: "Roboto Slab";
-  font-size: 1.2em;
-  font-weight: 200;
+  /* font-family: "Roboto Slab"; */
+  /* font-size: 1.2em;
+  font-weight: 200; */
   color: white;
-  height: 900px;
+  /* height: 900px; */
+  height: 90vh;
 }
 
 .banner-body span {

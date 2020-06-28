@@ -1,17 +1,12 @@
 import React, { Component } from "react";
 import { Parallax } from "react-parallax";
-
+import "../global.css";
 import "./BannerBody.css";
 
 export default class BannerBody extends Component {
   render() {
     return (
-      <Parallax
-        bgImage={this.props.banner}
-        bgImageAlt="Banner"
-        bgImageStyle={{ height: 1400 }}
-        strength={500}
-      >
+      <Parallax bgImage={this.props.banner} bgImageAlt="Banner" strength={500}>
         <div className="banner-body">
           <div className="row">
             <div className="col-12 ml-auto mr-auto ">
