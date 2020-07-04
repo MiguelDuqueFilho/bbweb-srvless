@@ -63,7 +63,6 @@ class Doubts extends Component {
               <div className="col-md-9 ml-auto mr-auto">
                 <div className="form-group text-left bmd-form-group">
                   <Field
-                    className="form-control row={4}"
                     component={TextareaIcon}
                     type="textarea"
                     name="messageEmail"

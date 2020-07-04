@@ -1,6 +1,7 @@
+import config from "../config";
+
 export const urls = {
-  BASE_URL: "http://192.168.100.68:3030",
-  ADM_URL: "http://192.168.100.68:3030/adm",
+  BASE_URL: config.apiGateway.URL,
 };
 
 export function JSDateFormat(date) {

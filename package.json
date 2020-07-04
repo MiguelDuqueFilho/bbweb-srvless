@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "file-saver": "^2.0.2",
@@ -35,7 +32,12 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "sass": "node-sass src/customStyle.scss src/customStyle.css",
-    "sass-min": "node-sass src/customStyle.scss src/customStyle.min.css --output-style compressed"
+    "sass-min": "node-sass src/customStyle.scss src/customStyle.min.css --output-style compressed",
+    "buildprod": "REACT_APP_STAGE=production npm run build",
+    "deploy": "aws s3 sync build/ s3://www.bebrideassessoria.com.br",
+    "predeploy:prod": "REACT_APP_STAGE=production npm run build",
+    "deploy:prod": "aws s3 sync build/ s3://www.bebrideassessoria.com.br",
+    "postdeploy:prod": "aws cloudfront create-invalidation --distribution-id YOUR_PROD_CF_DISTRIBUTION_ID --paths '/*' && aws cloudfront create-invalidation --distribution-id YOUR_PROD_WWW_CF_DISTRIBUTION_ID --paths '/*'"
   },
   "eslintConfig": {
     "extends": "react-app"

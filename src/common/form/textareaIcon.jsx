@@ -2,7 +2,7 @@ import React from "react";
 import If from "../operator/if";
 
 export default ({
-  textarea,
+  input,
   type,
   placeholder,
   icon,
@@ -17,8 +17,9 @@ export default ({
           <i className={`fa fa-${icon}`}></i>
         </span>
         <textarea
-          {...textarea}
+          {...input}
           className="form-control"
+          rows={4}
           placeholder={placeholder}
           readOnly={readOnly}
           type={type}

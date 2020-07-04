@@ -34,7 +34,7 @@ class DepositionsList extends Component {
 
   renderRows() {
     const list = this.props.listDepositionsAll.docs || [];
-
+    console.log(list);
     return list.map((file) => (
       <tr key={file.id}>
         <td className="td-custom">{file.id}</td>
