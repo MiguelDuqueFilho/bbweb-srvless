@@ -20,7 +20,7 @@ const prod = {
   },
   apiGateway: {
     REGION: "us-east-1",
-    URL: "www.bebrideassessoria.com.br",
+    URL: "http://ec2-52-87-218-105.compute-1.amazonaws.com:3030",
   },
   cognito: {
     REGION: "YOUR_PROD_COGNITO_REGION",
