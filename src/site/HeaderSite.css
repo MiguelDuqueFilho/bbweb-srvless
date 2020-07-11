@@ -5,11 +5,17 @@
 }
 
 .page-header-site .navbar-transparent .icon {
-  color: #fff;
+  color: var(--light);
 }
 
 .page-header-site .navbar-color-on-scroll .icon {
-  color: #999;
+  color: var(--gray);
+}
+
+.navbar-toggler:hover,
+.navbar-toggler:focus {
+  border: none;
+  outline: none;
 }
 
 .nav-item .react-icons {
@@ -61,7 +67,7 @@
 .page-header-site .navbar-transparent .nav-item span.nav-link,
 .page-header-site .navbar-transparent .nav-item .nav-link span,
 .page-header-site .navbar-transparent .nav-item .nav-link a {
-  color: #fff;
+  color: var(--light);
 }
 
 .page-header-site .navbar-color-on-scroll button > svg > path,
@@ -69,7 +75,7 @@
 .page-header-site .navbar-color-on-scroll .nav-item a.nav-link,
 .page-header-site .navbar-color-on-scroll .nav-item .nav-link span,
 .page-header-site .navbar-color-on-scroll .nav-item .nav-link a {
-  color: #999;
+  color: var(--gray);
 }
 
 .page-header-site .navbar-transparent button > svg > path:hover,

@@ -6,12 +6,6 @@ const dev = {
     REGION: "localhost",
     URL: "http://192.168.100.68:3030",
   },
-  cognito: {
-    REGION: "YOUR_DEV_COGNITO_REGION",
-    USER_POOL_ID: "YOUR_DEV_COGNITO_USER_POOL_ID",
-    APP_CLIENT_ID: "YOUR_DEV_COGNITO_APP_CLIENT_ID",
-    IDENTITY_POOL_ID: "YOUR_DEV_IDENTITY_POOL_ID",
-  },
 };
 
 const prod = {
@@ -21,12 +15,6 @@ const prod = {
   apiGateway: {
     REGION: "us-east-1",
     URL: "http://ec2-52-87-218-105.compute-1.amazonaws.com:3030",
-  },
-  cognito: {
-    REGION: "YOUR_PROD_COGNITO_REGION",
-    USER_POOL_ID: "YOUR_PROD_COGNITO_USER_POOL_ID",
-    APP_CLIENT_ID: "YOUR_PROD_COGNITO_APP_CLIENT_ID",
-    IDENTITY_POOL_ID: "YOUR_PROD_IDENTITY_POOL_ID",
   },
 };
 

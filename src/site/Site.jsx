@@ -10,7 +10,7 @@ import "./Site.css";
 import HeaderSite from "./HeaderSite";
 import BannerBody from "./BannerBody";
 import Plans from "./Plans";
-// import DepositionsSite from "./DepositionsSite";
+import DepositionsSite from "./DepositionsSite";
 import Team from "./Team";
 import Doubts from "./Doubts";
 import FooterSite from "./FooterSite";
@@ -36,7 +36,7 @@ class Site extends Component {
         <div className="main main-raised">
           <Team />
           <Plans />
-          {/* <DepositionsSite /> */}
+          <DepositionsSite />
           <Doubts />
         </div>
         <FooterSite />
