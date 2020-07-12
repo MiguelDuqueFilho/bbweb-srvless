@@ -16,7 +16,7 @@ class PlanDetailConsulting extends Component {
         <HeaderSite />
         <BannerBody
           title="Consultoria"
-          subtitle="planejar e organizar seu próprio casamento com tranquilidade."
+          subtitle="Planejar e organizar seu próprio casamento com tranquilidade."
           banner={`${urls.BASE_URL}/images/banners${url}.png`}
         />
         <div className="main main-raised">

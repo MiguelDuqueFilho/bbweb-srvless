@@ -22,7 +22,7 @@ class DepositionsSite extends Component {
 
     return list.map((list) => (
       <Grid key={list.id} cols="12 12 6 4 3" className="carrousel-item">
-        <div className="card mb-5">
+        <div className="card">
           <img
             src={`${urls.BASE_URL}/images/depositions/${path.basename(
               list.depositionFilename
@@ -50,7 +50,7 @@ class DepositionsSite extends Component {
         <div className="top-content">
           <div className="container-fluid">
             <div className="carrousel slide">
-              <div className="carrousel-inner flex-wrap">
+              <div className="carrousel-inner flex-wrap ">
                 {this.renderRows()}
               </div>
             </div>
