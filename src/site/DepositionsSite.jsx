@@ -26,7 +26,7 @@ class DepositionsSite extends Component {
           <img
             src={`${urls.BASE_URL}/images/depositions/${path.basename(
               list.depositionFilename
-            )}?v=${this.state.timestamp}`}
+            )}`}
             alt="depositions"
           />
           <div className="card-body">

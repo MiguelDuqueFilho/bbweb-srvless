@@ -173,7 +173,7 @@ class DepositionsForm extends Component {
                   </div>
                   <div>
                     {/* <img
-                      src={`${urls.BASE_URL}/images/depositions/deposition_${item.id}.jpeg?v=${this.state.timestamp}`}
+                      src={`${urls.BASE_URL}/images/depositions/deposition_${item.id}.jpeg?`}
                       alt="deposition"
                     /> */}
                   </div>

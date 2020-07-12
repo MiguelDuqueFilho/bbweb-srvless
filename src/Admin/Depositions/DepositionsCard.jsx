@@ -74,7 +74,7 @@ class DepositionsCard extends Component {
             <img
               src={`${urls.BASE_URL}/images/depositions/${path.basename(
                 item.depositionFilename
-              )}?v=${this.state.timestamp}`}
+              )}`}
               alt="deposition"
             />
           </div>

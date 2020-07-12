@@ -15,8 +15,8 @@ class PlanDetailConsulting extends Component {
       <React.Fragment>
         <HeaderSite />
         <BannerBody
-          title=""
-          subtitle=""
+          title="Consultoria"
+          subtitle="planejar e organizar seu próprio casamento com tranquilidade."
           banner={`${urls.BASE_URL}/images/banners${url}.png`}
         />
         <div className="main main-raised">

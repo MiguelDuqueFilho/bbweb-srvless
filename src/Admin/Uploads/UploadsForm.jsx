@@ -105,7 +105,7 @@ class UploadsForm extends Component {
                     <img
                       src={`${urls.BASE_URL}/images/uploads/${path.basename(
                         this.props.valuefilePath
-                      )}?v=${this.state.timestamp}`}
+                      )}`}
                       alt={`uploads ${path.basename(this.props.valuefilePath)}`}
                     />
                   </div>

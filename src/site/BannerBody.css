@@ -8,7 +8,7 @@
   font-weight: 200; */
   color: white;
   /* height: 900px; */
-  height: 90vh;
+  height: 95vh;
 }
 
 .banner-body span {
@@ -18,9 +18,10 @@
 
 .banner-body .title {
   font-family: "Roboto slab";
-  font-size: 64px;
+  font-size: 80px;
 }
 .banner-body .subtitle {
   font-family: "PT Serif", serif;
   font-size: 24px;
+  padding-top: 20px;
 }

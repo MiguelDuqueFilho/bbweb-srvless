@@ -214,9 +214,7 @@ class EventsForm extends Component {
                     <img
                       src={`${
                         urls.BASE_URL
-                      }${this.props.valuefilePath.trim().substring(3)}?v=${
-                        this.state.timestamp
-                      }`}
+                      }${this.props.valuefilePath.trim().substring(3)}`}
                       alt={`event ${path.basename(this.props.valuefilePath)}`}
                     />
                   </div>

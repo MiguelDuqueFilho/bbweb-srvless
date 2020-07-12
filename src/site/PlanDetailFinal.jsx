@@ -15,8 +15,8 @@ class PlanDetailFinal extends Component {
       <React.Fragment>
         <HeaderSite />
         <BannerBody
-          title=""
-          subtitle=""
+          title="Assessoria Final"
+          subtitle="Paz e sossego no final dos preparativos."
           banner={`${urls.BASE_URL}/images/banners${url}.png`}
         />
         <div className="main main-raised">

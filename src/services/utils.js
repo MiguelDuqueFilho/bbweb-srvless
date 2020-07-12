@@ -2,6 +2,7 @@ import config from "../config";
 
 export const urls = {
   BASE_URL: config.apiGateway.URL,
+  API_URL: `${config.apiGateway.URL}/api`,
 };
 
 export function JSDateFormat(date) {

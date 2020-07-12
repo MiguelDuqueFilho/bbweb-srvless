@@ -79,7 +79,7 @@ class Upload extends Component {
       const formData = new FormData();
       formData.append("file", file, file.name);
       const { user } = this.props.auth;
-      req.open("POST", `${urls.BASE_URL}/uploads`);
+      req.open("POST", `${urls.API_URL}/uploads`);
       req.setRequestHeader("authorization", `Bearer ${user.token}`);
       req.send(formData);
     });

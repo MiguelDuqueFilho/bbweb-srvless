@@ -15,8 +15,8 @@ class PlanDetailDay extends Component {
       <React.Fragment>
         <HeaderSite />
         <BannerBody
-          title=""
-          subtitle=""
+          title="Assessoria do Dia"
+          subtitle="Atender os noivos no dia do seu evento."
           banner={`${urls.BASE_URL}/images/banners${url}.png`}
         />
         <div className="main main-raised">
