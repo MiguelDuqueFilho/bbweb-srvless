@@ -12,16 +12,18 @@
 }
 
 .banner-body span {
-  font-size: 3em;
+  font-size: 3vm;
   margin: 3px;
 }
 
 .banner-body .title {
   font-family: "Roboto slab";
-  font-size: 80px;
+  font-size: 5vh;
+  font-weight: 500;
 }
 .banner-body .subtitle {
   font-family: "PT Serif", serif;
-  font-size: 24px;
+  font-size: 3vh;
+  font-weight: 500;
   padding-top: 20px;
 }
