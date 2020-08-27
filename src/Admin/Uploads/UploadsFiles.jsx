@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import Dropzone from "../../common/Dropzone/Dropzone";
-import "./Uploads.css";
-import Progress from "../../common/Progress/Progress";
-import logo from "../../assets/img/logo45-01.png";
-import { urls } from "../../services/utils";
-import If from "../../common/operator/if";
-import { init } from "./UploadsAction";
+import Dropzone from '../../common/Dropzone/Dropzone';
+import './Uploads.css';
+import Progress from '../../common/Progress/Progress';
+import logo from '../../assets/img/logo.png';
+import { urls } from '../../services/utils';
+import If from '../../common/operator/if';
+import { init } from './UploadsAction';
 
 class Upload extends Component {
   constructor(props) {
@@ -52,35 +52,35 @@ class Upload extends Component {
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();
 
-      req.upload.addEventListener("progress", (event) => {
+      req.upload.addEventListener('progress', (event) => {
         if (event.lengthComputable) {
           const copy = { ...this.state.uploadProgress };
           copy[file.name] = {
-            state: "pending",
+            state: 'pending',
             percentage: (event.loaded / event.total) * 100,
           };
         }
       });
 
-      req.upload.addEventListener("load", (event) => {
+      req.upload.addEventListener('load', (event) => {
         const copy = { ...this.state.uploadProgress };
-        copy[file.name] = { state: "done", percentage: 100 };
+        copy[file.name] = { state: 'done', percentage: 100 };
         this.setState({ uploadProgress: copy });
         resolve(req.response);
       });
 
-      req.upload.addEventListener("Erro", (event) => {
+      req.upload.addEventListener('Erro', (event) => {
         const copy = { ...this.state.uploadProgress };
-        copy[file.name] = { state: "Erro", percentage: 0 };
+        copy[file.name] = { state: 'Erro', percentage: 0 };
         this.setState({ uploadProgress: copy });
         reject(req.response);
       });
 
       const formData = new FormData();
-      formData.append("file", file, file.name);
+      formData.append('file', file, file.name);
       const { user } = this.props.auth;
-      req.open("POST", `${urls.API_URL}/uploads`);
-      req.setRequestHeader("authorization", `Bearer ${user.token}`);
+      req.open('POST', `${urls.API_URL}/uploads`);
+      req.setRequestHeader('authorization', `Bearer ${user.token}`);
       req.send(formData);
     });
   }
@@ -89,14 +89,14 @@ class Upload extends Component {
     const uploadProgress = this.state.uploadProgress[file.name];
     if (this.state.uploading || this.state.successfullUploaded) {
       return (
-        <div className="ProgressWrapper">
+        <div className='ProgressWrapper'>
           <Progress progress={uploadProgress ? uploadProgress.percentage : 0} />
           <i
-            className="fa fa-check-circle"
-            alt="done"
+            className='fa fa-check-circle'
+            alt='done'
             style={{
               opacity:
-                uploadProgress && uploadProgress.state === "done" ? 0.5 : 0,
+                uploadProgress && uploadProgress.state === 'done' ? 0.5 : 0,
             }}
           />
         </div>
@@ -138,22 +138,22 @@ class Upload extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="row">
-          <div className="col-sm-12 ">
-            <div className="card">
-              <h4 className="p-3 m-2 bg-primary shadow text-white rounded-lg">
+        <div className='row'>
+          <div className='col-sm-12 '>
+            <div className='card'>
+              <h4 className='p-3 m-2 bg-primary shadow text-white rounded-lg'>
                 Área para carregar arquivos - veja sites de compressão :
                 <a
-                  className="text-white "
-                  href="https://www.ilovepdf.com/pt/comprimir_pdf"
+                  className='text-white '
+                  href='https://www.ilovepdf.com/pt/comprimir_pdf'
                 >
-                  <i className="ml-3 mr-3 fa fa-compress"> pdf</i>
+                  <i className='ml-3 mr-3 fa fa-compress'> pdf</i>
                 </a>
                 <a
-                  className="text-white "
-                  href="https://www.iloveimg.com/pt/comprimir-imagem"
+                  className='text-white '
+                  href='https://www.iloveimg.com/pt/comprimir-imagem'
                 >
-                  <i className="ml-3 mr-3 fa fa-image "> imagem</i>
+                  <i className='ml-3 mr-3 fa fa-image '> imagem</i>
                 </a>
               </h4>
               <Dropzone
@@ -164,22 +164,22 @@ class Upload extends Component {
                 }
               />
               <If test={this.state.files.length > 0}>
-                <div className="Files">
-                  <table className="table  table-striped ">
+                <div className='Files'>
+                  <table className='table  table-striped '>
                     <thead>
-                      <tr className="bg-secondary text-white ">
-                        <th className="th-custom">Arquivo</th>
-                        <th className="th-custom">Progresso</th>
+                      <tr className='bg-secondary text-white '>
+                        <th className='th-custom'>Arquivo</th>
+                        <th className='th-custom'>Progresso</th>
                       </tr>
                     </thead>
                     <tbody>
                       {this.state.files.map((file) => {
                         return (
                           <tr key={file.name}>
-                            <td className="td-custom">
-                              <span className="Filename">{file.name}</span>
+                            <td className='td-custom'>
+                              <span className='Filename'>{file.name}</span>
                             </td>
-                            <td className="td-custom">
+                            <td className='td-custom'>
                               {this.renderProgress(file)}
                             </td>
                           </tr>
@@ -187,7 +187,7 @@ class Upload extends Component {
                       })}
                     </tbody>
                   </table>
-                  <div className="Actions text-center">
+                  <div className='Actions text-center'>
                     {this.renderActions()}
                   </div>
                 </div>

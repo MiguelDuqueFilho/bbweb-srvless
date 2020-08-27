@@ -28,7 +28,6 @@ export const getDownloads = () => (dispatch) => {
       ]);
     })
     .catch((e) => {
-      console.log(e);
       if (
         typeof e.name !== "undefined" &&
         typeof e.response.data === "undefined"

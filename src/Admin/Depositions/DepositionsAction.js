@@ -47,9 +47,6 @@ export const getDepositions = () => (dispatch) => {
       ]);
     })
     .catch((e) => {
-      console.log(e);
-      console.log(e.name);
-      console.log(e.response.data);
       if (
         typeof e.name !== "undefined" &&
         typeof e.response.data.message === "undefined"

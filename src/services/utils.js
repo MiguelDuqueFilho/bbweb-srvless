@@ -1,4 +1,4 @@
-import config from "../config";
+import config from '../config';
 
 export const urls = {
   BASE_URL: config.apiGateway.URL,
@@ -7,7 +7,7 @@ export const urls = {
 
 export function JSDateFormat(date) {
   let datetime = new Date(date);
-  let temp = datetime.toLocaleDateString("pt-BR");
+  let temp = datetime.toLocaleDateString('pt-BR');
   // if (datetime.getUTCHours() !== 0) {
   //   const hour = datetime.getHours();
   //   const minute = datetime.getMinutes();
@@ -23,38 +23,38 @@ export function getModelTypes(id = null) {
   const ModelTypes = [
     {
       id: 1,
-      title: "Assessoria do Dia",
+      title: 'Assessoria do Dia',
       resume:
-        "Nossa Assessoria do Dia foi pensada com muito carinho para atender os noivos no dia do seu evento.",
-      icon: "GiPartyFlags",
-      url: "/advice_day",
+        'Nossa Assessoria do Dia foi pensada com muito carinho para atender os noivos no dia do seu evento.',
+      icon: 'GiPartyFlags',
+      url: '/advice_day',
       show: false,
     },
     {
       id: 2,
-      title: "Assessoria Final",
+      title: 'Assessoria Final',
       resume:
-        "O serviço de assessoria final começa a 60 dias (2 meses) antes do evento.",
-      icon: "GiBigDiamondRing",
-      url: "/advice_final",
+        'O serviço de assessoria final começa a 60 dias (2 meses) antes do evento.',
+      icon: 'GiBigDiamondRing',
+      url: '/advice_final',
       show: false,
     },
     {
       id: 3,
-      title: "Assessoria Completa",
+      title: 'Assessoria Completa',
       resume:
-        "Sinônimo de tranquilidade. Nossa Assessoria Completa é um serviço desenvolvido desde o início dos preparativos.",
-      icon: "GiQueenCrown",
-      url: "/advice_completed",
+        'Sinônimo de tranquilidade. Nossa Assessoria Completa é um serviço desenvolvido desde o início dos preparativos.',
+      icon: 'GiQueenCrown',
+      url: '/advice_completed',
       show: false,
     },
     {
       id: 4,
-      title: "Consultoria",
+      title: 'Consultoria',
       resume:
-        "Nossa Consultoria é o serviço ideal para o casal que deseja planejar e organizar seu próprio casamento.",
-      icon: "GoBook",
-      url: "/advice_consulting",
+        'Nossa Consultoria é o serviço ideal para o casal que deseja planejar e organizar seu próprio casamento.',
+      icon: 'GoBook',
+      url: '/advice_consulting',
       show: false,
     },
   ];
@@ -65,30 +65,30 @@ export function getModelTypes(id = null) {
 
 export function userTypeContent(userType) {
   const Type = {
-    name: "none",
-    title: "none",
-    href: "/",
+    name: 'none',
+    title: 'none',
+    href: '/',
   };
   switch (userType) {
     case 0:
-      Type.name = "Visitante";
-      Type.title = "Visitante";
-      Type.href = "/guest";
+      Type.name = 'Visitante';
+      Type.title = 'Visitante';
+      Type.href = '/guest';
       return Type;
     case 1:
-      Type.name = "Administração";
-      Type.title = "Administrador";
-      Type.href = "/admin";
+      Type.name = 'Administração';
+      Type.title = 'Administrador';
+      Type.href = '/admin';
       return Type;
     case 2:
-      Type.name = "Cliente";
-      Type.title = "Cliente";
-      Type.href = "/client";
+      Type.name = 'Cliente';
+      Type.title = 'Cliente';
+      Type.href = '/client';
       return Type;
     case 3:
-      Type.name = "Fornecedor";
-      Type.title = "Fornecedor";
-      Type.href = "/partner";
+      Type.name = 'Fornecedor';
+      Type.title = 'Fornecedor';
+      Type.href = '/partner';
       return Type;
     default:
       return Type;
@@ -96,7 +96,7 @@ export function userTypeContent(userType) {
 }
 
 const INITIAL_SEARCH_VALUES = {
-  searchHeader: "",
+  searchHeader: '',
   eventSelected: {},
 };
 
@@ -109,13 +109,13 @@ export function validSearch(search = INITIAL_SEARCH_VALUES) {
     return searchReturn;
   }
 
-  if (typeof searchHeader !== "undefined" && searchHeader !== "") {
+  if (typeof searchHeader !== 'undefined' && searchHeader !== '') {
     searchReturn = { searchHeader };
   }
 
   if (
-    typeof eventSelected !== "undefined" &&
-    typeof eventSelected.id !== "undefined"
+    typeof eventSelected !== 'undefined' &&
+    typeof eventSelected.id !== 'undefined'
   ) {
     searchReturn = { ...searchReturn, eventSelected: eventSelected.id };
   }

@@ -1,19 +1,19 @@
-import React, { Component } from "react";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import { urls } from "../services/utils";
+import { urls } from '../services/utils';
 
-import { validateToken } from "../auth/AuthAction";
-import "./Site.css";
+import { validateToken } from '../auth/AuthAction';
+import './Site.css';
 
-import HeaderSite from "./HeaderSite";
-import BannerBody from "./BannerBody";
-import Plans from "./Plans";
-import DepositionsSite from "./DepositionsSite";
-import Team from "./Team";
-import Doubts from "./Doubts";
-import FooterSite from "./FooterSite";
+import HeaderSite from './HeaderSite';
+import BannerBody from './BannerBody';
+import Plans from './Plans';
+import DepositionsSite from './DepositionsSite';
+import Team from './Team';
+import Doubts from './Doubts';
+import FooterSite from './FooterSite';
 
 class Site extends Component {
   componentDidMount() {
@@ -29,11 +29,11 @@ class Site extends Component {
       <React.Fragment>
         <HeaderSite />
         <BannerBody
-          title="Be Bride"
-          subtitle="Venha conversar com a gente."
+          title=''
+          subtitle='Venha conversar com a gente.'
           banner={`${urls.BASE_URL}/images/banners/banner_4.png`}
         />
-        <div className="main main-raised">
+        <div className='main main-raised'>
           <Team />
           <Plans />
           <DepositionsSite />
