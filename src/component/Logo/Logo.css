@@ -1,6 +1,17 @@
 .logo .logo-link img {
-  width: 80px;
-  border-radius: 50%;
-  box-shadow: 0 5px 15px -8px rgba(0, 0, 0, 0.24),
-    0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  width: 10em;
+  margin-left: 1em;
+  transition: all 0.7s ease-out;
+  /* border-radius: 50%; */
+  /* box-shadow: 0 5px 15px -8px rgba(0, 0, 0, 0.24),
+    0 8px 10px -5px rgba(0, 0, 0, 0.2); */
+}
+
+/* Smaller than standard 960 (devices and browsers) */
+@media only screen and (max-width: 959px) {
+  .logo .logo-link img {
+    width: 7em;
+    margin-left: 1em;
+    transition: all 0.7s ease-out;
+  }
 }

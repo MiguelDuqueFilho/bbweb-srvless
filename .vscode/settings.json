@@ -2,8 +2,11 @@
     "cSpell.ignoreWords": [
         "bbweb",
         "bbweb srvless",
+        "bebride",
         "browserslist",
         "buildprod",
+        "celular",
+        "celular bebride",
         "postdeploy",
         "postdeploy prod",
         "predeploy",
@@ -13,7 +16,10 @@
         "react redux toastr",
         "redux",
         "srvless",
-        "toastr"
+        "toastr",
+        "url",
+        "url whatsapp",
+        "whatsapp"
     ],
     "cSpell.words": [
         "bebrideassessoria"

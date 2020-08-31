@@ -1,26 +1,27 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { Link } from "react-router-dom";
-import { GiCutDiamond } from "react-icons/gi";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
+// import { GiCutDiamond } from 'react-icons/gi';
 import {
   FaBars,
   FaTimes,
-  FaHome,
+  // FaHome,
   FaFacebookSquare,
   FaInstagram,
-  FaUserFriends,
-  FaUserCheck,
-  FaUserTimes,
-  FaRegIdCard,
-} from "react-icons/fa";
+  // FaUserFriends,
+  // FaUserCheck,
+  // FaUserTimes,
+  // FaRegIdCard,
+  FaWhatsapp,
+} from 'react-icons/fa';
 
-import "./HeaderSite.css";
-import If from "../common/operator/if";
-import { userTypeContent, getModelTypes } from "../services/utils";
+import './HeaderSite.css';
+// import If from '../common/operator/if';
+import { getModelTypes } from '../services/utils';
 
-import { logout } from "../auth/AuthAction";
-import Logo from "../component/Logo/Logo";
+import { logout } from '../auth/AuthAction';
+import Logo from '../component/Logo/Logo';
 
 class HeaderSite extends Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class HeaderSite extends Component {
     this.dropdownNavbar = this.dropdownNavbar.bind(this);
     this.logoff = this.logoff.bind(this);
     this.state = {
-      navClassName: "navbar-transparent",
+      navClassName: 'navbar-transparent',
       collapsed: true,
       dropdown: false,
     };
@@ -54,11 +55,11 @@ class HeaderSite extends Component {
   handleScroll() {
     if (document.documentElement.scrollTop > 100) {
       this.setState({
-        navClassName: "navbar-color-on-scroll",
+        navClassName: 'navbar-color-on-scroll',
       });
     } else {
       this.setState({
-        navClassName: "navbar-transparent ",
+        navClassName: 'navbar-transparent ',
       });
     }
   }
@@ -86,67 +87,72 @@ class HeaderSite extends Component {
   }
 
   render() {
-    const { validToken, user } = this.props.auth;
-    const type = user ? user.type : 0;
-    const name = user ? user.name : "";
+    // const { validToken, user } = this.props.auth;
+    // const type = user ? user.type : 0;
+    // const name = user ? user.name : '';
+    const celular_bebride = '5511940768615';
+    const text = 'Olá Be Bride, Tenho interesse em receber informações';
+    const textEncode = encodeURIComponent(text);
+
+    let urlWhatsapp = `https://wa.me/${celular_bebride}?text=${textEncode}`;
 
     const collapsed = this.state.collapsed;
     const classOne = collapsed
-      ? "collapse navbar-collapse"
-      : "collapse navbar-collapse mt-4 show";
+      ? 'collapse navbar-collapse'
+      : 'collapse navbar-collapse mt-4 show';
     const classTwo = collapsed
-      ? "navbar-toggler navbar-toggler-right collapsed"
-      : "navbar-toggler navbar-toggler-right ";
+      ? 'navbar-toggler navbar-toggler-right collapsed'
+      : 'navbar-toggler navbar-toggler-right ';
 
-    const dropdown = this.state.dropdown;
-    const classDropdown = dropdown
-      ? "dropdown-menu dropdown-with-icons show"
-      : "dropdown-menu dropdown-with-icons";
+    // const dropdown = this.state.dropdown;
+    // const classDropdown = dropdown
+    //   ? 'dropdown-menu dropdown-with-icons show'
+    //   : 'dropdown-menu dropdown-with-icons';
 
     return (
-      <div className="page-header-site">
-        <div className="container">
+      <div className='page-header-site'>
+        <div className='container'>
           <nav
             className={`navbar  fixed-top navbar-expand-lg ${this.state.navClassName}`}
-            id="sectionsNav"
+            id='sectionsNav'
           >
-            <div className="container-fluid ">
-              <div className="navbar-translate d-flex">
-                <Logo />
+            <div className='container-fluid '>
+              <div className='navbar-translate d-flex'>
+                <Logo navClassName={`${this.state.navClassName}`} />
               </div>
               <div>
                 <button
                   onClick={this.toggleNavbar}
                   className={`${classTwo}`}
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#navbarResponsive"
-                  aria-controls="navbarResponsive"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
+                  type='button'
+                  data-toggle='collapse'
+                  data-target='#navbarResponsive'
+                  aria-controls='navbarResponsive'
+                  aria-expanded='false'
+                  aria-label='Toggle navigation'
                 >
                   {this.state.collapsed ? (
-                    <FaBars className="icon" />
+                    <FaBars className='icon' />
                   ) : (
-                    <FaTimes className="icon" />
+                    <FaTimes className='icon' />
                   )}
                 </button>
               </div>
-              <div className={`${classOne}`} id="navbarResponsive">
-                <ul className="navbar-nav ml-auto mr-auto ">
-                  <li className="nav-item level-1">
-                    <Link className="nav-link text-decoration-none" to="/">
-                      <FaHome className="react-icons mr-2" />
+              <div className={`${classOne}`} id='navbarResponsive'>
+                <ul className='navbar-nav ml-auto mr-auto '>
+                  {/* <li className='nav-item level-1'>
+                    <Link className='nav-link text-decoration-none' to='/'>
+                      <FaHome className='react-icons mr-2' />
                       Home
                     </Link>
-                  </li>
-                  <li className="dropdown nav-item level-1">
+                  </li> */}
+                  {/* <li className='dropdown nav-item level-1'>
                     <span
                       onClick={this.dropdownNavbar}
-                      className="dropdown-toggle nav-link mr-10"
-                      data-toggle="dropdown"
+                      className='dropdown-toggle nav-link mr-10'
+                      data-toggle='dropdown'
                     >
-                      <GiCutDiamond className="react-icons mr-2" />
+                      <GiCutDiamond className='react-icons mr-2' />
                       Planos
                     </span>
                     <div>
@@ -154,20 +160,20 @@ class HeaderSite extends Component {
                         {this.renderRows(classDropdown)}
                       </div>
                     </div>
-                  </li>
-                  <If test={validToken}>
-                    <li className="nav-item level-1">
+                  </li> */}
+                  {/* <If test={validToken}>
+                    <li className='nav-item level-1'>
                       <Link
-                        className="nav-link text-decoration-none"
+                        className='nav-link text-decoration-none'
                         to={userTypeContent(type).href}
                       >
-                        <FaRegIdCard className="react-icons mr-2" />
+                        <FaRegIdCard className='react-icons mr-2' />
                         {userTypeContent(type).name}
                       </Link>
                     </li>
                   </If>
                   <If test={validToken}>
-                    <li className="nav-item level-1">
+                     <li className="nav-item level-1">
                       <Link
                         className="nav-link text-decoration-none"
                         to="/login"
@@ -196,27 +202,38 @@ class HeaderSite extends Component {
                         Login / Registrar
                       </Link>
                     </li>
-                  </If>
-                  <li className="nav-item level-1">
+                  </If> */}
+                  <li className='nav-item level-1'>
                     <a
-                      className="nav-link"
-                      rel="tooltip"
-                      title="Siga-nos no Facebook"
-                      data-placement="bottom"
-                      href="https://www.facebook.com/bebridecasamentos"
+                      className='nav-link'
+                      rel='tooltip'
+                      title='Contate via Whatsapp'
+                      data-placement='bottom'
+                      href={urlWhatsapp}
                     >
-                      <FaFacebookSquare className="react-icons mr-2" />
+                      <FaWhatsapp className='react-icons mr-2' />
                     </a>
                   </li>
-                  <li className="nav-item level-1">
+                  <li className='nav-item level-1'>
                     <a
-                      className="nav-link"
-                      rel="tooltip"
-                      title="Siga-nos no Instagram"
-                      data-placement="bottom"
-                      href="https://www.instagram.com/bebridecasamentos"
+                      className='nav-link'
+                      rel='tooltip'
+                      title='Siga-nos no Facebook'
+                      data-placement='bottom'
+                      href='https://www.facebook.com/bebridecasamentos'
                     >
-                      <FaInstagram className="react-icons mr-2" />
+                      <FaFacebookSquare className='react-icons mr-2' />
+                    </a>
+                  </li>
+                  <li className='nav-item level-1'>
+                    <a
+                      className='nav-link'
+                      rel='tooltip'
+                      title='Siga-nos no Instagram'
+                      data-placement='bottom'
+                      href='https://www.instagram.com/bebridecasamentos'
+                    >
+                      <FaInstagram className='react-icons mr-2' />
                     </a>
                   </li>
                 </ul>

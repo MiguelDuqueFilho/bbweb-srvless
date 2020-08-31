@@ -1,5 +1,5 @@
-import React from "react";
-import If from "../operator/if";
+import React from 'react';
+import If from '../operator/if';
 
 export default ({
   input,
@@ -12,13 +12,13 @@ export default ({
 }) => {
   return (
     <If test={!hidden}>
-      <div className="input-group">
-        <span className="input-group-prepend">
+      <div className='input-group'>
+        <span className='input-group-prepend'>
           <i className={`fa fa-${icon}`}></i>
         </span>
         <textarea
           {...input}
-          className="form-control"
+          className='form-control ml-2'
           rows={4}
           placeholder={placeholder}
           readOnly={readOnly}
@@ -27,12 +27,12 @@ export default ({
       </div>
       {touched &&
         ((error && (
-          <div className="alert alert-danger">
+          <div className='alert alert-danger'>
             <span>{error}</span>
           </div>
         )) ||
           (warning && (
-            <div className="validate-warning alert alert-warning">
+            <div className='validate-warning alert alert-warning'>
               <span>{warning}</span>
             </div>
           )))}
