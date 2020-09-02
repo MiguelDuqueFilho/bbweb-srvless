@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 // import { GiCutDiamond } from 'react-icons/gi';
 import {
@@ -20,7 +20,7 @@ import './HeaderSite.css';
 // import If from '../common/operator/if';
 import { getModelTypes } from '../services/utils';
 
-import { logout } from '../auth/AuthAction';
+// import { logout } from '../auth/AuthAction';
 import Logo from '../component/Logo/Logo';
 
 class HeaderSite extends Component {
@@ -28,7 +28,7 @@ class HeaderSite extends Component {
     super(props);
     this.toggleNavbar = this.toggleNavbar.bind(this);
     this.dropdownNavbar = this.dropdownNavbar.bind(this);
-    this.logoff = this.logoff.bind(this);
+    // this.logoff = this.logoff.bind(this);
     this.state = {
       navClassName: 'navbar-transparent',
       collapsed: true,
@@ -36,9 +36,9 @@ class HeaderSite extends Component {
     };
   }
 
-  logoff() {
-    this.props.logout();
-  }
+  // logoff() {
+  //   this.props.logout();
+  // }
 
   toggleNavbar() {
     this.setState({
@@ -247,6 +247,6 @@ class HeaderSite extends Component {
 }
 
 const mapStateToProps = (state) => ({ auth: state.auth, site: state.site });
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ logout }, dispatch);
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderSite);
+// const mapDispatchToProps = (dispatch) =>
+//   bindActionCreators({ logout }, dispatch);
+export default connect(mapStateToProps, null)(HeaderSite);

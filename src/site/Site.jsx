@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // import { urls } from '../services/utils';
 
-import { validateToken } from '../auth/AuthAction';
+// import { validateToken } from '../auth/AuthAction';
 import './Site.css';
 
 import HeaderSite from './HeaderSite';
@@ -52,6 +52,6 @@ class Site extends Component {
 }
 
 const mapStateToProps = (state) => ({ auth: state.auth, site: state.site });
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ validateToken }, dispatch);
-export default connect(mapStateToProps, mapDispatchToProps)(Site);
+// const mapDispatchToProps = (dispatch) =>
+//   bindActionCreators({ validateToken }, dispatch);
+export default connect(mapStateToProps, null)(Site);
