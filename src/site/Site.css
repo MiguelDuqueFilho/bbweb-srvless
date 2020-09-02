@@ -12,22 +12,22 @@
 }
 
 .section {
-  padding: 70px;
+  padding: 2em;
 }
 
 h2.title {
-  padding: 28px;
+  padding: 1.2em 0;
   position: relative;
   text-align: center;
   font-size: 2.4rem;
   font-weight: 700;
-  font-family: "roboto", "Times New Roman", serif;
+  font-family: 'roboto', 'Times New Roman', serif;
   color: var(--title-color);
 }
 
 h5.description {
   color: var(--description-color);
-  font-family: "PT Serif", "Times New Roman", serif;
+  font-family: 'PT Serif', 'Times New Roman', serif;
   text-align: justify;
   font-size: 1.1em;
   margin-top: 10px;
@@ -36,7 +36,7 @@ h5.description {
 
 .description {
   color: var(--description-color);
-  font-family: "PT Serif", "Times New Roman", serif;
+  font-family: 'PT Serif', 'Times New Roman', serif;
   text-align: justify;
   font-size: 1.1em;
 }

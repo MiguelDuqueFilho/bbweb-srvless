@@ -8,7 +8,7 @@
 .team-content img {
   align-self: center;
   padding: 1.6em;
-  width: 22em;
+  width: 30em;
 }
 .team-content .title {
   padding-top: 30px;
@@ -16,6 +16,7 @@
 
 .team-content .card-title {
   font-size: 20px;
+  text-align: center;
 }
 
 .team-content .team-text-background {
@@ -28,7 +29,11 @@
   font-size: 18px;
 }
 
-.team-content .team-descr a i {
+.team-content .team-social a {
+  text-align: center;
+}
+
+.team-content .team-social a i {
   font-size: 32px;
 }
 

@@ -1,0 +1,67 @@
+.why-block {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-items: auto;
+  align-content: center;
+  text-align: center;
+}
+
+.why.title {
+  text-align: center;
+  font-size: 2em;
+}
+
+.why.title span {
+  font-weight: 300;
+  font-size: 0.7em;
+}
+
+.why.title p {
+  font-size: 3rem;
+  line-height: 1.5em;
+  color: var(--primary);
+
+  text-align: center;
+}
+
+.why-text-background {
+  background: rgba(199, 191, 230, 0.7);
+}
+
+.why-descr {
+  color: var(--description-color);
+  text-align: justify;
+  font-size: 18px;
+}
+.features .icon {
+  font-size: 4em;
+  padding: 40px;
+  color: var(--primary);
+}
+
+.why-whatsapp button {
+  font-size: 1.8rem;
+  margin: 2em 0;
+}
+
+@media (max-width: 959px) {
+  .why-block {
+    padding: 0;
+    margin: 0;
+  }
+
+  .why.title {
+    font-size: 1.6em;
+  }
+
+  .why.title span {
+    margin-left: 0;
+  }
+  .why.title p {
+    font-size: 2.4rem;
+    line-height: 1.5em;
+    color: var(--primary);
+    padding-left: 0;
+  }
+}

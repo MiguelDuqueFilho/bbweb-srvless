@@ -12,6 +12,8 @@ import BannerBody from './BannerBody';
 import Plans from './Plans';
 import DepositionsSite from './DepositionsSite';
 import Team from './Team';
+import About from './About';
+import Why from './Why';
 // import Doubts from './Doubts';
 import FooterSite from './FooterSite';
 
@@ -39,6 +41,8 @@ class Site extends Component {
           <Team />
           <Plans />
           <DepositionsSite />
+          <About />
+          <Why />
           {/* <Doubts /> */}
         </div>
         <FooterSite />

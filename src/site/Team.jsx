@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Team.css';
 import team from '../assets/img/bruna-tamires.png';
-import logo from '../assets/img/logo.png';
+import logo from '../assets/img/LogoBeBride.png';
 
 export default class Team extends Component {
   render() {
@@ -17,7 +17,7 @@ export default class Team extends Component {
               Bruna Duque e Tamires de Araujo
             </div>
 
-            <div className='team-descr text-center mt-3'>
+            <div className='team-social text-center mt-3'>
               <a
                 href='https://www.facebook.com/bebridecasamentos'
                 className='btn btn-link btn-just-icon'
