@@ -17,7 +17,7 @@ import Why from './Why';
 // import Doubts from './Doubts';
 import FooterSite from './FooterSite';
 
-import banner from '../assets/img/banner_4.png';
+import banner from '../assets/img/banner.png';
 
 class Site extends Component {
   // componentDidMount() {
