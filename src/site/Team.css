@@ -5,13 +5,37 @@
   align-content: center;
 }
 
-.team-content img {
+.team-content .logo {
   align-self: center;
-  padding: 1.6em;
-  width: 30em;
+  height: 14em;
 }
-.team-content .title {
+/* .team-content .title {
   padding-top: 30px;
+} */
+
+.team-block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-items: auto;
+  align-content: center;
+  text-align: center;
+}
+
+.team.title {
+  text-align: start;
+  font-size: 1.7em;
+}
+
+.team.title span {
+  margin-left: 15%;
+}
+
+.team.title p {
+  font-size: 3rem;
+  line-height: 1.5em;
+  color: var(--primary);
+  text-align: center;
 }
 
 .team-content .card-title {
@@ -37,10 +61,24 @@
   font-size: 32px;
 }
 
-@media only screen and (max-width: 959px) {
+@media (max-width: 959px) {
   .team-content img {
     align-self: center;
-    padding: 1em;
-    width: 12em;
+  }
+
+  .team.title {
+    text-align: center;
+    font-size: 1.8em;
+  }
+
+  .team.title span {
+    margin-left: 0;
+  }
+
+  .team.title p {
+    font-size: 2.4rem;
+    line-height: 1.5em;
+    color: var(--primary);
+    padding-left: 0;
   }
 }

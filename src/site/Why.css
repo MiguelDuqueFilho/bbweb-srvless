@@ -34,15 +34,10 @@
   text-align: justify;
   font-size: 18px;
 }
-.features .icon {
-  font-size: 4em;
-  padding: 40px;
-  color: var(--primary);
-}
 
 .why-whatsapp button {
-  font-size: 1.8rem;
-  margin: 2em 0;
+  font-size: 1.7rem;
+  margin-top: 2em;
 }
 
 @media (max-width: 959px) {

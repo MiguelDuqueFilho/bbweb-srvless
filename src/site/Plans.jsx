@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './Plans.css';
-import { connect } from 'react-redux';
+
 import { getModelTypes } from '../services/utils';
-import { FaHeart } from 'react-icons/fa';
+import { FaWhatsapp, FaHeart } from 'react-icons/fa';
 
 import Grid from '../component/Grid/Grid';
 import * as Go from 'react-icons/go';
@@ -19,6 +19,15 @@ const Icon = (props) => {
   return icon;
 };
 class Plans extends Component {
+  onWhatsapp(values) {
+    const celular_bebride = '5511940768615';
+    const text = `Mensagem via site Be Bride\nSua mensagem: \n\n`;
+    const textEncode = encodeURIComponent(text);
+
+    const urlWhatsapp = `https://wa.me/${celular_bebride}?text=${textEncode}`;
+    window.location.assign(urlWhatsapp);
+  }
+
   renderRows() {
     const types = getModelTypes();
     return types.map((typ) => (
@@ -44,7 +53,7 @@ class Plans extends Component {
             <div className='col-md-12 ml-auto mr-auto'>
               <h2 className='title text-center'>
                 Noiva tranquila é noiva organizada.{' '}
-                <FaHeart size={22} className='text-primary' />
+                <FaHeart size={28} className='text-primary' />
               </h2>
 
               <h4 className='description text-center'>
@@ -55,11 +64,29 @@ class Plans extends Component {
           <div className='features'>
             <div className='row'>{this.renderRows()}</div>
           </div>
+          <div className='row'>
+            <Grid
+              cols='12 12 6 6 6 '
+              className='why-whatsapp mr-auto ml-md-auto'
+            >
+              <button
+                type='button'
+                className='btn btn-primary  btn-raised text-white '
+                onClick={this.onWhatsapp}
+              >
+                <FaWhatsapp
+                  size={28}
+                  style={{ verticalAlign: 'inherit', paddingBottom: 4 }}
+                  className='react-icons mr-3 '
+                />
+                Vamos juntas
+              </button>
+            </Grid>
+          </div>
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({ site: state.site });
-export default connect(mapStateToProps, null)(Plans);
+export default Plans;

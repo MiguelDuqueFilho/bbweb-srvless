@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import './DepositionsSite.css';
-import { getDepositionsShow } from './SiteAction';
 
 import Grid from '../component/Grid/Grid';
 
@@ -15,9 +12,6 @@ class DepositionsSite extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.props.getDepositionsShow();
-  // }
   renderRows() {
     const list = [
       {
@@ -109,7 +103,4 @@ class DepositionsSite extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({ site: state.site });
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ getDepositionsShow }, dispatch);
-export default connect(mapStateToProps, mapDispatchToProps)(DepositionsSite);
+export default DepositionsSite;

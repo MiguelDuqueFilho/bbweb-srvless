@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
+
 import { Link } from 'react-router-dom';
-// import { GiCutDiamond } from 'react-icons/gi';
+
 import {
   FaBars,
   FaTimes,
@@ -117,7 +116,7 @@ class HeaderSite extends Component {
             id='sectionsNav'
           >
             <div className='container-fluid '>
-              <div className='navbar-translate d-flex'>
+              <div className='navbar-translate d-flex '>
                 <Logo navClassName={`${this.state.navClassName}`} />
               </div>
               <div>
@@ -139,7 +138,7 @@ class HeaderSite extends Component {
                 </button>
               </div>
               <div className={`${classOne}`} id='navbarResponsive'>
-                <ul className='navbar-nav ml-auto mr-auto '>
+                <ul className='navbar-nav ml-auto mr-auto col-12 justify-content-end'>
                   {/* <li className='nav-item level-1'>
                     <Link className='nav-link text-decoration-none' to='/'>
                       <FaHome className='react-icons mr-2' />
@@ -246,7 +245,4 @@ class HeaderSite extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({ auth: state.auth, site: state.site });
-// const mapDispatchToProps = (dispatch) =>
-//   bindActionCreators({ logout }, dispatch);
-export default connect(mapStateToProps, null)(HeaderSite);
+export default HeaderSite;

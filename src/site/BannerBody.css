@@ -4,89 +4,84 @@
   justify-content: center;
   align-items: center;
   color: white;
-  /* height: 900px; */
   height: 95vh;
 }
 
-.banner-body span {
-  font-size: 3vm;
-  margin: 3px;
-}
-
 .banner-body .title {
-  font-family: 'Roboto slab';
-  font-size: 6vw;
+  font-family: 'PT Serif', serif;
+  font-size: 3rem;
   font-weight: 500;
 }
 .banner-body .subtitle {
   font-family: 'PT Serif', serif;
-  font-size: 3vw;
-  font-weight: 500;
-  padding-top: 5vw;
+
+  font-size: 3rem;
+  font-weight: 400;
 }
 /* Smaller than standard 960 (devices and browsers) */
 @media only screen and (max-width: 959px) {
   .banner-body .title {
-    font-size: 6vw;
+    font-size: 2rem;
+    font-weight: 700;
   }
   .banner-body .subtitle {
-    font-size: 3vw;
+    font-size: 2rem;
+    font-weight: 400;
   }
 }
 
 /* Tablet Portrait size to standard 960 (devices and browsers) */
-@media only screen and (min-width: 768px) and (max-width: 959px) {
+/* @media only screen and (min-width: 768px) and (max-width: 959px) {
   .banner-body .title {
     font-size: 8vw;
   }
   .banner-body .subtitle {
     font-size: 3vw;
   }
-}
+} */
 
 /* All Mobile Sizes (devices and browser) */
-@media only screen and (max-width: 767px) {
+/* @media only screen and (max-width: 767px) {
   .banner-body .title {
     font-size: 8vw;
   }
   .banner-body .subtitle {
     font-size: 3vw;
   }
-}
+} */
 
 /* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
-@media only screen and (min-width: 480px) and (max-width: 767px) {
+/* @media only screen and (min-width: 480px) and (max-width: 767px) {
   .banner-body .title {
     font-size: 8vw;
   }
   .banner-body .subtitle {
     font-size: 4vw;
   }
-}
+} */
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
-@media only screen and (max-width: 479px) {
+/* @media only screen and (max-width: 479px) {
   .banner-body .title {
     font-size: 8vw;
   }
   .banner-body .subtitle {
     font-size: 6vw;
   }
-}
-@media only screen and (min-width: 1550px) {
+} */
+/* @media only screen and (min-width: 1550px) {
   .banner-body .title {
     font-size: 6vw;
   }
   .banner-body .subtitle {
     font-size: 2vw;
   }
-}
+} */
 
-@media only screen and (min-width: 1400px) and (max-width: 1549px) {
+/* @media only screen and (min-width: 1400px) and (max-width: 1549px) {
   .banner-body .title {
-    font-size: 6vw;
   }
   .banner-body .subtitle {
     font-size: 2vw;
   }
-}
+} */
